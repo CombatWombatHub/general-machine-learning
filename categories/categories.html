@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Categories &#8212; aiml-notes 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a1a7cee5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=a681ed88"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'categories/categories';</script>
+    <script src="../_static/custom.js?v=613d9f17"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Machine Learning (ML)" href="ml/ml.html" />
+    <link rel="prev" title="Goals and To-Dos" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.jpg" class="logo__image only-light" alt="aiml-notes 1.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/logo.jpg" class="logo__image only-dark" alt="aiml-notes 1.0 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Goals and To-Dos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">AI/ML:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Categories</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ml/ml.html">Machine Learning (ML)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="ml/notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="ml/notes/dimensionality_reduction.html">Dimensionality Reduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml/notes/nns.html">Neural Networks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml/notes/pinns.html">Physics-Informed Neural Networks (PINNs)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml/notes/svm.html">Support Vector Machines (SVM)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="ml/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html">Intro to Classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html">Python ML Mini Course</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="nlp/nlp.html">Natural Language Processing (NLP)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nlp/notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="nlp/notes/tokenization.html">Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="nlp/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster.html">Iterate Like a Grandmaster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html">Getting Started with NLP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/text-classification-scikit-learn.html">Text Classification using scikit-learn in NLP</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="xai/xai.html">Explainable AI (XAI)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="xai/shapley_xai_intro.html">Intro to SHAP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="generative/generative.html">Generative AI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generative/llms.html">Large Language Models (LLM’s)</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fundamentals/fundamentals.html">Fundamentals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/correlation.html">Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/metrics.html">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/ops.html">DevOps and MLOps</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../libraries/libraries.html">Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pytorch.html">Learning Pytorch</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sphinx:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../sphinx/sphinx.html">Sphinx Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/notebook.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/restructuredtext.html">reStructuredText</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/CombatWombatHub/aiml-notes" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/categories/categories.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Categories</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="categories">
+<h1>Categories<a class="headerlink" href="#categories" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://www.geeksforgeeks.org/artificial-intelligence/what-is-artificial-intelligence-ai/"><strong>Artificial Intelligence (AI)</strong></a> is a technology that enables machines and computers to perform tasks that typically require human intelligence. It contains multiple subdivisions.</p>
+<ul class="simple">
+<li><p><strong>Machine Learning (ML)</strong> learns from and makes decisions based on data, using algorithms to identify patterns.</p></li>
+<li><p><strong>Generative AI</strong> creates <em>new</em> content (text, images, etc) based on what it’s learned instead of just <em>recognizing</em> it.</p></li>
+<li><p><strong>Natural Language Processing (NLP)</strong> understands and interacts with human languages in a way that feels natural.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/artificial-intelligence/expert-systems/"><strong>Expert Systems</strong></a> use predefined “if-then” rules programmed by human experts to make informed decisions.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ml/ml.html">Machine Learning (ML)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ml/ml.html#categories">Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml/ml.html#supervised-learning">Supervised Learning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ml/ml.html#classification">Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml/ml.html#regression">Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml/ml.html#classification-regression">Classification | Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml/ml.html#ensemble-learning">Ensemble Learning</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ml/ml.html#bagging">Bagging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml/ml.html#boosting">Boosting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml/ml.html#stacking">Stacking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ml/ml.html#unsupervised-learning">Unsupervised Learning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ml/ml.html#clustering">Clustering</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ml/ml.html#centroid-based">Centroid-Based</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml/ml.html#distribution-based">Distribution-Based</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml/ml.html#connectivity-based">Connectivity-Based</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ml/ml.html#density-based">Density-Based</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ml/ml.html#dimensionality-reduction">Dimensionality Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml/ml.html#association-rule-mining">Association Rule Mining</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ml/ml.html#reinforcement-learning">Reinforcement Learning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ml/ml.html#model-based">Model-Based</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml/ml.html#model-free">Model-Free</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ml/ml.html#forecasting-models">Forecasting Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml/ml.html#semi-supervised-learning">Semi-Supervised Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml/ml.html#self-supervised-learning">Self-Supervised Learning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ml/notes/notes.html">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ml/notes/dimensionality_reduction.html">Dimensionality Reduction</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ml/notes/dimensionality_reduction.html#decision-tree">Decision Tree</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ml/notes/dimensionality_reduction.html#methods-breakdown">Methods Breakdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ml/notes/nns.html">Neural Networks</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ml/notes/nns.html#tiny-neural-network">Tiny Neural Network</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ml/notes/nns.html#backpropagation">Backpropagation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ml/notes/nns.html#activation-functions">Activation Functions</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ml/notes/nns.html#properties">Properties</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/notes/nns.html#examples">Examples</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/notes/nns.html#derivatives">Derivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ml/notes/pinns.html">Physics-Informed Neural Networks (PINNs)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ml/notes/pinns.html#machine-learning-reference-material">Machine Learning Reference Material</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ml/notes/pinns.html#tutorial-specific-reference-material">Tutorial-Specific Reference Material</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ml/notes/pinns.html#weak-solution-pinns">Weak Solution PINNs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ml/notes/pinns.html#variational-forms">Variational Forms</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ml/notes/pinns.html#example-problem-definition">Example Problem Definition:</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/notes/pinns.html#example-problem-classical-strong-and-weak-solutions">Example Problem Classical, Strong, and Weak Solutions:</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/notes/pinns.html#differences-between-classical-strong-and-weak-solutions">Differences Between Classical, Strong, and Weak Solutions:</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ml/notes/pinns.html#theory-on-relative-function-spaces-sobolev-space-and-hilbert-space">Theory on Relative Function Spaces, Sobolev Space, and Hilbert Space</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ml/notes/svm.html">Support Vector Machines (SVM)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ml/examples/examples.html">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html">Intro to Classification</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html#datacamp">DataCamp</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html#extracting-dataframes-from-datacamp">Extracting DataFrames from DataCamp</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html#about-this-course">About this Course</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html#id1">Intro to Classification</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html#k-nearest-neighbors">k-Nearest Neighbors</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html#the-churn-dataset">The Churn Dataset</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html#choose-data">Choose Data</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html#fit">Fit</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html#predict">Predict</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html#measuring-model-performance-train-test-split">Measuring Model Performance (train-test-split)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/intro_to_classification_datacamp/intro_to_classification.html#model-complexity-overfitting-underfitting">Model Complexity (Overfitting/Underfitting)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html">Python ML Mini Course</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#creating-dataframes">Creating DataFrames</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#create-a-simple-dataframe">Create a simple DataFrame</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#create-dataframe-from-csv-url">Create DataFrame from CSV URL</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#examining-the-data">Examining the Data</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#describe">Describe</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#scatter-plot-matrix">Scatter Plot Matrix</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#histogram">Histogram</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#box-plot">Box Plot</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#pre-processing-data">Pre-Processing Data</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#standardize-scale-and-center">Standardize (Scale and Center)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#resampling">Resampling</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#k-fold-cross-validation">K-Fold Cross Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#evaluation-metrics">Evaluation Metrics</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#logloss">Logloss</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#confusion-matrix">Confusion Matrix</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#classification-report">Classification Report</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#rmse-and-r-squared">RMSE and R-Squared</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#spot-check-algorithms">Spot-Check Algorithms</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#linear-algorithms">Linear Algorithms</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#non-linear-algorithms">Non-Linear Algorithms</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#ensemble-algorithms">Ensemble Algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#model-comparison-and-selection">Model Comparison and Selection</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#improving-model-accuracy">Improving Model Accuracy</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#parameter-tuning">Parameter Tuning</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#ensemble-predictions">Ensemble Predictions</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#finalize-and-save">Finalize and Save</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nlp/nlp.html">Natural Language Processing (NLP)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nlp/notes/notes.html">Notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nlp/notes/tokenization.html">Tokenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="nlp/notes/tokenization.html#tf-idf-term-frequency-inverse-document-frequency-matrix">TF-IDF (Term Frequency - Inverse Document Frequency) Matrix</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="nlp/notes/tokenization.html#equations">Equations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="nlp/notes/tokenization.html#example-tf-idf-of-cat">Example - TF-IDF of “cat”</a></li>
+<li class="toctree-l5"><a class="reference internal" href="nlp/notes/tokenization.html#example-scikit-learn">Example - Scikit-Learn</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="nlp/notes/tokenization.html#tf-idf-matrix">TF-IDF Matrix</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="nlp/examples/examples.html">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster.html">Iterate Like a Grandmaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html">Getting Started with NLP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#nlp-for-classification">NLP For Classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#u-s-patent-phrase-to-phrase-matching-competition">U.S. Patent Phrase to Phrase Matching Competition</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#get-the-dataset">Get the Dataset</a></li>
+<li class="toctree-l5"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#examine-the-dataset">Examine the DataSet</a></li>
+<li class="toctree-l5"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#concatenate-the-input">Concatenate the Input</a></li>
+<li class="toctree-l5"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#tokenize">Tokenize</a></li>
+<li class="toctree-l5"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#prepare-labels">Prepare Labels</a></li>
+<li class="toctree-l5"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#get-test-and-validation-sets">Get Test and Validation Sets</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#validation-set">Validation Set</a></li>
+<li class="toctree-l6"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#test-set">Test Set</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#metrics-and-correlation">Metrics and Correlation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#training-the-model">Training the Model</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#examine-results">Examine results</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#predict-using-the-model">Predict using the model</a></li>
+<li class="toctree-l5"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#saving-loading-the-model">Saving/Loading the Model</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#inspecting-the-tokenizer">Inspecting the Tokenizer</a></li>
+<li class="toctree-l6"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#inspecting-the-model">Inspecting the Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nlp/examples/text-classification-scikit-learn.html">Text Classification using scikit-learn in NLP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/text-classification-scikit-learn.html#text-classification">Text Classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/text-classification-scikit-learn.html#import-dataset">Import Dataset</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="nlp/examples/text-classification-scikit-learn.html#explore-the-data">explore the data</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/text-classification-scikit-learn.html#method">Method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/text-classification-scikit-learn.html#pre-process-with-tf-idf-for-text-vectorization">Pre-Process with TF-IDF for text vectorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/text-classification-scikit-learn.html#fit-the-svm-model">Fit the SVM Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/text-classification-scikit-learn.html#evaluate-the-model">Evaluate the Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlp/examples/text-classification-scikit-learn.html#create-predictor-function">Create Predictor Function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="xai/xai.html">Explainable AI (XAI)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xai/xai.html#shapley-additive-explanations-shap">SHapley Additive exPlanations (SHAP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xai/xai.html#local-interpretable-model-agnostic-explanations-lime">Local Interpretable Model-agnostic Explanations (LIME)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="xai/shapley_xai_intro.html">Intro to SHAP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="xai/shapley_xai_intro.html#explaining-a-linear-regression-model">Explaining a Linear Regression Model</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="xai/shapley_xai_intro.html#limitations-of-coefficients">Limitations of Coefficients</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xai/shapley_xai_intro.html#partial-dependence-plot">Partial Dependence Plot</a></li>
+<li class="toctree-l5"><a class="reference internal" href="xai/shapley_xai_intro.html#reading-shap-values-from-partial-dependence-plots">Reading SHAP values from partial dependence plots</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generative/generative.html">Generative AI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generative/llms.html">Large Language Models (LLM’s)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generative/llms.html#large-language-models-explained-briefly">Large Language Models Explained Briefly</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generative/llms.html#prompting">Prompting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generative/llms.html#pretraining">Pretraining</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generative/llms.html#reinforcement-learning-with-human-feedback-rlhf">Reinforcement Learning with Human Feedback (RLHF)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generative/llms.html#transformers">Transformers</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="generative/llms.html#attention">Attention</a></li>
+<li class="toctree-l5"><a class="reference internal" href="generative/llms.html#feedforward">Feedforward</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="generative/llms.html#repeat">Repeat</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="generative/llms.html#final-vector">Final Vector</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generative/llms.html#hugging-face-transformers-library">Hugging Face Transformers Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generative/llms.html#maintenance-records-classification-task">Maintenance Records Classification Task</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Goals and To-Dos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ml/ml.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Machine Learning (ML)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthew T Gill
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

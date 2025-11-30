@@ -1,0 +1,912 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Machine Learning (ML) &#8212; aiml-notes 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a1a7cee5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=a681ed88"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'categories/ml/ml';</script>
+    <script src="../../_static/custom.js?v=613d9f17"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Notes" href="notes/notes.html" />
+    <link rel="prev" title="Categories" href="../categories.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="aiml-notes 1.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="aiml-notes 1.0 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Goals and To-Dos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">AI/ML:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../categories.html">Categories</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Machine Learning (ML)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="notes/dimensionality_reduction.html">Dimensionality Reduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notes/nns.html">Neural Networks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notes/pinns.html">Physics-Informed Neural Networks (PINNs)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notes/svm.html">Support Vector Machines (SVM)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html">Intro to Classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html">Python ML Mini Course</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../nlp/nlp.html">Natural Language Processing (NLP)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../nlp/notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../nlp/notes/tokenization.html">Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../nlp/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster.html">Iterate Like a Grandmaster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html">Getting Started with NLP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../nlp/examples/text-classification-scikit-learn.html">Text Classification using scikit-learn in NLP</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../xai/xai.html">Explainable AI (XAI)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../xai/shapley_xai_intro.html">Intro to SHAP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../generative/generative.html">Generative AI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../generative/llms.html">Large Language Models (LLM’s)</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../fundamentals/fundamentals.html">Fundamentals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/correlation.html">Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/metrics.html">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentals/ops.html">DevOps and MLOps</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../libraries/libraries.html">Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../libraries/pytorch.html">Learning Pytorch</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sphinx:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../sphinx/sphinx.html">Sphinx Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/notebook.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sphinx/restructuredtext.html">reStructuredText</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/CombatWombatHub/aiml-notes" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/categories/ml/ml.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Machine Learning (ML)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categories">Categories</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">Supervised Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression">Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-regression">Classification | Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensemble-learning">Ensemble Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">Boosting</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking">Stacking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">Clustering</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centroid-based">Centroid-Based</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-based">Distribution-Based</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-based">Connectivity-Based</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#density-based">Density-Based</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction">Dimensionality Reduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#association-rule-mining">Association Rule Mining</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning">Reinforcement Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-based">Model-Based</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-free">Model-Free</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecasting-models">Forecasting Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-supervised-learning">Semi-Supervised Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-supervised-learning">Self-Supervised Learning</a><ul class="visible nav section-nav flex-column">
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="machine-learning-ml">
+<h1>Machine Learning (ML)<a class="headerlink" href="#machine-learning-ml" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/machine-learning/">Machine Learning</a> is a branch of Artificial Intelligence that focuses on <em>models</em> and <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/machine-learning-algorithms/">algorithms</a> that let computers learn from data and improve from previous experience without being explicitly programmed. There are many <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/types-of-machine-learning/">types</a> of machine learning.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some methods fit into multiple categories or can be adapted to be used for other categories. For the sake of brevity, these cases are not always mentioned here.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I’m not sure how Neural Network’s, Deep Learning, AutoEncoders, DenseNets, etc. fit into these categories. They may span multiple categories, or perhaps these are more traditional ML techniques.</p>
+</div>
+<section id="categories">
+<h2>Categories<a class="headerlink" href="#categories" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Supervised Learning</strong> - Use labeled data.</p>
+<ul>
+<li><p><strong>Classification</strong> - Predict <em>categorical</em> (discrete) values.</p></li>
+<li><p><strong>Regression</strong> - Predict continuous numerical values.</p></li>
+<li><p><strong>Classification | Regression</strong> - Some models can perform either Classification or Regression.</p></li>
+<li><p><strong>Ensemble Learning</strong> - Combine multiple models of either type into one better model.</p>
+<ul>
+<li><p><strong>Bagging (Bootstrap Aggregating) Method</strong> - Train models independently on different subsets of the data, then combine their predictions.</p></li>
+<li><p><strong>Boosting Method</strong> - Train models sequentially, each model focusing on errors of prior models, then do weighted combination of their predictions.</p></li>
+<li><p><strong>Stacking (Stacked Generalization) Method</strong> - train multiple different models (often different types), use predictions as inputs to final “meta-model”.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Unsupervised Learning</strong> - Use unlabeled data.</p>
+<ul>
+<li><p><strong>Clustering</strong> - Group data into clusters based on similarity.</p>
+<ul>
+<li><p><strong>Centroid-Based (Partitioning) Clustering</strong> cluster around centroids of points, choose number of clusters in advance.</p></li>
+<li><p><strong>Distribution-Based Clustering</strong> - cluster by mixture of probability distributions.</p></li>
+<li><p><strong>Connectivity-Based (Hierarchical) Clustering</strong> - cluster with tree-like nested groupings by connections between points.</p></li>
+<li><p><strong>Density-Based (Model-Based) Clustering</strong> - clusters as contiguous regions of high data density separated by areas of lower density.</p></li>
+</ul>
+</li>
+<li><p><strong>Dimensionality Reduction</strong> - Simplify datasets by reducing features while keeping important information (often used to select features for other models).</p></li>
+<li><p><strong>Association Rule Mining</strong> - Discover rules where the presence of one item in a dataset indicates the probability of the presence of another.</p></li>
+</ul>
+</li>
+<li><p><strong>Reinforcement Learning</strong> - Agent learns by interacting with environment via trial and error and receiving reward feedback.</p>
+<ul>
+<li><p><strong>Model-Based Methods</strong> - interact with a simulated model of the environment, helping the agent plan actions by simulating potential results.</p></li>
+<li><p><strong>Model-Free Methods</strong> -  interact with the actual environment, learning directly from experience.</p></li>
+</ul>
+</li>
+<li><p><strong>Forecasting Models</strong> - Use past data to predict future trends (often time series problems).</p></li>
+<li><p><strong>Semi-Supervised Learning</strong> - Use some labeled data with more unlabeled data.</p></li>
+<li><p><strong>Self-Supervised Learning</strong> - Generates its own labels from unlabeled data.</p></li>
+</ul>
+</section>
+<section id="supervised-learning">
+<h2><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/supervised-machine-learning/">Supervised Learning</a><a class="headerlink" href="#supervised-learning" title="Link to this heading">#</a></h2>
+<section id="classification">
+<h3><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/getting-started-with-classification/">Classification</a><a class="headerlink" href="#classification" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/k-nearest-neighbours/">KNN (K-Nearest Neighbors)</a> - simple, looks at closest data points (neighbors) to make predictions based on similarity</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/understanding-logistic-regression/">Logistic Regression</a> - Draws a sigmoid curve, predicts 0 or 1 if above or below curve. Despite “Regression” being in the name, it’s for Classification</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/python/single-layer-perceptron-in-tensorflow/">Single-Layer Perceptron</a> - a single layer with a single neuron? Why?</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/python/stochastic-gradient-descent-classifier/">SGD (Stochastic Gradient Descent) Classifier</a> - adjust model parameters in the direction of the loss function’s greatest gradient</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/naive-bayes-classifiers/">Naive Bayes</a> (<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/gaussian-naive-bayes/">Gaussian</a>, <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/multinomial-naive-bayes/">Multinomial</a>, <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/bernoulli-naive-bayes/">Bernoulli</a>, <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/complement-naive-bayes-cnb-algorithm/">Complement</a>) - predicts the category of a data point with probability</p></li>
+</ul>
+</section>
+<section id="regression">
+<h3><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/regression-in-machine-learning/">Regression</a><a class="headerlink" href="#regression" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-linear-regression/">Linear Regression</a> - fit a straight line to the data with <a class="reference external" href="https://www.geeksforgeeks.org/maths/least-square-method/">Least Squares Method</a></p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-multiple-linear-regression-using-python/">Multiple Linear Regression</a> - Extends Linear Regression to use multiple input variables</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/python-implementation-of-polynomial-regression/">Polynomial Regression</a> - a polynomial curve fit.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ridge-regression-vs-lasso-regression/">Lasso Regression (L1 Regularization)</a> - regularized linear regression that avoids overfitting by penalizing the <em>absolute value</em> of large coefficients</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ridge-regression-vs-lasso-regression/">Ridge Regression (L2 Regularization)</a> - regularized linear regression that avoids overfitting by penalizing the <em>square</em> of large coefficients</p></li>
+</ul>
+</section>
+<section id="classification-regression">
+<span id="ai-categories-ml-classification-regression"></span><h3>Classification | Regression<a class="headerlink" href="#classification-regression" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/support-vector-machine-algorithm/">SVM (Support Vector Machine)</a> | <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/support-vector-regression-svr-using-linear-and-non-linear-kernels-in-scikit-learn/">SVR (Support Vector Regression)</a> - use for Classification by finding a hyperplane that separates classes of data (SVM), or use for regression by finding the hyperplane that minimizes the residual sum of squares (SVR). Can be Linear or Non-Linear depending on the <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/linear-vs-non-linear-classification-analyzing-differences-using-the-kernel-trick/">Kernel</a> you select.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/deep-learning/multi-layer-perceptron-learning-in-tensorflow/">Multi-Layer Perceptron</a> - classic neural network.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/decision-tree-algorithms/">Decision Trees</a> (<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/decision-tree-introduction-example/">Introduction</a>) (<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/building-and-implementing-decision-tree-classifiers-with-scikit-learn-a-comprehensive-guide/">Classification</a>) (<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/python-decision-tree-regression-using-sklearn/">Regression</a>) - hierarchical tree structure that works like a flow chart. splits data into branches based on feature values. Often used as building blocks for Ensemble methods. (<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/cart-classification-and-regression-tree-in-machine-learning/">CART (Classification and Regression Trees)</a>) is based on (<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/iterative-dichotomiser-3-id3-algorithm-from-scratch/">ID3 (Iterative Dichotomiser 3)</a>), and is a specific algorithm for building decision trees that can be used for both classification and regression.</p></li>
+</ul>
+</section>
+<section id="ensemble-learning">
+<h3><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/a-comprehensive-guide-to-ensemble-learning/">Ensemble Learning</a><a class="headerlink" href="#ensemble-learning" title="Link to this heading">#</a></h3>
+<section id="bagging">
+<h4><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/What-is-Bagging-classifier/">Bagging</a><a class="headerlink" href="#bagging" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/random-forest-algorithm-in-machine-learning/">Random Forest</a> (<a class="reference external" href="https://www.geeksforgeeks.org/dsa/random-forest-classifier-using-scikit-learn/">Classification</a>) (<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/random-forest-regression-in-python/">Regression</a>) (<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/random-forest-hyperparameter-tuning-in-python/">Hyperparameter Tuning</a>) - create many decision trees, train each on random parts of data, combine results via voting (for classification) or averaging (for regression)</p></li>
+<li><p><a class="reference external" href="https://www.machinelearningmastery.com/random-subspace-ensemble-with-python/">Random Subspace Method</a> - train on random subsets of input features to enhance diversity and improve generalization while reducing overfitting.</p></li>
+</ul>
+</section>
+<section id="boosting">
+<h4><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/boosting-in-machine-learning-boosting-and-adaboost/">Boosting</a><a class="headerlink" href="#boosting" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/implementing-the-adaboost-algorithm-from-scratch/">AdaBoost (Adaptive Boosting)</a> - for challenging examples, assign weights to data points, combine weak classifiers with weighted voting</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-gradient-boosting/">GBM (Gradient Boosting Machines)</a> - sequentially build decision trees, each tree correcting errors of previous ones</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/xgboost/">XGBoost (Extreme Gradient Boosting)</a> - optimizes like regularization and parallel processing for robustness and efficiency</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/catboost-ml/">CatBoost (Categorical Boosting)</a> - handles categorical features natively without extensive preprocessing</p></li>
+</ul>
+</section>
+<section id="stacking">
+<h4><a class="reference external" href="https://machinelearningmastery.com/implementing-stacking-scratch-python/">Stacking</a><a class="headerlink" href="#stacking" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Stacks methods discussed above like K-Nearest Neighbors, Perceptron and Logistic Regression</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="unsupervised-learning">
+<h2><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/unsupervised-learning/">Unsupervised Learning</a><a class="headerlink" href="#unsupervised-learning" title="Link to this heading">#</a></h2>
+<section id="clustering">
+<h3><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/clustering-in-machine-learning/">Clustering</a><a class="headerlink" href="#clustering" title="Link to this heading">#</a></h3>
+<section id="centroid-based">
+<h4>Centroid-Based<a class="headerlink" href="#centroid-based" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/k-means-clustering-introduction/">K-Means Clustering</a> - groups data into K clusters based on how close the points are to each other. Iteratively assigns points to the nearest centroid, recalculating centroids after each addition. Can use the <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/elbow-method-for-optimal-value-of-k-in-kmeans/">Elbow Method</a> to choose a good value for K</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-k-means-algorithm/">KMeans++ Clustering</a> - improves K-Means by choosing initial cluster centers intelligently instead of randomly</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-k-medoids-clustering-with-example/">K-Medoids Clustering</a> - similar to K-means, but uses actual data points (medoids) as the centers, making more robust to outliers</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-fuzzy-clustering/">FCM (Fuzzy C-Means Clustering)</a> - similar to K-means but uses Fuzzy Clustering, allowing each data point to belong to multiple clusters with varying degrees of membership</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/k-mode-clustering-in-python/">K-Mode Clustering</a> - works on categorical data, unlike K-Means which is for numerical data</p></li>
+</ul>
+</section>
+<section id="distribution-based">
+<h4>Distribution-Based<a class="headerlink" href="#distribution-based" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/gaussian-mixture-model/">GMM (Gaussian Mixture Models)</a> - fits data as a weighted mixture of Gaussian distributions and assigns data points based on likelihood</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/dirichlet-process-mixture-models-dpmms/">DPMMs (Dirichlet Process Mixture Models)</a> - extension of <strong>Gaussian Mixture Models</strong> that can automatically decide the number of clusters based on the data</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-expectation-maximization-algorithm/">EM (Expectation-Maximization) Algorithm</a> - Estimate unknown parameters using <code class="docutils literal notranslate"><span class="pre">E-Step</span></code> (<code class="docutils literal notranslate"><span class="pre">Expectation</span> <span class="pre">Step</span></code>) (calculating expected values of missing/hidden variables) and <code class="docutils literal notranslate"><span class="pre">M-Step</span></code> (<code class="docutils literal notranslate"><span class="pre">Maximization</span> <span class="pre">Step</span></code>) (maximizing log-likelihood to see how well the model explains the data)</p></li>
+</ul>
+</section>
+<section id="connectivity-based">
+<h4>Connectivity-Based<a class="headerlink" href="#connectivity-based" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/hierarchical-clustering/">Hierarchical Clustering</a> - create clusters by building a tree step-by-step, merging or splitting groups</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/agglomerative-methods-in-machine-learning/">Agglomerative Clustering</a> - (Bottom-up) start with each point as a cluster and iteratively merge the closest ones</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/artificial-intelligence/divisive-clustering/">Divisive Clustering</a> - (Top-down) starts with one cluster and splits iteratively into smaller clusters</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-spectral-clustering/">Spectral Clustering</a> - groups data by analyzing connections between points using graphs</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/affinity-propagation-in-ml-to-find-the-number-of-clusters/">AP (Affinity Propagation)</a> - identify data clusters by sending messages between data points, calculates optimal number of clusters automatically</p></li>
+</ul>
+</section>
+<section id="density-based">
+<h4>Density-Based<a class="headerlink" href="#density-based" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-mean-shift-clustering/">Mean-Shift Clustering</a> - discovers clusters by moving points towards crowded areas</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/dbscan-clustering-in-ml-density-based-clustering/">DBSCAN (Density-Based Spatial Clustering of Applications with Noise)</a> - Groups points with sufficient neighbors, labels sparse points as noise</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-optics-clustering-explanation/">OPTICS (Ordering Points To Identify the Clustering Structure)</a> - extends <code class="docutils literal notranslate"><span class="pre">DBSCAN</span></code> to handle varying densities</p></li>
+</ul>
+</section>
+</section>
+<section id="dimensionality-reduction">
+<h3><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/dimensionality-reduction/">Dimensionality Reduction</a><a class="headerlink" href="#dimensionality-reduction" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/data-analysis/principal-component-analysis-pca/">PCA (Principal Component Analysis)</a> - Reduces dimensions by transforming data into uncorrelated principal components.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-independent-component-analysis/">ICA (Independent Component Analysis)</a></p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-t-distributed-stochastic-neighbor-embedding-t-sne-algorithm/">t-SNE (t-distributed Stochastic Neighbor Embedding)</a></p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/non-negative-matrix-factorization/">NMF (Non-negative Matrix Factorization)</a> - Breaks data into non-negative parts to simplify representation.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/isomap-a-non-linear-dimensionality-reduction-technique/">Isomap</a> - Captures global data structure by preserving distances along a manifold.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/swiss-roll-reduction-with-lle-in-scikit-learn/">LLE (Locally Linear Embedding)</a> - Reduces dimensions while preserving the relationships between nearby points.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-linear-discriminant-analysis/">LDA (Linear Discriminant Analysis)</a> - Reduces dimensions while maximizing class separability for classification tasks.</p></li>
+</ul>
+</section>
+<section id="association-rule-mining">
+<h3><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/association-rule/">Association Rule Mining</a><a class="headerlink" href="#association-rule-mining" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/apriori-algorithm/">Apriori Algorithm</a> (<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/implementing-apriori-algorithm-in-python/">Implementation</a>) - Finds patterns by exploring frequent item combinations step-by-step.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/frequent-pattern-growth-algorithm/">FP-Growth (Frequent Pattern-Growth)</a> - An Efficient Alternative to Apriori. It quickly identifies frequent patterns without generating candidate sets.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-eclat-algorithm/">ECLAT (Equivalence Class Clustering and Bottom-Up Lattice Traversal)</a> - Uses intersections of itemsets to efficiently find frequent patterns.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/dsa/introduction-to-tree-data-structure/">Efficient Tree-based Algorithms</a> - Scales to handle large datasets by organizing data in tree structures.</p></li>
+</ul>
+</section>
+</section>
+<section id="reinforcement-learning">
+<h2><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/what-is-reinforcement-learning/">Reinforcement Learning</a><a class="headerlink" href="#reinforcement-learning" title="Link to this heading">#</a></h2>
+<section id="model-based">
+<h3>Model-Based<a class="headerlink" href="#model-based" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/markov-decision-process/">MDPs (Markov Decision Processes)</a> - describe step-by-step decisions where the results of actions are uncertain.  Evaluates all possible moves?</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-monte-carlo-tree-search-mcts/">Monte Carlo Tree Search</a> - designed to solve problems with huge decision spaces, like the board game Go with <span class="math notranslate nohighlight">\(10^{170}\)</span> possible board states, by building a search tree iteratively/randomly instead of exploring all possible moves.</p></li>
+</ul>
+</section>
+<section id="model-free">
+<h3>Model-Free<a class="headerlink" href="#model-free" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/q-learning-in-python/">Q-Learning</a> - makes trial-and-error guesses, building and updating a <code class="docutils literal notranslate"><span class="pre">Q-table</span></code> which stores <code class="docutils literal notranslate"><span class="pre">Q-values</span></code> which estimate how good it is to take a specific action in a given state.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/deep-learning/deep-q-learning/">Deep Q-Learning</a> - Regular <strong>Q-Learning</strong> is good for small problems, but struggles on complex ones (like images) since the <code class="docutils literal notranslate"><span class="pre">Q-table</span></code> gets huge and computationally expensive. <strong>Deep Q-Learning</strong> fixes this by using a neural network to estimate the <code class="docutils literal notranslate"><span class="pre">Q-values</span></code> instead of a <code class="docutils literal notranslate"><span class="pre">Q-table</span></code></p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/sarsa-reinforcement-learning/">SARSA (State-Action-Reward-State-Action)</a> - helps an agent to learn an optimal policy by exploring the environment, taking actions, receiving feedback, and updating behavior for long-term rewards.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/reinforce-algorithm/">REINFORCE Algorithm</a> - instead of estimating how good each action is, just <em>tries</em> actions and adjusts the chances of those actions based on the total reward afterwards</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/actor-critic-algorithm-in-reinforcement-learning/">Actor-Critic Algorithm</a> - combines an Actor (which selects actions via a Policy Gradient) and Critic (which evaluates the Actor via a Value Function), both of which learn (like your Loss function is getting smarter alongside your model)</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/asynchronous-advantage-actor-critic-a3c-algorithm/">A3C (Asynchronous Advantage Actor-Critic)</a> - uses multiple agents which learn in parallel, each interacting with their own private environments, then contribute their updates to a shared global model.</p></li>
+</ul>
+</section>
+</section>
+<section id="forecasting-models">
+<h2><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/time-series-analysis-and-forecasting/">Forecasting Models</a><a class="headerlink" href="#forecasting-models" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/r-language/model-selection-for-arima/">ARIMA (Auto-Regressive Integrated Moving Average)</a> - Combines <code class="docutils literal notranslate"><span class="pre">Autoregression</span></code> (<code class="docutils literal notranslate"><span class="pre">AR</span></code>), <code class="docutils literal notranslate"><span class="pre">Differencing</span></code> (<code class="docutils literal notranslate"><span class="pre">I</span></code>) and <code class="docutils literal notranslate"><span class="pre">Moving</span> <span class="pre">Averages</span></code> (<code class="docutils literal notranslate"><span class="pre">MA</span></code>) to capture patterns to predict future values based on historical data. Not great with seasonal data..</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/sarima-seasonal-autoregressive-integrated-moving-average/">SARIMA (Seasonal ARIMA)</a> - extension of <strong>ARIMA</strong> designed for time series data with seasonal patterns.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/artificial-intelligence/exponential-smoothing-for-time-series-forecasting/">Exponential Smoothing</a> - assumes future patterns will be similar to more recent past data, focuses on learning average demand level over time. Simple and accurate for short-term forecasts, not great for long term forecasts. Uses <code class="docutils literal notranslate"><span class="pre">Simple</span></code>, <code class="docutils literal notranslate"><span class="pre">Double</span></code>, or <code class="docutils literal notranslate"><span class="pre">Holt-Winters</span></code> <code class="docutils literal notranslate"><span class="pre">Exponential</span> <span class="pre">Smoothing</span></code>.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/introduction-to-recurrent-neural-network/">RNNs (Recurrent Neural Networks)</a> (<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/time-series-forecasting-using-recurrent-neural-networks-rnn-in-tensorflow/">Tensorflow Example</a>) - neural networks where information can be passed backwards as well as forwards. They have many uses beyond forecasting, such as text generation</p>
+<ul>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/deep-learning/multivariate-time-series-forecasting-with-lstms-in-keras/">LSTM (Long Short-Term Memory)</a> - use a memory mechanism to overcome the vanishing gradient problem</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/deep-learning/multivariate-time-series-forecasting-with-grus/">GRU (Gated Recurrent Unit)</a> - efficient LStM combining input/forget gates and streamlining output mechanism</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="semi-supervised-learning">
+<h2><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-semi-supervised-learning/">Semi-Supervised Learning</a><a class="headerlink" href="#semi-supervised-learning" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/self-training-in-semi-supervised-learning/">Self-Training</a> - The model is first trained on labeled data. It then predicts labels for unlabeled data, adding high-confidence predictions to the labeled set iteratively to refine the model. Includes <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/pseudo-labelling-semi-supervised-learning/">Pseudo Labelling</a></p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/what-is-co-training/">Co-Training</a> - Two or more models are trained on different feature subsets of the data (like one model looks at the body of an email, another looks at the subject and sender, etc). Each model labels unlabeled data for the other, enabling them to learn from complementary views.</p></li>
+<li><p><a class="reference external" href="https://jmlr.org/papers/v21/18-794.html">Multi-View Training</a> - A variation of co-training where models train on different data representations (e.g., images and text) to predict the same output.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/ml-semi-supervised-learning/">Graph-Based Models (Label Propagation)</a> - Data is represented as a graph with nodes (data points) and edges (similarities). Labels are propagated from labeled nodes to unlabeled ones based on graph connectivity.</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/deep-learning/generative-adversarial-network-gan/">GAN (Generative Adversarial Network)</a> (<a class="reference external" href="https://www.geeksforgeeks.org/deep-learning/generative-adversarial-networks-gans-in-pytorch/">PyTorch Example</a>) - create new, realistic data by learning from existing examples (creates good synthetic data)</p></li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/few-shot-learning-in-machine-learning/">Few-Shot Learning</a> - a <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/meta-learning-in-machine-learning/">meta-learning</a> process where you train the model to learn quickly from new and unseen data, so you don’t have to train it with a bunch of data initially. So I guess it does some quick additional learning when you “inference” it later?</p></li>
+</ul>
+</section>
+<section id="self-supervised-learning">
+<h2><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/self-supervised-learning-ssl/">Self-Supervised Learning</a><a class="headerlink" href="#self-supervised-learning" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Haven’t found specific examples for this yet, most links are to research papers.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Notes:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/notes.html">Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/dimensionality_reduction.html">Dimensionality Reduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notes/dimensionality_reduction.html#decision-tree">Decision Tree</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notes/dimensionality_reduction.html#methods-breakdown">Methods Breakdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notes/nns.html">Neural Networks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notes/nns.html#tiny-neural-network">Tiny Neural Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notes/nns.html#backpropagation">Backpropagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notes/nns.html#activation-functions">Activation Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notes/nns.html#properties">Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notes/nns.html#examples">Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notes/nns.html#derivatives">Derivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notes/pinns.html">Physics-Informed Neural Networks (PINNs)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notes/pinns.html#machine-learning-reference-material">Machine Learning Reference Material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notes/pinns.html#tutorial-specific-reference-material">Tutorial-Specific Reference Material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notes/pinns.html#weak-solution-pinns">Weak Solution PINNs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notes/pinns.html#variational-forms">Variational Forms</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notes/pinns.html#example-problem-definition">Example Problem Definition:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notes/pinns.html#example-problem-classical-strong-and-weak-solutions">Example Problem Classical, Strong, and Weak Solutions:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notes/pinns.html#differences-between-classical-strong-and-weak-solutions">Differences Between Classical, Strong, and Weak Solutions:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notes/pinns.html#theory-on-relative-function-spaces-sobolev-space-and-hilbert-space">Theory on Relative Function Spaces, Sobolev Space, and Hilbert Space</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notes/svm.html">Support Vector Machines (SVM)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html">Intro to Classification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html#datacamp">DataCamp</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html#extracting-dataframes-from-datacamp">Extracting DataFrames from DataCamp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html#about-this-course">About this Course</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html#id1">Intro to Classification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html#k-nearest-neighbors">k-Nearest Neighbors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html#the-churn-dataset">The Churn Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html#choose-data">Choose Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html#fit">Fit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html#predict">Predict</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html#measuring-model-performance-train-test-split">Measuring Model Performance (train-test-split)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/intro_to_classification_datacamp/intro_to_classification.html#model-complexity-overfitting-underfitting">Model Complexity (Overfitting/Underfitting)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html">Python ML Mini Course</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#creating-dataframes">Creating DataFrames</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#create-a-simple-dataframe">Create a simple DataFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#create-dataframe-from-csv-url">Create DataFrame from CSV URL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#examining-the-data">Examining the Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#describe">Describe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#scatter-plot-matrix">Scatter Plot Matrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#histogram">Histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#box-plot">Box Plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#pre-processing-data">Pre-Processing Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#standardize-scale-and-center">Standardize (Scale and Center)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#resampling">Resampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#k-fold-cross-validation">K-Fold Cross Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#evaluation-metrics">Evaluation Metrics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#logloss">Logloss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#confusion-matrix">Confusion Matrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#classification-report">Classification Report</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#rmse-and-r-squared">RMSE and R-Squared</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#spot-check-algorithms">Spot-Check Algorithms</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#linear-algorithms">Linear Algorithms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#non-linear-algorithms">Non-Linear Algorithms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#ensemble-algorithms">Ensemble Algorithms</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#model-comparison-and-selection">Model Comparison and Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#improving-model-accuracy">Improving Model Accuracy</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#parameter-tuning">Parameter Tuning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#ensemble-predictions">Ensemble Predictions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html#finalize-and-save">Finalize and Save</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../categories.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Categories</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="notes/notes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Notes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categories">Categories</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">Supervised Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression">Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-regression">Classification | Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ensemble-learning">Ensemble Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting">Boosting</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking">Stacking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">Clustering</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#centroid-based">Centroid-Based</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-based">Distribution-Based</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#connectivity-based">Connectivity-Based</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#density-based">Density-Based</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction">Dimensionality Reduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#association-rule-mining">Association Rule Mining</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning">Reinforcement Learning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-based">Model-Based</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-free">Model-Free</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forecasting-models">Forecasting Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-supervised-learning">Semi-Supervised Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-supervised-learning">Self-Supervised Learning</a><ul class="visible nav section-nav flex-column">
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthew T Gill
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

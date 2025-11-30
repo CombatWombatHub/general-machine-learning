@@ -1,0 +1,1754 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Learning Pytorch &#8212; aiml-notes 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a1a7cee5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=a681ed88"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'libraries/pytorch';</script>
+    <script src="../_static/custom.js?v=613d9f17"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sphinx Examples" href="../sphinx/sphinx.html" />
+    <link rel="prev" title="Libraries" href="libraries.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.jpg" class="logo__image only-light" alt="aiml-notes 1.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/logo.jpg" class="logo__image only-dark" alt="aiml-notes 1.0 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Goals and To-Dos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">AI/ML:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../categories/categories.html">Categories</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/ml/ml.html">Machine Learning (ML)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/ml/notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/dimensionality_reduction.html">Dimensionality Reduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/nns.html">Neural Networks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/pinns.html">Physics-Informed Neural Networks (PINNs)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/svm.html">Support Vector Machines (SVM)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/ml/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/examples/intro_to_classification_datacamp/intro_to_classification.html">Intro to Classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html">Python ML Mini Course</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/nlp/nlp.html">Natural Language Processing (NLP)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/nlp/notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/notes/tokenization.html">Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/nlp/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster.html">Iterate Like a Grandmaster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html">Getting Started with NLP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/text-classification-scikit-learn.html">Text Classification using scikit-learn in NLP</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/xai/xai.html">Explainable AI (XAI)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../categories/xai/shapley_xai_intro.html">Intro to SHAP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/generative/generative.html">Generative AI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../categories/generative/llms.html">Large Language Models (LLM’s)</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fundamentals/fundamentals.html">Fundamentals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/correlation.html">Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/metrics.html">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fundamentals/ops.html">DevOps and MLOps</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="libraries.html">Libraries</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Learning Pytorch</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sphinx:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../sphinx/sphinx.html">Sphinx Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/notebook.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/restructuredtext.html">reStructuredText</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/CombatWombatHub/aiml-notes" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/libraries/pytorch.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Learning Pytorch</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Learning Pytorch</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-org-tutorials-learning-pytorch-with-examples">Pytorch.org tutorials - Learning Pytorch with Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#without-pytorch-numpy-network">Without Pytorch: Numpy Network</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-gradients">Negative Gradients</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-pytorch-tensors">Adding Pytorch: Tensors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autograd">Autograd</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-tensors-and-autograd">PyTorch: Tensors and Autograd</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latex-formulas-in-docstrings">latex formulas in docstrings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-new-autograd-functions">Defining new Autograd functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-s-nn-module">Pytorch’s <code class="docutils literal notranslate"><span class="pre">nn</span></code> module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zeroing-gradients">Zeroing Gradients</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-s-optim-package">PyTorch’s Optim Package</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizer-zero-grad-and-why-we-zero-gradients">optimizer.zero_grad() and WHY WE ZERO GRADIENTS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-nn-modules">Custom <code class="docutils literal notranslate"><span class="pre">nn</span></code> Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow-and-weight-sharing">Control Flow and Weight Sharing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-pth-files">PyTorch Pth Files</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pth-files-and-using-a-trained-model">PTH files and using a trained model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-pth-file">What is a PTH file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-in-it">What’s in it?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use">How to Use</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="learning-pytorch">
+<h1>Learning Pytorch<a class="headerlink" href="#learning-pytorch" title="Link to this heading">#</a></h1>
+<section id="pytorch-org-tutorials-learning-pytorch-with-examples">
+<h2>Pytorch.org tutorials - Learning Pytorch with Examples<a class="headerlink" href="#pytorch-org-tutorials-learning-pytorch-with-examples" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Henry Diaz linked to this along with some other bits and discussions in #ai-factory on Slack</p>
+<ul>
+<li><p>I really wish I’d gone through this earlier (also wish I’d known to go through it earlier)</p></li>
+<li><p>Modulus abstracts enough that it lets you get spinning without really understanding Pytorch or its Tensors</p></li>
+<li><p>that was enough, until now at least. I’ll build a simple model to test my gradient-in-the-loss theory</p></li>
+</ul>
+</li>
+<li><p>Main page</p>
+<ul>
+<li><p>https://pytorch.org/tutorials/beginner/pytorch_with_examples.html</p></li>
+</ul>
+</li>
+<li><p>Autograd link</p>
+<ul>
+<li><p>https://pytorch.org/tutorials/beginner/pytorch_with_examples.html#pytorch-tensors-and-autograd</p></li>
+</ul>
+</li>
+<li><p>Newer Code</p>
+<ul>
+<li><p>apparently their newer tutorial code is here, though I kind of prefer the all-in-one-page style</p></li>
+<li><p>https://pytorch.org/tutorials/beginner/basics/intro.html</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Pytorch provides two core features</p>
+<ul>
+<li><p>an n-dimensional Tensor, similar to numpy, but can be run on GPU’s</p></li>
+<li><p>auotmatic differentiation for building and training neural networks</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="without-pytorch-numpy-network">
+<h2>Without Pytorch: Numpy Network<a class="headerlink" href="#without-pytorch-numpy-network" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>inputs are an array of 2000 training points</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x = -{\pi\over2},-{\pi\over2}+{\pi\over2000},-{\pi\over2}+{2\pi\over2000},\cdots,{\pi\over2}\)</span></p></li>
+</ul>
+</li>
+<li><p>actual function we’re trying to fit (y becomes array of 2000 true points) (calculate once)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(y=sin(x)\)</span></p></li>
+</ul>
+</li>
+<li><p>each round they do this, calculating an estimate and loss, gradients, updating the weights</p>
+<ul>
+<li><p>try to fit with a polynomial with randomly initialized weights <span class="math notranslate nohighlight">\(a,b,c,d\)</span> (<span class="math notranslate nohighlight">\(y_{pred}\)</span> becomes an array of 2000 predicted points)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(y_{pred}=a+b*x+c*x^2+d*x^3\)</span></p></li>
+</ul>
+</li>
+<li><p>calculate the Loss of each step by summing the error up from each of the 2000 <span class="math notranslate nohighlight">\(y_{pred}\)</span> points each step (Loss)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(L_{point}=(y_{pred}-y)^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(L_{step}=\sum\limits_{i=1}^{2000}(y_{pred}-y)^2\)</span></p></li>
+</ul>
+</li>
+<li><p>will use the chain rule to calculate gradient of the Loss with respect to each weight</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\displaystyle{\begin{aligned} {\partial L_{step}\over\partial a} &amp;=\sum{\partial L_{point}\over\partial a} \\ {\partial L_{point}\over\partial a}  &amp;= {\partial L_{point}\over\partial y_{pred}} {\partial y_{pred}\over\partial a} \\ {\partial L_{point}\over\partial y_{pred}} &amp;=2(y_{pred}-y) \\ \end{aligned}}\)</span></p></li>
+</ul>
+</li>
+<li><p>calculate gradient of Loss with respect to each weight</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\displaystyle\begin{aligned} {\partial y_{pred}\over\partial a} &amp; =1   &amp;\to {\partial L_{point}\over\partial a} &amp; =2(y_{pred}-y) 1   &amp;\to {\partial L_{step}\over\partial a} &amp; =\sum 2(y_{pred}-y) 1   \\ {\partial y_{pred}\over\partial b} &amp; =x   &amp;\to {\partial L_{point}\over\partial b} &amp; =2(y_{pred}-y) x   &amp;\to {\partial L_{step}\over\partial b} &amp; =\sum 2(y_{pred}-y) x   \\ {\partial y_{pred}\over\partial c} &amp; =x^2 &amp;\to {\partial L_{point}\over\partial c} &amp; =2(y_{pred}-y) x^2 &amp;\to {\partial L_{step}\over\partial c} &amp; =\sum 2(y_{pred}-y) x^2 \\ {\partial y_{pred}\over\partial d} &amp; =x^3 &amp;\to {\partial L_{point}\over\partial d} &amp; =2(y_{pred}-y) x^3 &amp;\to {\partial L_{step}\over\partial d} &amp; =\sum 2(y_{pred}-y) x^3 \\ \end{aligned}\)</span></p></li>
+</ul>
+</li>
+<li><p>calculate each of these for 2000 points for 2000 steps, updating the model weights each step</p>
+<ul>
+<li><p>calculate gradient with respect to each weight</p></li>
+<li><p>update the weights</p></li>
+<li><p>it got the error down decently well</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<section id="negative-gradients">
+<h3>Negative Gradients<a class="headerlink" href="#negative-gradients" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>note that whenever a gradient is applied it looks like</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-=</span> <span class="pre">learning_rate</span> <span class="pre">*</span> <span class="pre">grad_a</span></code></p></li>
+</ul>
+</li>
+<li><p>this is because we are trying to <em>minimize</em> loss</p></li>
+<li><p>and the gradient is the direction to go to most swiftly <em>increase</em> the loss</p></li>
+<li><p>since gradient is the direction of <em>greatest increase</em></p></li>
+<li><p>so in order to minimize, we move <em>opposite the direction of greatest increase</em></p></li>
+<li><p>i.e. negative gradient, the exact opposite of the gradient direction</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+ 
+<span class="c1"># Create random input and output data</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+ 
+<span class="c1"># Randomly initialize weights</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
+ 
+<span class="c1"># multiply by the gradient to determine how much to update them each round</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-6</span>
+ 
+<span class="c1"># train for 2000 rounds. &#39;t&#39;</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">):</span>
+    <span class="c1"># Forward pass: compute predicted y</span>
+    <span class="c1"># y = a + b x + c x^2 + d x^3</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">d</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
+ 
+    <span class="c1"># Compute loss by squaring the difference between the prediction and the true value</span>
+    <span class="c1"># didn&#39;t divide it by the number of points either</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+ 
+    <span class="c1">#print the loss at 99 steps and every 100 after that</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">99</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;step:&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span><span class="s2">&quot;loss:&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+ 
+    <span class="c1"># Backprop to compute gradients of a, b, c, d with respect to loss</span>
+ 
+    <span class="c1"># multiply the error between prediction and true by 2. Will be an array of 2000 errors</span>
+    <span class="n">grad_y_pred</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+    <span class="c1"># calculate the gradients of the loss with respect to each weight and sum up into one value</span>
+    <span class="n">grad_a</span> <span class="o">=</span> <span class="n">grad_y_pred</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">grad_b</span> <span class="o">=</span> <span class="p">(</span><span class="n">grad_y_pred</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">grad_c</span> <span class="o">=</span> <span class="p">(</span><span class="n">grad_y_pred</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">grad_d</span> <span class="o">=</span> <span class="p">(</span><span class="n">grad_y_pred</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+ 
+    <span class="c1"># Update weights, subtracting the gradient multiplied by the learning rate</span>
+    <span class="n">a</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_a</span> <span class="c1"># NOTE - gradient is the direction of greatest increase to a function</span>
+    <span class="n">b</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_b</span> <span class="c1"># we want to decrease the function (loss)</span>
+    <span class="n">c</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_c</span> <span class="c1"># so we subtract our gradients</span>
+    <span class="n">d</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_d</span>
+ 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Result: y = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> x + </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> x^2 + </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1"> x^3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="adding-pytorch-tensors">
+<h2>Adding Pytorch: Tensors<a class="headerlink" href="#adding-pytorch-tensors" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Numpy is cool, but can’t use GPU to accelerate calculations (which would be like 50X faster or more)</p>
+<ul>
+<li><p>Use Pytorch Tensors - it’s like a numpy array but it can keep track of the computational graph and gradients</p></li>
+<li><p>can also use GPU’s - you just need to specify the device</p></li>
+</ul>
+</li>
+<li><p>do basically the same thing as before</p>
+<ul>
+<li><p>but use stuff like <code class="docutils literal notranslate"><span class="pre">torch.linspace</span></code> instead of <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code></p></li>
+<li><p>and assign them to the device to solve on</p></li>
+</ul>
+</li>
+<li><p>PyTorch must be keeping a record of what Tensors are on what device, how they’re calculated, etc</p>
+<ul>
+<li><p>it will let the GPU do the calculations without having to send instructions to it every step</p></li>
+<li><p>the record of what’s where and how’s calculated is the the computational graph?</p></li>
+</ul>
+</li>
+<li><p>must define the forward and backward steps here as well</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+ 
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+ 
+<span class="n">dtype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">float</span> <span class="c1"># set the datatype for the new Tensors to store to be torch floats</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span> <span class="c1"># set to use the cpu</span>
+<span class="c1"># device = torch.device(&quot;cuda:0&quot;) # Uncomment this to run on GPU</span>
+ 
+<span class="c1"># Create random input and output data</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span> <span class="c1"># &lt;- create the 2000</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># &lt;- define the 2000 true points in the established range</span>
+ 
+<span class="c1"># Randomly initialize weights and put the tensor on the device</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+ 
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">):</span>
+   
+    <span class="c1">################</span>
+    <span class="c1"># Forward pass # compute prediction</span>
+    <span class="c1">################ compute loss</span>
+ 
+    <span class="c1"># compute predicted y</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">d</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
+ 
+    <span class="c1"># Compute and print loss</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">99</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+ 
+    <span class="c1">##################</span>
+    <span class="c1"># Backwards Pass # calculate gradients</span>
+    <span class="c1">################## update weights</span>
+ 
+    <span class="c1"># Backprop to compute gradients of a, b, c, d with respect to loss</span>
+    <span class="n">grad_y_pred</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">grad_a</span> <span class="o">=</span> <span class="n">grad_y_pred</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">grad_b</span> <span class="o">=</span> <span class="p">(</span><span class="n">grad_y_pred</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">grad_c</span> <span class="o">=</span> <span class="p">(</span><span class="n">grad_y_pred</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">grad_d</span> <span class="o">=</span> <span class="p">(</span><span class="n">grad_y_pred</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+ 
+    <span class="c1"># Update weights using gradient descent</span>
+    <span class="n">a</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_a</span>
+    <span class="n">b</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_b</span>
+    <span class="n">c</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_c</span>
+    <span class="n">d</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">grad_d</span>
+ 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Result: y = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x + </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^2 + </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^3&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Final Loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="autograd">
+<h2>Autograd<a class="headerlink" href="#autograd" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>now we get into the real special capabilities of Torch</p>
+<ul class="simple">
+<li><p>we had to define forward and backward passes manually up above</p></li>
+<li><p>that’s ok for such a tiny ‘network’ of four weights, but would scale up drastically</p></li>
+<li><p>luckily, Torch is capable of automatic differentiation, bypassing the symbolic by-hand differentiation that I, a human, needed to do</p></li>
+</ul>
+</li>
+<li><p>AUTOMATIC DIFFERENTIATION <a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_differentiation">(Wiki Link)</a></p>
+<ul>
+<li><a class="reference internal image-reference" href="../_images/auto_differentiation_nutshell.png"><img alt="../_images/auto_differentiation_nutshell.png" src="../_images/auto_differentiation_nutshell.png" style="height: 150px;" />
+</a>
+</li>
+<li><p>uses the chain rule, taking derivative of each little operation (“accumulating” derivatives)</p>
+<ul class="simple">
+<li><p>say we have a function of other functions</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(y=f(g(h(x)))\)</span></p></li>
+</ul>
+</li>
+<li><p>to evaluate it, we would</p>
+<ul>
+<li><p>feed in some <span class="math notranslate nohighlight">\(x\)</span>-value (call it <span class="math notranslate nohighlight">\(w_0\)</span>),</p></li>
+<li><p>evaluate the innermost function to get <span class="math notranslate nohighlight">\(w_1=h(w_{0})\)</span>,</p></li>
+<li><p>then evaluate the next innermost function and so on until we got to the outside</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\({\displaystyle {\begin{aligned} y&amp;=f(g(h(x))) &amp; \gets &amp;&amp; x &amp; =w_{0}\\ &amp;=f(g(h(w_{0})))&amp; \gets &amp;&amp; h(w_{0}) &amp; =w_{1}\\ &amp;=f(g(w_{1})) &amp; \gets &amp;&amp; g(w_{1}) &amp; =w_{2}\\ &amp;=f(w_{2}) &amp; \gets &amp;&amp; f(w_{2}) &amp; =w_{3}\\ &amp;=w_{3} \end{aligned}}}\)</span></p></li>
+</ul>
+</li>
+<li><p>so now we’ve got four values, one for each of the component functions in the chain</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\({\displaystyle {\begin{aligned} y= &amp;&amp; w_{3} &amp; =f(w_{2}) \\ &amp;&amp; w_{2} &amp; =g(w_{1}) \\ &amp;&amp; w_{1} &amp; =h(w_{0}) \\ &amp;&amp; w_{0} &amp; =x \end{aligned}}}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>if we wanted the gradient of <span class="math notranslate nohighlight">\(y\)</span> with respect to <span class="math notranslate nohighlight">\(x\)</span>, we would use the chain rule</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\({\displaystyle {\frac {\partial y}{\partial x}}={\frac {\partial f(w_{2})}{\partial w_{2}}}{\frac {\partial g(w_{1})}{\partial w_{1}}}{\frac {\partial h(w_{0})}{\partial x}}={\frac {\partial y}{\partial w_{2}}}{\frac {\partial w_{2}}{\partial w_{1}}}{\frac {\partial w_{1}}{\partial x}}}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>can be done forwards or backwards. backpropogation is a special case of reverse accumulation</p>
+<ul class="simple">
+<li><p>forwards (tangent mode) traverses the chain rule from the inside out starting with <span class="math notranslate nohighlight">\(\displaystyle{\frac {\partial w_{1}}{\partial x}}\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\to\)</span> more efficient if more outputs than inputs?</p></li>
+<li><p>hold the output constant and differentiate backwards with</p></li>
+</ul>
+</li>
+<li><p>backwards (adjoint mode) traverses the chain rule from the outside in starting with <span class="math notranslate nohighlight">\(\displaystyle{\frac {\partial f(w_{2})}{\partial w_{2}}}\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\to\)</span> more efficient if more inputs than outputs?</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>backwards is more efficient for the setup we have with machine learning (often network has a single output and many inputs)</p>
+<ul>
+<li><p>great for a neural network that converges down into few outputs since you start with output, find the derivative, and branch it backwards</p></li>
+<li><p>basically you get to calculate a partial derivative once and reuse it a bunch of times, which is great if there are fewer outputs than inputs</p></li>
+<li><a class="reference internal image-reference" href="../_images/reverse_accumulation.png"><img alt="../_images/reverse_accumulation.png" src="../_images/reverse_accumulation.png" style="height: 200px;" />
+</a>
+</li>
+<li><p>for forward propogation the inputs are you basically need to evaluate the gradients once for each independent variable (input)</p></li>
+<li><p>for forward propogation you basically need to evaluate the gradients once for each independent variable (input)</p></li>
+</ul>
+</li>
+<li><p>Reverse Accumulation by hand - you substitute the derivative of the outermost function with a new chain rule repeatedly</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\({\displaystyle {\begin{aligned}{\frac {\partial y}{\partial x}}&amp;={\frac {\partial y}{\partial w_{1}}}{\frac {\partial w_{1}}{\partial x}}\\&amp;=\left({\frac {\partial y}{\partial w_{2}}}{\frac {\partial w_{2}}{\partial w_{1}}}\right){\frac {\partial w_{1}}{\partial x}}\\&amp;=\left(\left({\frac {\partial y}{\partial w_{3}}}{\frac {\partial w_{3}}{\partial w_{2}}}\right){\frac {\partial w_{2}}{\partial w_{1}}}\right){\frac {\partial w_{1}}{\partial x}}\\&amp;=\cdots \end{aligned}}}\)</span></p></li>
+</ul>
+</li>
+<li><p>Reverse accumulation by The <strong>adjoint</strong> <span class="math notranslate nohighlight">\({\bar {w}}_{i}\)</span> - the derivative of a chosen dependent variable with respect to a <em>subexpression</em> <span class="math notranslate nohighlight">\(w_{i}\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\({\displaystyle {\bar {w}}_{i}={\frac {\partial y}{\partial w_{i}}}}\)</span></p></li>
+</ul>
+</li>
+<li><p>If <span class="math notranslate nohighlight">\(w_i\)</span> has successors in the computational graph, use the chain rule:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\({\displaystyle {\bar {w}}_{i}=\sum _{j\in \{{\text{successors of i}}\}}{\bar {w}}_{j}{\frac {\partial w_{j}}{\partial w_{i}}}}\)</span></p></li>
+<li><p>I believe that this is what’s accounting for nodes ahead of the current one being affected by its changes</p></li>
+<li><p>you have to sum up the effect it has on all of the nodes it feeds into</p></li>
+<li><p>and the activation of a node feeds into all the nodes ahead of it in a fully-connected network</p></li>
+<li><p>and then since all of those nodes feed into all of the nodes ahead of them…</p></li>
+<li><p>well, you do already have all of those partial derivatives from doing the layers in front of the current one</p></li>
+<li><p>but that’s a lot of numbers getting multiplied together</p></li>
+</ul>
+</li>
+<li><p>note that there is additional overhead for reverse propogation</p>
+<ul class="simple">
+<li><p>you need to store those partial derivative values</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="pytorch-tensors-and-autograd">
+<h2>PyTorch: Tensors and Autograd<a class="headerlink" href="#pytorch-tensors-and-autograd" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>provides the funcionality from above</p></li>
+<li><p><strong>Forward Pass</strong> of the network</p>
+<ul>
+<li><p>defines the <strong>computational graph</strong></p>
+<ul>
+<li><p>nodes in the graph will be Tensors</p>
+<ul>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">x</span></code> is a Tensor that has the setting <code class="docutils literal notranslate"><span class="pre">x.requires_grad=True</span></code></p></li>
+<li><p>then <code class="docutils literal notranslate"><span class="pre">x.grad</span></code> will be another Tensor that will hold the gradient of <code class="docutils literal notranslate"><span class="pre">x</span></code> with respect to some scalar value</p></li>
+</ul>
+</li>
+<li><p>edges will be functions that produce output Tensors from input Tensors</p>
+<ul>
+<li><p>are edges weights and biases?</p></li>
+<li><p>or is an edge like <span class="math notranslate nohighlight">\(a=\sigma(w\cdot a+b)\)</span>?</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Backwards Propogation</strong></p>
+<ul>
+<li><p>backpropogate through the graph</p>
+<ul>
+<li><p>computes gradients</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>previously we had to manually create the gradients for the backwards pass with</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">grad_y_pred</span> <span class="pre">=</span> <span class="pre">2.0</span> <span class="pre">*</span> <span class="pre">(y_pred</span> <span class="pre">-</span> <span class="pre">y)</span></code> and <code class="docutils literal notranslate"><span class="pre">grad_a</span> <span class="pre">=</span> <span class="pre">grad_y_pred.sum()</span></code> etc</p></li>
+</ul>
+</li>
+<li><p>this time, we’ll just use <code class="docutils literal notranslate"><span class="pre">loss.backward()</span></code></p>
+<ul>
+<li><p>no need to manually implement the gradients this time</p></li>
+</ul>
+</li>
+<li><p>since <code class="docutils literal notranslate"><span class="pre">loss</span></code> was established as a function of <span class="math notranslate nohighlight">\(y_{pred}\)</span> which is a function of the weights <code class="docutils literal notranslate"><span class="pre">a,b,c,d</span></code></p>
+<ul>
+<li><p>and because Pytorch will keep track of how it got to its final function?</p></li>
+<li><p>since it creates a computational graph to get there and keeps it on hand?</p></li>
+<li><p>the computational graph being composed of node <code class="docutils literal notranslate"><span class="pre">Tensors</span></code> and function <code class="docutils literal notranslate"><span class="pre">Edges</span></code>?</p></li>
+<li><p>so it’s easy to work backwards and find the gradients?</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+ 
+<span class="n">dtype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">float</span> <span class="c1"># &lt;- assign the type of data to store in the Tensors</span>
+<span class="c1">#device = &quot;cuda&quot; if torch.cuda.is_available() else &quot;cpu&quot; # &lt;- use a CUDA gpu if it&#39;s available</span>
+<span class="c1">#torch.set_default_device(device) # &lt;- can set the default device instead of setting it every time we initiate a Tensor</span>
+<span class="c1"># NOTE that didn&#39;t work for my version of torch, I guess set_default_device is an older way.</span>
+<span class="c1"># looks like I can still run torch without specifying device though</span>
+ 
+<span class="c1"># Create Tensors to hold input and outputs.</span>
+<span class="c1"># By default, requires_grad=False, which indicates that we do not need to</span>
+<span class="c1"># compute gradients with respect to these Tensors during the backward pass.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+ 
+<span class="c1"># Create random Tensors for weights. For a third order polynomial, we need</span>
+<span class="c1"># 4 weights: y = a + b x + c x^2 + d x^3</span>
+<span class="c1"># Setting requires_grad=True indicates that we want to compute gradients with</span>
+<span class="c1"># respect to these Tensors during the backward pass.</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+ 
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">):</span>
+ 
+    <span class="c1">################ compute prediction and loss - this is the forward pass</span>
+    <span class="c1"># Forward Pass # that will tell Torch what the structure of the network is</span>
+    <span class="c1">################ the &#39;loss&#39; tensor basically IS the network at that point</span>
+   
+    <span class="c1"># Forward pass: compute predicted y using operations on Tensors.</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">d</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
+ 
+    <span class="c1"># Compute and print loss using operations on Tensors.</span>
+    <span class="c1"># Now loss is a Tensor of shape (1,)</span>
+    <span class="c1"># loss.item() gets the scalar value held in the loss.</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">99</span><span class="p">:</span>
+        <span class="k">pass</span>
+        <span class="c1">#print(&quot;Step:&quot;, t, &quot;Loss:&quot;, loss.item())</span>
+ 
+    <span class="c1">################## compute the gradients of each of the weights of the network</span>
+    <span class="c1"># Backwards Pass # loss.backward() will use knowledge of the network set up by the forward pass</span>
+    <span class="c1">################## and go backwards through it, determining gradients of each weight (but not changing them)</span>
+ 
+    <span class="c1"># Use autograd to compute the backward pass. This call will compute the</span>
+    <span class="c1"># gradient of loss with respect to all Tensors with requires_grad=True.</span>
+    <span class="c1"># After this call a.grad, b.grad. c.grad and d.grad will be Tensors holding</span>
+    <span class="c1"># the gradient of the loss with respect to a, b, c, d respectively.</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+ 
+    <span class="c1">####################</span>
+    <span class="c1"># Update Gradients #</span>
+    <span class="c1">####################</span>
+ 
+    <span class="c1"># Manually update weights using gradient descent. Wrap in torch.no_grad()</span>
+    <span class="c1"># because weights have requires_grad=True, but we don&#39;t need to track this</span>
+    <span class="c1"># in autograd.</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">a</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">a</span><span class="o">.</span><span class="n">grad</span>
+        <span class="n">b</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">b</span><span class="o">.</span><span class="n">grad</span>
+        <span class="n">c</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">grad</span>
+        <span class="n">d</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">d</span><span class="o">.</span><span class="n">grad</span>
+ 
+        <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">99</span><span class="p">:</span>
+            <span class="c1"># print the gradients!</span>
+            <span class="c1"># NOTE - gradients are Tensors. I don&#39;t think I could do this f-string stuff if the Tensors were bigger than 1x1</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Step: </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1"> Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> a.grad: </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">grad</span><span class="si">}</span><span class="s1"> b.grad: </span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">grad</span><span class="si">}</span><span class="s1"> c.grad: </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">grad</span><span class="si">}</span><span class="s1"> d.grad: </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">grad</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+ 
+        <span class="c1"># Manually zero the gradients after updating weights</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="kc">None</span>
+ 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Result: y = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x + </span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^2 + </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^3&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Final Loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="latex-formulas-in-docstrings">
+<h2>latex formulas in docstrings<a class="headerlink" href="#latex-formulas-in-docstrings" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>the docstring in  https://github.com/pytorch/pytorch/blob/main/torch/nn/utils/parametrizations.py</p></li>
+<li><p>for def weight_norm includes this:</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{w} = g \dfrac{\mathbf{v}}{\|\mathbf{v}\|}\)</span></p></li>
+<li><p>which turns into this formula</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{w} = g \dfrac{\mathbf{v}}{\|\mathbf{v}\|}\)</span></p></li>
+<li><p>so it must be possible to put latex formulas in docstrings</p></li>
+</ul>
+</section>
+<section id="defining-new-autograd-functions">
+<h2>Defining new Autograd functions<a class="headerlink" href="#defining-new-autograd-functions" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>each Autograd operator is basically just two functions that operate on Tensors</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">forward</span></code></p>
+<ul>
+<li><p>computes output Tensors from input Tensors</p></li>
+<li><p>necessary as the activations of each node and such are plugged in to the chain rule functions</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">backward</span></code></p>
+<ul>
+<li><p>receives the gradient of the output Tensors with respect to some scalar value (from the custom autograd?)</p></li>
+<li><p>computes the gradient of the input Tensors with respect to that same scalar value (using the custom autograd?)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>can define our own autograd function by:</p>
+<ul class="simple">
+<li><p>define a subclass of <code class="docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code></p></li>
+<li><p>implement <code class="docutils literal notranslate"><span class="pre">forward</span></code> and <code class="docutils literal notranslate"><span class="pre">backward</span></code> functions</p></li>
+</ul>
+</li>
+<li><p>then use it by:</p>
+<ul class="simple">
+<li><p>construct instance of the new autograd operator</p></li>
+<li><p>and call it like a function, passing in input Tensors</p></li>
+</ul>
+</li>
+<li><p>example:</p>
+<ul>
+<li><p>define new model using a <a class="reference external" href="https://en.wikipedia.org/wiki/Legendre_polynomials">Legendre Polynomial</a> instead of <span class="math notranslate nohighlight">\(y_{pred}=a+b*x+c*x^2+d*x^3\)</span></p>
+<ul>
+<li><p>3rd-degree Legendre Polynomial (the red one) looks like a sine wave</p></li>
+<li><a class="reference internal image-reference" href="../_images/legendre_polynomials.png"><img alt="../_images/legendre_polynomials.png" src="../_images/legendre_polynomials.png" style="height: 300px;" />
+</a>
+</li>
+<li><p>By <a href="//commons.wikimedia.org/wiki/User:Geek3" title="User:Geek3">Geek3</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=9552813">Link</a></p></li>
+</ul>
+</li>
+<li><p>model is</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y_{pred}=a+bP_3(c+dx)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P_3(t)={1\over2}(5t^3-3t) \gets\)</span> 3rd-degree Legendre Polynomial</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_{pred}=a+{1\over2}b(5(c+dx)^3-3(c+dx))\)</span></p></li>
+</ul>
+</li>
+<li><p>write a custom autograd function for computing forward and backward of <span class="math notranslate nohighlight">\(P_3(x)\)</span></p>
+<ul class="simple">
+<li><p>use it to implement the model</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+ 
+<span class="c1"># create a new class of torch.autograd.Function by passing that function to the new class</span>
+<span class="c1"># the class will have everything that torch.autograd.Function usually has</span>
+<span class="c1"># but we will overwrite some specific functions to be what we want</span>
+<span class="c1"># specifically, we are only overwriting the forward and backwards ones</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LegendrePolynomial3</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">Function</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    We can implement our own custom autograd Functions by subclassing</span>
+<span class="sd">    torch.autograd.Function and implementing the forward and backward passes</span>
+<span class="sd">    which operate on Tensors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+ 
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In the forward pass we receive a Tensor containing the input and return</span>
+<span class="sd">        a Tensor containing the output. ctx is a context object that can be used</span>
+<span class="sd">        to stash information for backward computation. You can cache arbitrary</span>
+<span class="sd">        objects for use in the backward pass using the ctx.save_for_backward method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># save the input that we&#39;re about to feed in for later</span>
+        <span class="c1"># both forward and backwards receive ctx, though it&#39;s not a self variable</span>
+        <span class="c1"># Torch must know to pass it to and from when it calls these two functions</span>
+        <span class="c1"># this `ctx` probably only available for this &#39;network&#39; that calculates the P3 portion</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+        <span class="c1"># Compute the value of P_3 from the input ( which will be (c+dx) )</span>
+        <span class="c1"># this &#39;network&#39; only computes the &#39;P_3&#39; chunk of the graph</span>
+        <span class="c1"># so all we need to do is establish how you calculate &#39;P_3(t)&#39; from &#39;t&#39; here</span>
+        <span class="c1"># P_3(t)=(1/2)(5t^3-3t)</span>
+        <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="nb">input</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="nb">input</span><span class="p">)</span> <span class="c1"># create the output from the input</span>
+ 
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">backward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">grad_output</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In the backward pass we receive a Tensor containing the gradient of the loss</span>
+<span class="sd">        with respect to the output, and we need to compute the gradient of the loss</span>
+<span class="sd">        with respect to the input.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># backward receives grad_output Tensor</span>
+        <span class="c1">#   it contains the gradient of the Loss with respect to the output of this network</span>
+        <span class="c1">#   this &#39;network&#39; consists only of the &#39;P_3(t)&#39; portion</span>
+        <span class="c1"># in essence, that means it will contain all the chain rule stuff from after this network</span>
+        <span class="c1">#   the a and b part of y_pred = a + b * P3(c + d * x)</span>
+        <span class="c1">#   the part from loss = (y_pred - y).pow(2).sum()</span>
+        <span class="c1"># but it won&#39;t be able to go past this P3 thing to get the gradient with respect to c and d</span>
+        <span class="c1">#   since those are the inputs to this &#39;network&#39;</span>
+        <span class="c1">#   we need to give it the chain rule chunk for the P3 portion of the network</span>
+        <span class="c1">#   so it can calculate the derivatives with respect to weights behind this network</span>
+        <span class="c1"># so our custom autograd is telling our &#39;network&#39; that calculates P3</span>
+        <span class="c1">#   how to calculate P3(t) on the forward pass</span>
+        <span class="c1">#   how to do the chunk of chain rule between output ( P_3(t) ) and input ( t )</span>
+        <span class="c1">#   that way when we&#39;re trying to get the gradients for c and d,</span>
+        <span class="c1">#   it can use the &#39;chain rule chunk&#39; from this P3 portion to get to them</span>
+        <span class="c1"># calculate the gradient of this networks output ( P_3(t) ) and input ( t )</span>
+        <span class="c1">#         P_3(t)=(1/2)(5t^3-3t)</span>
+        <span class="c1">#               =(5/2)t^3-(3/2)t</span>
+        <span class="c1">#   {d/dt}P_3(t)=(15/2)t^2-(3/2)</span>
+        <span class="c1">#               =(3/2)(5t^2-1)</span>
+        <span class="c1">#               =(3/2)(5t^2-1)</span>
+        <span class="c1">#     {dLoss/dt}={dLoss/dP_3(t)}{dP_3(t)/dt}</span>
+        <span class="c1">#               ={dLoss/dP_3(t)}(3/2)(5t^2-1)</span>
+        <span class="c1">#               =grad_output *  (3/2)(5t^2-1)</span>
+ 
+        <span class="c1"># retrieve the input (x) from the ctx saved Tensor</span>
+        <span class="nb">input</span><span class="p">,</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">saved_tensors</span>
+        <span class="c1"># take grad_output, the gradient of everything that happened after this networks output</span>
+        <span class="c1"># apply the gradient of everything that happens in this network to it</span>
+        <span class="c1"># return that so that whatever&#39;s behind this in the network</span>
+        <span class="c1"># will have the gradient of the Loss with respect to its output</span>
+        <span class="k">return</span> <span class="n">grad_output</span> <span class="o">*</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="nb">input</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+ 
+ 
+<span class="c1"># select the datatype for the Tensors and what device we want to run calculations on</span>
+<span class="n">dtype</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">float</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+<span class="c1"># device = torch.device(&quot;cuda:0&quot;)  # Uncomment this to run on GPU</span>
+ 
+<span class="c1"># Create Tensors to hold input and outputs.</span>
+<span class="c1"># By default, requires_grad=False, which indicates that we do not need to</span>
+<span class="c1"># compute gradients with respect to these Tensors during the backward pass.</span>
+<span class="c1"># we allow these to use requires_grad=False since we will not be adjusting these</span>
+<span class="c1"># and therefore don&#39;t need their gradients</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+ 
+<span class="c1"># Create random Tensors for weights. For this example, we need</span>
+<span class="c1"># 4 weights: y = a + b * P3(c + d * x), these weights need to be initialized</span>
+<span class="c1"># not too far from the correct result to ensure convergence.</span>
+<span class="c1"># Setting requires_grad=True indicates that we want to compute gradients with</span>
+<span class="c1"># respect to these Tensors during the backward pass.</span>
+<span class="c1"># we set requires_grad=True for the since we will need gradients to adjust them</span>
+<span class="c1"># previously we initialized them with random numbers using torch.randn</span>
+<span class="c1"># but polynomials tend to explode with this stuff instead of converging,</span>
+<span class="c1"># so they need to be initialized closer to final values and we fill them with 0,-1,0,0.3</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">((),</span>  <span class="mf">0.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">((),</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">((),</span>  <span class="mf">0.0</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">((),</span>  <span class="mf">0.3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+ 
+<span class="c1"># wow. That&#39;s a tiny learning rate.</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">5e-6</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">):</span>
+    <span class="c1"># To apply our Function, we use Function.apply method. We alias this as &#39;P3&#39;.</span>
+    <span class="c1"># oh hey look it&#39;s the name of our Class from a minute ago</span>
+    <span class="c1"># .apply must tell it to call forward from the class when its called</span>
+    <span class="c1"># it probably</span>
+    <span class="n">P3</span> <span class="o">=</span> <span class="n">LegendrePolynomial3</span><span class="o">.</span><span class="n">apply</span>
+ 
+    <span class="c1"># Forward pass: compute predicted y using operations;</span>
+    <span class="c1"># we compute P3 using our custom autograd operation</span>
+    <span class="c1"># this will also save it to the graph so Torch knows how to do the backwards pass</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">P3</span><span class="p">(</span><span class="n">c</span> <span class="o">+</span> <span class="n">d</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+ 
+    <span class="c1"># Compute and print loss</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">99</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step:&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;Loss:&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+ 
+    <span class="c1"># Use autograd to compute the backward pass.</span>
+    <span class="c1"># It will have saved the path through the other Tensors to get to the Loss</span>
+    <span class="c1"># so now it will retrace its steps to get the gradient of each chunk in the process</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+ 
+    <span class="c1"># Update weights using gradient descent</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">a</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">a</span><span class="o">.</span><span class="n">grad</span>
+        <span class="n">b</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">b</span><span class="o">.</span><span class="n">grad</span>
+        <span class="n">c</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">c</span><span class="o">.</span><span class="n">grad</span>
+        <span class="n">d</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">d</span><span class="o">.</span><span class="n">grad</span>
+ 
+        <span class="c1"># Manually zero the gradients after updating weights</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="kc">None</span>
+ 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Result: y = </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> * P3(</span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">d</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="pytorch-s-nn-module">
+<h2>Pytorch’s <code class="docutils literal notranslate"><span class="pre">nn</span></code> module<a class="headerlink" href="#pytorch-s-nn-module" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>For big neural networks, raw autograd can be a bit too low-level</p>
+<ul>
+<li><p>we are usually building the computation into <strong>layers</strong>, some of which have <strong>learnable parameters</strong> to optimize</p></li>
+</ul>
+</li>
+<li><p>Pytorch uses the <code class="docutils literal notranslate"><span class="pre">nn</span></code> module to provide high level abstractions over raw computational graphs</p>
+<ul>
+<li><p>this is the equivalent <code class="docutils literal notranslate"><span class="pre">TensorFlow</span></code> packages like of <code class="docutils literal notranslate"><span class="pre">Keras</span></code>, <code class="docutils literal notranslate"><span class="pre">TensorFlow-Slim</span></code>, and <code class="docutils literal notranslate"><span class="pre">TFLearn</span></code></p></li>
+</ul>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">nn</span></code> package</p>
+<ul>
+<li><p>defines a set of <strong>modules</strong></p>
+<ul>
+<li><p>roughly equivalent to neural network layers</p></li>
+<li><p>receives input Tensors, computes output Tensors</p></li>
+<li><p>may also hold internal state such as Tensors containing learnable parameters</p></li>
+<li><p>defines a set of useful loss functions</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>example</p>
+<ul>
+<li><p>using the <code class="docutils literal notranslate"><span class="pre">nn</span></code> package to implement our polynomial model network</p></li>
+</ul>
+</li>
+</ul>
+<section id="zeroing-gradients">
+<h3>Zeroing Gradients<a class="headerlink" href="#zeroing-gradients" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>we always seem to need to zero the gradients after we apply them</p></li>
+<li><p>that was true for both the manual method and this <code class="docutils literal notranslate"><span class="pre">nn</span></code> method</p></li>
+<li><p>I wonder if it just sums them up otherwise</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+ 
+<span class="c1"># Create Tensors to hold input and outputs. Both will be 2000-element 1D Tensors</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x tensor of inputs x, shape:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;contents:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y tensor of true outputs y, shape:&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;contents:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+ 
+<span class="c1"># For this example, the output y is a linear function of (x, x^2, x^3), so</span>
+<span class="c1"># we can consider it as a linear layer neural network. Let&#39;s prepare the</span>
+<span class="c1"># tensor of (x, x^2, x^3) values</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;p tensor of powers (x,x^2,x^3), shape:&quot;</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;contents:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+<span class="c1"># unsqeeze(-1) adds a new dimension after the last index, so it adds 1 after (2000) to get (2000,1)</span>
+<span class="c1"># use x.unsqueeze(-1) to convert the x tensor of shape (2000) with 2000 linearly-spaced x-values</span>
+<span class="c1"># Raise it to the power of the p-tensor [1, 2, 3] of shape (3,1)</span>
+<span class="c1"># this will broadcast the shape of x.unsqueeze(-1) from (2000,1) to (2000,3)</span>
+<span class="c1"># (basically copying the column over three times)</span>
+<span class="c1"># then raise each element to the appropriate power from the same column of p</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;xx tensor of x,x^2,x^3-values, shape:&quot;</span><span class="p">,</span> <span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;contents:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">xx</span><span class="p">)</span>
+<span class="c1"># In the above code, x.unsqueeze(-1) has shape (2000, 1), and p has shape</span>
+<span class="c1"># (3,), for this case, broadcasting semantics will apply to obtain a tensor</span>
+<span class="c1"># of shape (2000, 3)</span>
+ 
+<span class="c1"># Use the nn package to define our model as a sequence of layers. nn.Sequential</span>
+<span class="c1"># is a Module which contains other Modules, and applies them in sequence to</span>
+<span class="c1"># produce its output. The Linear Module computes output from input using a</span>
+<span class="c1"># linear function, and holds internal Tensors for its weight and bias.</span>
+<span class="c1"># The Flatten layer flattens the output of the linear layer to a 1D tensor,</span>
+<span class="c1"># to match the shape of `y`</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span> <span class="c1"># create Sequential nn Module containing other nn Modules</span>
+    <span class="c1"># add a Linear nn Module</span>
+    <span class="c1"># This will take the input Tensor (we will give it the (2000,3) Tensor with columns of [x, x^2, x^3] values)</span>
+    <span class="c1"># and produce an output Tensor of (2000,1) y_pred=a1 x + a2 x^2 + a3 x^3 + b values</span>
+    <span class="c1"># Linear will automatically incorporate the weights and biases (it defaults to bias=True)</span>
+    <span class="c1"># Linear will apply a linear transformation of y = xA^T + b to the incoming data</span>
+    <span class="c1"># A^T is the (3,1) transpose of the (1,3) weights Tensor containing the weights for x^1, x^2, x^3</span>
+    <span class="c1"># b is the bias Tensor, it only contains 1 element</span>
+    <span class="c1"># so xA^T -&gt; (2000,3)(3,1) -&gt; (2000,1) &lt;- it is multiplying a1 by each x entry, a2 by each x^2 entry, etc and then adding the columns up</span>
+    <span class="c1">#    xA^T + b -&gt; (2000,1) + (1) = (2000,1) &lt;- adding a scalar to a Tensor should just add it element by element</span>
+    <span class="c1"># so its outputting a (2000,1) Tensor of y_pred values, one y_pred per each of the 2000 input x samples</span>
+    <span class="c1"># in_features = 3, out_features=1, meaning it will take 3 inputs (x,x^2,x^3) and deliver 1 output (y_pred)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># nn Module to perform linear transformation</span>
+    <span class="c1"># but wait, y and y_pred will be 1D tensors of size (2000), not (2000,1)</span>
+    <span class="c1"># so flatten this result into a 1D tensor of size (2000)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># nn Module to flatten the output into a 1D Tensor to look like y and y_pred</span>
+<span class="p">)</span>
+ 
+<span class="c1"># The nn package also contains definitions of popular loss functions; in this</span>
+<span class="c1"># case we will use Mean Squared Error (MSE) as our loss function.</span>
+<span class="c1"># this will do the &#39;loss = (y_pred - y).pow(2).sum()&#39; bit</span>
+<span class="n">loss_fn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+ 
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">):</span>
+ 
+    <span class="c1"># Forward pass: compute predicted y by passing x to the model.</span>
+    <span class="c1"># Module objects override the __call__ operator so you can call them like functions.</span>
+    <span class="c1"># When doing so you pass a Tensor of input data to the Module</span>
+    <span class="c1"># and it produces a Tensor of output data, y_pred, which is 2000 elements long</span>
+    <span class="c1"># interestingly, it seems to be back to being shape (2000) all in one row instead of one column</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+ 
+    <span class="c1"># Compute and print loss. We pass Tensors containing the predicted and true</span>
+    <span class="c1"># values of y, and the loss function returns a Tensor containing the loss.</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="c1"># print the loss at step 99 and every 100 after that</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">99</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step:&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;Loss:&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+ 
+    <span class="c1"># Zero the gradients before running the backward pass.</span>
+    <span class="c1"># Would it just add new grads onto it otherwise?</span>
+    <span class="c1"># I guess that would fit with chain rule</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+ 
+    <span class="c1"># Backward pass: compute gradient of the loss with respect to all the learnable</span>
+    <span class="c1"># parameters of the model. Internally, the parameters of each Module are stored</span>
+    <span class="c1"># in Tensors with requires_grad=True, so this call will compute gradients for</span>
+    <span class="c1"># all learnable parameters in the model.</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+ 
+    <span class="c1"># Update the weights using gradient descent. Each parameter is a Tensor, so</span>
+    <span class="c1"># we can access its gradients like we did before.</span>
+    <span class="c1"># NOTE - we always use no_grad for these</span>
+    <span class="c1"># is that so we don&#39;t store the gradients when we do this?</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
+            <span class="n">param</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">param</span><span class="o">.</span><span class="n">grad</span>
+ 
+<span class="c1"># You can access the first layer of `model` like accessing the first item of a list</span>
+<span class="n">linear_layer</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+ 
+<span class="c1"># For linear layer, its parameters are stored as `weight` and `bias`.</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Result: y = </span><span class="si">{</span><span class="n">linear_layer</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">linear_layer</span><span class="o">.</span><span class="n">weight</span><span class="p">[:,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x + </span><span class="si">{</span><span class="n">linear_layer</span><span class="o">.</span><span class="n">weight</span><span class="p">[:,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^2 + </span><span class="si">{</span><span class="n">linear_layer</span><span class="o">.</span><span class="n">weight</span><span class="p">[:,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^3&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Final Loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y_pred tensor, shape:&quot;</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s2">&quot;contents:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
+<span class="c1"># try and print out the gradients</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;printing named parameter data&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;param name:&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;data:&quot;</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;grad&quot;</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="pytorch-s-optim-package">
+<h2>PyTorch’s Optim Package<a class="headerlink" href="#pytorch-s-optim-package" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>we’ve been manually updating the weights so far. Each time, we’ve:</p>
+<ul>
+<li><p>run through the entire training data set,</p></li>
+<li><p>found the Loss for the entire training data set by summing up the squared error from each x-point</p></li>
+<li><p>done backprop to get the gradient of the Loss with respect to each of the learnable parameters</p></li>
+<li><p>applied <code class="docutils literal notranslate"><span class="pre">torch.no_grad()</span></code> to manually manipulate the learnable parameters by</p></li>
+<li><p>multiplying the current value of the learnable parameters by that gradient and the learning rate</p></li>
+<li><p>looped back around and did it all again 2000 times</p></li>
+</ul>
+</li>
+<li><p>Optimizers</p>
+<ul>
+<li><p>that was ok for a simple optimization like stochastic gradient descent</p></li>
+<li><p>but in practice we’ll want to use more sophisticated optimizers like <code class="docutils literal notranslate"><span class="pre">AdaGrad</span></code>, <code class="docutils literal notranslate"><span class="pre">RMSProp</span></code>, or <code class="docutils literal notranslate"><span class="pre">Adam</span></code></p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">optim</span></code> package can perform those</p></li>
+</ul>
+</li>
+<li><p>Compactness</p>
+<ul>
+<li><p>wow, this code is getting way more compact</p></li>
+<li><p>if I removed all of the comments it would be downright slim</p></li>
+</ul>
+</li>
+</ul>
+<section id="optimizer-zero-grad-and-why-we-zero-gradients">
+<h3>optimizer.zero_grad() and WHY WE ZERO GRADIENTS<a class="headerlink" href="#optimizer-zero-grad-and-why-we-zero-gradients" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>FINALLY they explain why we always zero out the gradients</p>
+<ul>
+<li><p>by default, gradients are not overwritten, they are saved to buffers</p></li>
+<li><p>so if I <em>didn’t</em> zero them out, we would be accumulating more and more stored gradients every training step</p></li>
+<li><p>and those bois can get <em>big</em></p></li>
+<li><p>and since I’m using Jupyter, I’ll bet I would have just accumulated more and more every time I hit run until the kernel crashed</p></li>
+</ul>
+</li>
+<li><p>summing up gradients</p>
+<ul>
+<li><p>in the 3blue1brown video,</p></li>
+<li><p>it was mentioned that you do your backpropogation to get a list of gradients for each training input in a batch</p></li>
+<li><p>then you sum those up</p></li>
+<li><p>so the purpose of it defaulting to keeping them around is probably so that you can sum up the gradients for a batch</p></li>
+<li><p>and use that to get your final gradient values that actually get applied to update your weights</p></li>
+<li><p>and it doesn’t just sum them up as it goes since you may want to do something more complicated</p></li>
+<li><p>I mean Neural Tangent Kernel and other methods would probably want to hold back some specific gradients etc</p></li>
+<li><p>so it saves the gradient ‘suggestions’ for each training case, combines them for the batch (somehow)</p></li>
+<li><p>and then you call <code class="docutils literal notranslate"><span class="pre">optimizer.step()</span></code>, which has procedures or optimization and has been given both your model and the learning rate</p></li>
+<li><p>and that uses those sets of gradients to figure out how to update</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+ 
+ 
+<span class="c1"># Create Tensors to hold input and outputs with dimensions (2000)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+ 
+<span class="c1"># Prepare the input tensor (x, x^2, x^3) as before, with dimensions (2000,3)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">xx</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+ 
+<span class="c1"># Use the nn package to define our model and loss function</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span> <span class="c1"># Create a Sequential Module</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="c1"># add a Linear Module to apply weights and biases, sum up and compute a y_pred (2000,1) Tensor</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># add a Flatten Module flatten the y_pred tensor from (2000,1) to (2000) to match the true y tensor</span>
+<span class="p">)</span>
+ 
+<span class="c1"># Create a module for the Loss, summing up the MSE errors of each of the 2000 point by comparing the y_pred and y Tensors</span>
+<span class="n">loss_fn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+ 
+<span class="c1"># Use the optim package to define an Optimizer that will update the weights of</span>
+<span class="c1"># the model for us. Here we will use RMSprop; the optim package contains many other</span>
+<span class="c1"># optimization algorithms. The first argument to the RMSprop constructor tells the</span>
+<span class="c1"># optimizer which Tensors it should update.</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">1e-3</span>
+<span class="c1"># tell it to update the parameters of the model and use the learning rate</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+ 
+<span class="c1"># go through 2000 steps of model updating</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">):</span>
+    <span class="c1"># Forward pass: compute predicted y by passing x to the model.</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+ 
+    <span class="c1"># Compute and print loss.</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">99</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step:&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;Loss:&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+ 
+    <span class="c1"># Before the backward pass, use the optimizer object to zero all of the</span>
+    <span class="c1"># gradients for the variables it will update (which are the learnable</span>
+    <span class="c1"># weights of the model). This is because by default, gradients are</span>
+    <span class="c1"># accumulated in buffers( i.e, not overwritten) whenever .backward()</span>
+    <span class="c1"># is called. Checkout docs of torch.autograd.backward for more details.</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+ 
+    <span class="c1"># Backward pass: compute gradient of the loss with respect to model parameters</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+ 
+    <span class="c1"># Calling the step function on an Optimizer makes an update to its parameters</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+ 
+<span class="c1"># get the linear layer so we can grab its learnable parameters - it&#39;s the 0th layer of the model (the 1st layer is that flattening one)</span>
+<span class="n">linear_layer</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Result: y = </span><span class="si">{</span><span class="n">linear_layer</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">linear_layer</span><span class="o">.</span><span class="n">weight</span><span class="p">[:,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x + </span><span class="si">{</span><span class="n">linear_layer</span><span class="o">.</span><span class="n">weight</span><span class="p">[:,</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^2 + </span><span class="si">{</span><span class="n">linear_layer</span><span class="o">.</span><span class="n">weight</span><span class="p">[:,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="custom-nn-modules">
+<h2>Custom <code class="docutils literal notranslate"><span class="pre">nn</span></code> Modules<a class="headerlink" href="#custom-nn-modules" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>can subclass <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> to create custom modules</p></li>
+<li><p>define a <code class="docutils literal notranslate"><span class="pre">forward</span></code> which receives input Tensors and produces output Tensors using other modules or autograd operations on Tensors</p></li>
+<li><p>example: implement that 3rd order polynomial from earlier as a custom Module subclass</p></li>
+<li><p>looks like we don’t need to define a custom <code class="docutils literal notranslate"><span class="pre">backward</span></code> procedure this time</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+ 
+<span class="k">class</span><span class="w"> </span><span class="nc">Polynomial3</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In the constructor we instantiate four parameters and assign them as</span>
+<span class="sd">        member parameters of this class. Looks like we&#39;re instantiating with</span>
+<span class="sd">        random values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(()))</span>
+ 
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In the forward function we accept a Tensor of input data and we must return</span>
+<span class="sd">        a Tensor of output data. We can use Modules defined in the constructor as</span>
+<span class="sd">        well as arbitrary operators on Tensors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
+ 
+    <span class="k">def</span><span class="w"> </span><span class="nf">string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Just like any class in Python, you can also define custom method on PyTorch modules</span>
+<span class="sd">        Here we define a custom method that you can call on the class to print out the equation</span>
+<span class="sd">        with its current weights</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;y = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x + </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^2 + </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^3&#39;</span>
+ 
+ 
+<span class="c1"># Create Tensors to hold input and outputs.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+ 
+<span class="c1"># Construct our model by instantiating the class defined above</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Polynomial3</span><span class="p">()</span>
+ 
+<span class="c1"># Construct our loss function and an Optimizer. The call to model.parameters()</span>
+<span class="c1"># in the SGD constructor will contain the learnable parameters (defined</span>
+<span class="c1"># with torch.nn.Parameter) which are members of the model.</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">):</span>
+    <span class="c1"># Forward pass: Compute predicted y by passing x to the model</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+ 
+    <span class="c1"># Compute and print loss</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">99</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Step:&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;Loss:&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+ 
+    <span class="c1"># Zero gradients, perform a backward pass, and update the weights.</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span> <span class="c1"># zero out gradients so we don&#39;t accumulate more and more each step</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>       <span class="c1"># go backwards to calculate gradients of loss with respect to learnable parameters</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>      <span class="c1"># use the optimizer to step in order to apply those gradients and learning rate to update the learnable parameters</span>
+ 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Result: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">string</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="control-flow-and-weight-sharing">
+<h2>Control Flow and Weight Sharing<a class="headerlink" href="#control-flow-and-weight-sharing" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>dynamic network</p>
+<ul>
+<li><p>you can change up the size and shape of the network from step to step</p></li>
+</ul>
+</li>
+<li><p>we’re going to make a wierd model now</p>
+<ul>
+<li><p>a 3rd-order polynomial</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(y = a + bx + cx^2 + dx^3\)</span></p></li>
+</ul>
+</li>
+<li><p>on each foward pass, it will choose a random number from 4,5,6</p>
+<ul>
+<li><p>it will use that many orders, sharing a weight for them</p></li>
+</ul>
+</li>
+<li><p>The final equation could be any of these</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(y = a + bx + cx^2 + dx^3 + ex^4\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y = a + bx + cx^2 + dx^3 + ex^4 + ex^5\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(y = a + bx + cx^2 + dx^3 + ex^4 + ex^5 + ex^6\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>use Python flow control to implement the loop</p>
+<ul>
+<li><p>implement weight sharing by resuing the same parameters multiple times when defining the forward pass</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+ 
+<span class="c1"># create a class for dynamic network by</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DynamicNet</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In the constructor we instantiate five parameters and assign them as members.</span>
+<span class="sd">        We&#39;ll need &#39;e&#39; if the random number calls for a 4th, 5th, or 6th weight</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(()))</span>
+ 
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        For the forward pass of the model, we randomly choose either 4, 5, or 6</span>
+<span class="sd">        and reuse the e parameter to compute the contribution of these orders.</span>
+<span class="sd"> </span>
+<span class="sd">        Since each forward pass builds a dynamic computation graph, we can use normal</span>
+<span class="sd">        Python control-flow operators like loops or conditional statements when</span>
+<span class="sd">        defining the forward pass of the model.</span>
+<span class="sd"> </span>
+<span class="sd">        Here we also see that it is perfectly safe to reuse the same parameter many</span>
+<span class="sd">        times when defining a computational graph.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># create base equation y = a + bx + cx^2 + dx^3</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span>
+        <span class="c1"># randint will return 4,5, or 6, so the resulting range will go from 4 to 4,5, or 6</span>
+        <span class="c1"># so y could be as big as y = a + bx + cx^2 + dx^3 + ex^4 + ex^5 + ex^6</span>
+        <span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)):</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">*</span> <span class="n">x</span> <span class="o">**</span> <span class="n">exp</span>
+        <span class="k">return</span> <span class="n">y</span>
+ 
+    <span class="k">def</span><span class="w"> </span><span class="nf">string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Just like any class in Python, you can also define custom method on PyTorch modules</span>
+<span class="sd">        we&#39;ll add question marks for the items that may or may not be in the model right now</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;y = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x + </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^2 + </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^3 + </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^4 ? + </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^5 + </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s1"> x^6 ?&#39;</span>
+ 
+ 
+<span class="c1"># Create Tensors to hold input and outputs.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+ 
+<span class="c1"># Construct our model by instantiating the class defined above</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">DynamicNet</span><span class="p">()</span>
+ 
+<span class="c1"># Construct our loss function and an Optimizer. Training this strange model with</span>
+<span class="c1"># vanilla stochastic gradient descent is tough, so we use momentum</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30000</span><span class="p">):</span>
+    <span class="c1"># Forward pass: Compute predicted y by passing x to the model</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+ 
+    <span class="c1"># Compute and print loss</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">2000</span> <span class="o">==</span> <span class="mi">1999</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+ 
+    <span class="c1"># Zero gradients, perform a backward pass, and update the weights.</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+ 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Result: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">string</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pytorch-pth-files">
+<h1>PyTorch Pth Files<a class="headerlink" href="#pytorch-pth-files" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pth-files-and-using-a-trained-model">
+<h1>PTH files and using a trained model<a class="headerlink" href="#pth-files-and-using-a-trained-model" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>assembled from sources such as this medium <a class="reference external" href="https://medium.com/&#64;yulin_li/what-exactly-is-the-pth-file-9a487044a36b">article</a></p></li>
+</ul>
+<section id="what-is-a-pth-file">
+<h2>What is a PTH file<a class="headerlink" href="#what-is-a-pth-file" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>machine learning model created with PyTorch</p></li>
+<li><p>contains algorithms to automatically perform a task</p>
+<ul>
+<li><p>upscaling/identifying an image etc</p></li>
+</ul>
+</li>
+<li><p>saved using <code class="docutils literal notranslate"><span class="pre">torch.save(model,</span> <span class="pre">PATH)</span></code> etc</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">torch.save(model.state_dict(),</span> <span class="pre">&quot;model.pth&quot;)</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="what-s-in-it">
+<h2>What’s in it?<a class="headerlink" href="#what-s-in-it" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>a serialized PyTorch state dictionary</p></li>
+<li><p>Python dictionary containing the state of a PyTorch model</p>
+<ul>
+<li><p><strong>the weights, biases, and other parameters</strong></p></li>
+</ul>
+</li>
+<li><p>serialized means it’s converted into a format to be easily saved to a disk and reconstructed</p>
+<ul>
+<li><p>converted into a sequence of bytes (smaller and more compact than the original data structure)</p></li>
+<li><p>the Python pickle module is what serializes it</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-to-use">
+<h2>How to Use<a class="headerlink" href="#how-to-use" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>PTH files are not meant to be opened</p></li>
+<li><p>they are meant to be integrated or imported into an application</p></li>
+<li><p>where they can be trained further or used to perform a task</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">=</span> <span class="pre">torch.load(PATH)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model.load_state_dict(torch.load(&quot;model.pth&quot;))</span></code></p>
+<ul>
+<li><p>uses <code class="docutils literal notranslate"><span class="pre">torch.load()</span></code> function to load the state dictionary from the <code class="docutils literal notranslate"><span class="pre">model.pth</span></code> file</p></li>
+<li><p>uses <code class="docutils literal notranslate"><span class="pre">load_state_dict()</span></code> method to load the state dictionary into the <code class="docutils literal notranslate"><span class="pre">model</span></code> model</p></li>
+</ul>
+</li>
+<li><p>I guess once you’ve loaded it into the <code class="docutils literal notranslate"><span class="pre">model</span></code>, you can submit a set of inputs to <code class="docutils literal notranslate"><span class="pre">model</span></code> somehow and get out a prediction</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="libraries.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Libraries</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../sphinx/sphinx.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Sphinx Examples</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Learning Pytorch</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-org-tutorials-learning-pytorch-with-examples">Pytorch.org tutorials - Learning Pytorch with Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#without-pytorch-numpy-network">Without Pytorch: Numpy Network</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-gradients">Negative Gradients</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-pytorch-tensors">Adding Pytorch: Tensors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autograd">Autograd</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-tensors-and-autograd">PyTorch: Tensors and Autograd</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latex-formulas-in-docstrings">latex formulas in docstrings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-new-autograd-functions">Defining new Autograd functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-s-nn-module">Pytorch’s <code class="docutils literal notranslate"><span class="pre">nn</span></code> module</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zeroing-gradients">Zeroing Gradients</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-s-optim-package">PyTorch’s Optim Package</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizer-zero-grad-and-why-we-zero-gradients">optimizer.zero_grad() and WHY WE ZERO GRADIENTS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-nn-modules">Custom <code class="docutils literal notranslate"><span class="pre">nn</span></code> Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#control-flow-and-weight-sharing">Control Flow and Weight Sharing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-pth-files">PyTorch Pth Files</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pth-files-and-using-a-trained-model">PTH files and using a trained model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-pth-file">What is a PTH file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-in-it">What’s in it?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use">How to Use</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthew T Gill
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

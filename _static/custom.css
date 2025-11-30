@@ -8,31 +8,24 @@ Must use !important or else these get overridden
 By something that applies invisible colors with really high specificity
 Which also overrides any mermaid theme settings
 
-the downside is that these prevent me from defining arrow colors
-within the diagrams themselves as well
-so I'm testing whether disabling these colors
-will re-enable that behavior
+the downside is that these prevent me from defining individual arrow colors
+but when I do that, the arrowheads don't adopt the arrow shaft color
+I tried using custom.js to fix this, but no luck so far
 */
 
 /* change the color of the arrowhead */
-/*
 .mermaid .marker {
   stroke: var(--pst-color-accent) !important;
   fill: var(--pst-color-accent) !important;
 }
-*/
 
 /* change the color of the arrow line */
-/*
 .mermaid .flowchart-link {
   stroke: var(--pst-color-accent) !important;
 }
-*/
 
 /*
-do not fill in the arrow line or curved arrows will look odd
-filling in a shape formed by a straight line between endpoints
-and the actual drawn arrow line
+filling in the link would fill in the space between the arrow and a straight line
 .mermaid .flowchart-link {
   fill: var(--pst-color-accent) !important;
 }
@@ -40,5 +33,5 @@ and the actual drawn arrow line
 
 /* thicken the arrow line */
 .mermaid .edge-thickness-normal {
-  stroke-width: 3px !important;
+  stroke-width: 2px !important;
 }

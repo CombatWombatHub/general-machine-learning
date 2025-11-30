@@ -1,5 +1,6 @@
 // from https://github.com/mermaid-js/mermaid/issues/1236#issuecomment-1881518684
 // Mermaid Diagram arrowheads are not matching custom arrow shaft colors
+// this is supposed to fix that, though I haven't managed to get it working yet
 
 // fixMermaidMarkerColors modifies a mermaid-generated SVG to match
 // end-of-line markers such as arrowheads to their stroke style.

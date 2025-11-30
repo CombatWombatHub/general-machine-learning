@@ -1,0 +1,1571 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Math &#8212; aiml-notes 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a1a7cee5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=a681ed88"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fundamentals/math';</script>
+    <script src="../_static/custom.js?v=613d9f17"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Metrics" href="metrics.html" />
+    <link rel="prev" title="Correlation" href="correlation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.jpg" class="logo__image only-light" alt="aiml-notes 1.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/logo.jpg" class="logo__image only-dark" alt="aiml-notes 1.0 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Goals and To-Dos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">AI/ML:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../categories/categories.html">Categories</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/ml/ml.html">Machine Learning (ML)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/ml/notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/dimensionality_reduction.html">Dimensionality Reduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/nns.html">Neural Networks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/pinns.html">Physics-Informed Neural Networks (PINNs)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/svm.html">Support Vector Machines (SVM)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/ml/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/examples/intro_to_classification_datacamp/intro_to_classification.html">Intro to Classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html">Python ML Mini Course</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/nlp/nlp.html">Natural Language Processing (NLP)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/nlp/notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/notes/tokenization.html">Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/nlp/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster.html">Iterate Like a Grandmaster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html">Getting Started with NLP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/text-classification-scikit-learn.html">Text Classification using scikit-learn in NLP</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/xai/xai.html">Explainable AI (XAI)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../categories/xai/shapley_xai_intro.html">Intro to SHAP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/generative/generative.html">Generative AI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../categories/generative/llms.html">Large Language Models (LLM’s)</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="fundamentals.html">Fundamentals</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="correlation.html">Correlation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metrics.html">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ops.html">DevOps and MLOps</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../libraries/libraries.html">Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pytorch.html">Learning Pytorch</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sphinx:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../sphinx/sphinx.html">Sphinx Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/notebook.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/restructuredtext.html">reStructuredText</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/CombatWombatHub/aiml-notes" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/fundamentals/math.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Math</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-mathematical-reference-material">General Mathematical Reference Material</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symbol-glossary">Symbol Glossary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sets">Sets</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-sets">Visualizing Sets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#double-sum">Double Sum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradients">Gradients</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-nabla-operator-nabla">The Nabla Operator <span class="math notranslate nohighlight">\(\nabla\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-laplace-operator-nabla-cdot-nabla-nabla-2-delta">The Laplace Operator <span class="math notranslate nohighlight">\(\nabla\cdot\nabla = \nabla^2 = \Delta\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quasirandom-sampling">Quasirandom Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-math">Matrix Math</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-vector-product">Matrix-Vector Product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">Matrix Multiplication</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication-properties">Matrix Multiplication Properties</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-identity-matrix-and-the-kronecker-delta">the Identity Matrix and the Kronecker Delta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dot-product-and-matrix-multiplication">the Dot Product and Matrix Multiplication</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einstein-summation-notation">Einstein Summation Notation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-displacement-vector-boldsymbol-u">The Displacement Vector <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expanding-einstein-notation-to-get-the-displacement-vector-in-matrix-form">Expanding Einstein Notation to get the Displacement Vector in Matrix Form</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-the-3x3-displacement-vectors-and-their-derivatives">The the 3x3 Displacement Vectors and their Derivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="math">
+<h1>Math<a class="headerlink" href="#math" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>this contains a glossary of mathematical terms (such as symbols for domains and spaces), fundamentals of mathematics required to understand machine learning (including things such as matrix math)</p></li>
+</ul>
+<section id="general-mathematical-reference-material">
+<h2>General Mathematical Reference Material<a class="headerlink" href="#general-mathematical-reference-material" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>information on domains in <a class="reference external" href="https://docs.nvidia.com/deeplearning/modulus/modulus-sym/user_guide/theory/miscellaneous.html#generalized-polynomial-chaos">Miscellaneous Concepts</a> of the Theory section</p></li>
+<li><p>specifically <a class="reference external" href="https://docs.nvidia.com/deeplearning/modulus/modulus-sym/user_guide/theory/miscellaneous.html#relative-function-spaces-and-integral-identities">Relative Function Spaces and Integral Identities</a></p></li>
+<li><p>a <a class="reference external" href="https://en.wikipedia.org/wiki/Glossary_of_mathematical_symbols">Glossary of Mathematical Symbols</a></p></li>
+<li><p>information on <a class="reference external" href="https://en.wikipedia.org/wiki/Element_%28mathematics%29">Element Mathematics</a> <span class="math notranslate nohighlight">\(x\in A\)</span></p></li>
+<li><p>information on <a class="reference external" href="https://en.wikipedia.org/wiki/Set_(mathematics)">Sets</a></p></li>
+</ul>
+</section>
+<section id="symbol-glossary">
+<h2>Symbol Glossary<a class="headerlink" href="#symbol-glossary" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Glossary_of_mathematical_symbols">Wiki Math Symbol Glossary</a> <span class="math notranslate nohighlight">\(\in \notin \ni \not\ni \cup \cap\)</span> \ <span class="math notranslate nohighlight">\(\Delta\)</span> x <span class="math notranslate nohighlight">\(\subset \underline\subset \supset \underline\supset\)</span>  U <span class="math notranslate nohighlight">\(\mathbb{R} \mathbb{N} \mathbb{Z} \mathbb{Q} \mathbb{C} \phi \{\}\)</span></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Element_%28mathematics%29">Element Mathematics</a> (correpond to individual elements of sets)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\in\)</span> = “is an element of”</p></li>
+<li><p><span class="math notranslate nohighlight">\(\notin\)</span> = “is not an element of”</p></li>
+<li><p><span class="math notranslate nohighlight">\(\ni\)</span> = “contains as member”</p></li>
+<li><p><span class="math notranslate nohighlight">\(\not\ni\)</span> = “does not contain as member”</p></li>
+<li><p><span class="math notranslate nohighlight">\(\forall\)</span> = “for all”</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Set_(mathematics)">Set Stuff</a></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\cup\)</span> = “union of”</p></li>
+<li><p><span class="math notranslate nohighlight">\(\cap\)</span> = “intersection of”</p></li>
+<li><p>\ = “set difference”</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta\)</span> = “symmetric difference”</p></li>
+<li><p>x = “cartesian product”</p></li>
+</ul>
+</li>
+<li><p>Examples:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(A \cup B\)</span> is the set of all things that are members of A or B or both</p></li>
+<li><p><span class="math notranslate nohighlight">\(A \cap B\)</span> is the set of all things that are memberrs of both A and B</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> \ <span class="math notranslate nohighlight">\(B\)</span> (or <span class="math notranslate nohighlight">\(A-B\)</span>) is the set of all things that belong to A but not B</p></li>
+<li><p><span class="math notranslate nohighlight">\(A \Delta B\)</span> is the set of all things that belong to A or B but not both</p></li>
+<li><p><span class="math notranslate nohighlight">\(A x B\)</span> is the set of all ordered pairs (a,b) such that a is an element of a and b is a element of B</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Subset">Subsets</a></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\underline\subset\)</span> = “is a subset of”</p></li>
+<li><p><span class="math notranslate nohighlight">\(\underline\supset\)</span> = “is a superset of”</p></li>
+<li><p><span class="math notranslate nohighlight">\(\subset\)</span> = “is a proper subset of” or “is any subset of” depending on the author</p></li>
+<li><p><span class="math notranslate nohighlight">\(\supset\)</span> = “is a proper superset of” or “is any superset of” depending on the author</p></li>
+</ul>
+</li>
+<li><p>Special {sets} of numbers</p>
+<ul>
+<li><p>U is the universal set containing all elements being discussed</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{R}\)</span> is the set of all real numbers</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{N}\)</span> is the set of all natural numbers {0,1,2,3,…}</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> is the set of all integers (positive, negative, 0) {…/-2,-3,0,1,2,3,…}</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{Q}\)</span> is the set of all rational numbers (the set of all proper and improper fractions) <span class="math notranslate nohighlight">\(\mathbb{Q}=\{{a \over b}|a,b \in \mathbb{Z}, b\ne0\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{C}\)</span> is the set of all complex numbers (so includes the real and imaginary parts) <span class="math notranslate nohighlight">\(\mathbb{C}=\{ a + b_i | a,b \in \mathbb{R}\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi\)</span> or<span class="math notranslate nohighlight">\(\{\}\)</span> is the <strong>Empty Set</strong> (or <strong>Null Set</strong>) is a unique set that has no members</p></li>
+</ul>
+</li>
+<li><p>Degrees of Sets</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{R}^1\)</span> is the set of all real numbers <code class="docutils literal notranslate"><span class="pre">{-1,</span> <span class="pre">0,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">3.4245}</span></code>, etc</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> is the set of all pairs of real numbers <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">{-1,1},</span> <span class="pre">{0,4},</span> <span class="pre">{2,17},</span> <span class="pre">{15,3.4245}</span> <span class="pre">}</span></code>, etc</p></li>
+</ul>
+</li>
+<li><p>Other</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\langle u \rangle\)</span> = angle brackets (meaning is contextual, potentially “object generated by u”)</p></li>
+<li><p><span class="math notranslate nohighlight">\([\![u]\!]\)</span> = ???</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mapsto\)</span> = used for defining a function without having to name it, for instance <span class="math notranslate nohighlight">\(x\mapsto x^2\)</span> is the square function</p></li>
+</ul>
+</li>
+</ul>
+<section id="sets">
+<h3>Sets<a class="headerlink" href="#sets" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>About Sets:</p>
+<ul>
+<li><p>Sets don’t have duplicates</p>
+<ul>
+<li><p>so each number (or in the case for a set of say(x,y) points) appears only once</p></li>
+<li><p>the set <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> could contain {1,2} and {2,1}, but wouldn’t contain {1,2} twice</p></li>
+</ul>
+</li>
+<li><p>Sets are unordered <code class="docutils literal notranslate"><span class="pre">{{1,2},{2,1}}</span> <span class="pre">=</span> <span class="pre">{{2,1},{1,2}}</span></code></p>
+<ul>
+<li><p>obviously the pairs of points within still need to be unique - that parts ordered, but those pairs within the set aren’t</p></li>
+<li><p>{1,2,3,4,5} = {5,4,3,2,1} = {3, 1, 4, 5, 2}</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Subsets and Supersets:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(A \underline\subset B\)</span> -&gt; “A is a subset of B” -&gt; every element of A is also an element of B -&gt; also implies:</p></li>
+<li><p><span class="math notranslate nohighlight">\(B \underline\supset A\)</span> -&gt; “B is a superset of A”</p></li>
+</ul>
+</li>
+<li><p>proper subsets</p>
+<ul>
+<li><p>A is a <strong>proper subset</strong> of B if A and B are not equal</p></li>
+<li><p>if A = B, they are subsets of each other since each member of one is a member of the other, but not a proper subset</p></li>
+<li><p><span class="math notranslate nohighlight">\(\{1,3\}\subset\{1,2,3,4\}\quad\)</span> &lt;- it’s a proper subset since they’re not equal but the first is contained</p></li>
+<li><p><span class="math notranslate nohighlight">\(\{1,2,3,4\}\underline\subset\{1,2,3,4\}\quad\)</span> &lt;- it’s a subset, but not proper since they’re just equal</p></li>
+</ul>
+</li>
+<li><p>Special Sets Examples:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{Q}\)</span> rational number set</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(-{7 \over 4} \in \mathbb{Q}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(5 = {5 \over 1} \in \mathbb{Q}\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{C}\)</span> complex numbers set</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(1+2i\in\mathbb{C}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Geometric Interpretation of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, the set of real numbers in <span class="math notranslate nohighlight">\(n^{th}\)</span>-degree space:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{R}^1\)</span> is the set of all real numbers. Sets do not have duplicates, so each number only appears once.</p>
+<ul>
+<li><p>so geometrically, <span class="math notranslate nohighlight">\(\mathbb{R}^1\)</span> would represent the set of all possible points on an infinite 1D line</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> is the set of all possible ordered pairs of real numbers (the ‘ordered’ part means that {1,2} <span class="math notranslate nohighlight">\(\ne\)</span> {2,1} and <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> would contain both)</p>
+<ul>
+<li><p>so geometrically, <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> would represent all possible (x,y) locations on an infinite 2D plane with no duplicates</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> is the set of all possible ordered lists of 3 real numbers</p>
+<ul>
+<li><p>so geometrically, <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> would represent all possible (x,y,z) locations in an infinite 3D space with no duplicates</p></li>
+</ul>
+</li>
+<li><p>and so on, so <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> would contain all possible ‘locations’ in an <span class="math notranslate nohighlight">\(n^{th}\)</span>-degree ‘space’</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Set-builder_notation">Set-Builder Notation</a></p>
+<ul>
+<li><p>this gets used later on</p></li>
+</ul>
+</li>
+<li><p>Note on meaning of <strong>Interception</strong> (<span class="math notranslate nohighlight">\(\cap\)</span>) and <strong>Union</strong> (<span class="math notranslate nohighlight">\(\cup\)</span>) for example Sets A and B</p>
+<ul>
+<li><p>A = {1, 3, 5, 8}</p></li>
+<li><p>B = {2, 3, 6, 7, 8}</p></li>
+<li><p>A U B = {1, 2, 3, 5, 6, 7, 8} (Union)</p></li>
+<li><p>A ∩ B = {3, 8} (Intersection)</p></li>
+</ul>
+</li>
+</ul>
+<section id="visualizing-sets">
+<h4>Visualizing Sets<a class="headerlink" href="#visualizing-sets" title="Link to this heading">#</a></h4>
+<ul>
+<li><p>Subset and Superset</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(A \underline\subset B\)</span>: A is a <strong>subset</strong> of B</p></li>
+<li><p><span class="math notranslate nohighlight">\(B \underline\supset A\)</span>: B is a <strong>superset</strong> of A</p></li>
+<li><a class="reference internal image-reference" href="../_images/sets_subset_superset.png"><img alt="subset_superset" src="../_images/sets_subset_superset.png" style="width: 150px;" />
+</a>
+</li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\quad A \cap B =\)</span> The Intersection of A and B :</p>
+<ul>
+<li><a class="reference internal image-reference" href="../_images/sets_intersection.png"><img alt="intersection of A and B" src="../_images/sets_intersection.png" style="width: 150px;" />
+</a>
+</li>
+</ul>
+</li>
+<li><p>T<span class="math notranslate nohighlight">\(\quad A \cup B =\)</span> The Union of A and B :</p>
+<ul>
+<li><a class="reference internal image-reference" href="../_images/sets_union.png"><img alt="union of A and B" src="../_images/sets_union.png" style="width: 150px;" />
+</a>
+</li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\quad A^c = \{a\in U:a\notin A\} =\)</span>
+The Complement of A in U</p>
+<ul>
+<li><p>(AKA all the elements “a” of universal set “U” that aren’t in set “A”)</p></li>
+<li><a class="reference internal image-reference" href="../_images/sets_complement.png"><img alt="complement of A in U" src="../_images/sets_complement.png" style="width: 150px;" />
+</a>
+</li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\quad A\)</span> \ <span class="math notranslate nohighlight">\(B =\)</span> The Set Difference of A and B :</p>
+<ul>
+<li><a class="reference internal image-reference" href="../_images/sets_set_difference.png"><img alt="set difference of A and B" src="../_images/sets_set_difference.png" style="width: 150px;" />
+</a>
+</li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\quad A \Delta B =\)</span> The Symmetric Difference of A and B:</p>
+<ul>
+<li><a class="reference internal image-reference" href="../_images/sets_symmetric_difference.png"><img alt="symmetric difference of A and B" src="../_images/sets_symmetric_difference.png" style="width: 150px;" />
+</a>
+</li>
+</ul>
+</li>
+<li><p>Special Number Sets Containing Other Special Number Sets:</p>
+<ul>
+<li><a class="reference internal image-reference" href="../_images/sets_special_number_sets.png"><img alt="special number sets containing other special number sets" src="../_images/sets_special_number_sets.png" style="width: 150px;" />
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="double-sum">
+<h2><a class="reference external" href="https://mathworld.wolfram.com/DoubleSeries.html">Double Sum</a><a class="headerlink" href="#double-sum" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\displaystyle\sum_{i=1}^m\displaystyle\sum_{j=1}^nx_iy_j\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(= x_1y_1 + x_1y_2 +...+ x_2y_1 + x_2y_2 +...\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(=(x_1+x_2+...+x_m)y_1+(x_1+x_2+...+x_m)y_2+...\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(=\left(\displaystyle\sum_{i=1}^m\right)(y_1+y_2+...+y_n)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(=\left(\displaystyle\sum_{i=1}^m x_i\right)\left(\displaystyle\sum_{j=1}^n y_j\right)\)</span></p></li>
+</ul>
+</li>
+<li><p>you multiply each combination of the terms</p></li>
+<li><p>looks like they’re separable</p></li>
+<li><p>infinite double series can be written in terms of a single series</p></li>
+<li><p><span class="math notranslate nohighlight">\(\displaystyle\sum_{k=0}^\infty\displaystyle\sum_{l=0}^\infty c_{kl} = \displaystyle\sum_{i=0}^\infty b_i\)</span></p>
+<ul>
+<li><p>by reordering the terms like this:</p></li>
+<li><p><span class="math notranslate nohighlight">\(b_0 = c_{00}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(b_1 = (c_{10}+c_{11})+c_{01}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(b_2 = (c_{20}+c_{21}+c_{22})+(c_{02}+c_{12})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(b_3 = (c_{30}+c_{31}+c_{32}+c_{33})+(c_{03}+c_{13}c_{23})\)</span></p></li>
+<li><p>it must go on like that infinitely</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="gradients">
+<h2>Gradients<a class="headerlink" href="#gradients" title="Link to this heading">#</a></h2>
+<section id="the-nabla-operator-nabla">
+<h3>The <a class="reference external" href="https://en.wikipedia.org/wiki/Nabla_operator">Nabla Operator</a> <span class="math notranslate nohighlight">\(\nabla\)</span><a class="headerlink" href="#the-nabla-operator-nabla" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\nabla\)</span> = Del = Nabla Operator = <span class="math notranslate nohighlight">\(({\partial\over{\partial x_1}},...,{\partial\over{\partial x_n}})\)</span> = vector operator</p></li>
+<li><p>for a 3D Cartesian coordinate system <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> (using x,y,z):</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\nabla = e_x{\partial\over{\partial x}} + e_y{\partial\over{\partial y}} + e_z{\partial\over{\partial z}} = ({\partial\over{\partial x}},{\partial\over{\partial y}},{\partial\over{\partial z}})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(e_x, e_y, e_z\)</span> are the unit vectors in directions x, y, and z</p></li>
+</ul>
+</li>
+<li><p>I do not believe that <span class="math notranslate nohighlight">\(\nabla\)</span> changes the size of a Tensor it acts on</p>
+<ul>
+<li><p>it becomes as long as it needs to in order to meet the matrix multiplication requirements</p>
+<ul>
+<li><p>(inside dimensions must match)</p></li>
+</ul>
+</li>
+<li><p>I think it can rotate in either direction to become a row vector or column vector</p>
+<ul>
+<li><p>I think that might be a basic property of these ordered Tuple things</p></li>
+<li><p>the dimensions of other vectors do seem to be important</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="the-laplace-operator-nabla-cdot-nabla-nabla-2-delta">
+<h3>The <a class="reference external" href="https://en.wikipedia.org/wiki/Laplace_operator">Laplace Operator</a> <span class="math notranslate nohighlight">\(\nabla\cdot\nabla = \nabla^2 = \Delta\)</span><a class="headerlink" href="#the-laplace-operator-nabla-cdot-nabla-nabla-2-delta" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>gives the divergence of the gradient of a scalar function on Euclidian space</p></li>
+<li><p>can be represented by <span class="math notranslate nohighlight">\(\nabla\cdot\nabla\)</span> or <span class="math notranslate nohighlight">\(\nabla^2\)</span> or <span class="math notranslate nohighlight">\(\Delta\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\nabla f\)</span> =  the gradient of <span class="math notranslate nohighlight">\(f\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\nabla^2 f\)</span> =  the divergence of <span class="math notranslate nohighlight">\(f\)</span></p></li>
+<li><p>it’s a second-order differential operator</p></li>
+<li><p>In n-dimensional Euclidian Space</p></li>
+<li><p>in Cartesian coordinate system (where x,y,z are perpendicular to each other),</p>
+<ul>
+<li><p>it’s the sum of the second partial derivatives of the function with respect to each independent variable</p></li>
+<li><p><span class="math notranslate nohighlight">\(\nabla = ({\partial\over{\partial x_1}},...,{\partial\over{\partial x_n}})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\nabla^2 = ({\partial^2\over{\partial x_1^2}},...,{\partial^2\over{\partial x_n^2}})\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta f = \nabla^2 f = \nabla\cdot\nabla f\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta f = \sum_{i=1}^n({\partial^2\over{\partial x_i^2}})\)</span> for Cartesian coordinates <span class="math notranslate nohighlight">\(x_i\)</span></p></li>
+<li><p>in 3D cartesian coordinates <span class="math notranslate nohighlight">\(x_i=(x_1,x_2,x_3)=(x,y,z)\)</span>, it’s:</p></li>
+<li><p><span class="math notranslate nohighlight">\(\nabla^2 f= ({\partial^2 f\over{\partial x^2}}+{\partial^2 f\over{\partial y^2}}+{\partial^2 f\over{\partial z^2}})\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="quasirandom-sampling">
+<h2>Quasirandom Sampling<a class="headerlink" href="#quasirandom-sampling" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>my notes used chaospy for random sampling</p></li>
+<li><p><a class="reference external" href="https://extremelearning.com.au/unreasonable-effectiveness-of-quasirandom-sequences/">The Unreasonable Effectiveness of Quasirandom Sequences</a></p></li>
+<li><p>Suggests “new R2” method, though I haven’t heard about it elsewhere</p></li>
+<li><p><img alt="quasirandom image" src="https://extremelearning.com.au/wp-content/uploads/2018/04/Animated_Comparison_Color.gif" /></p></li>
+</ul>
+</section>
+<section id="matrix-math">
+<h2>Matrix Math<a class="headerlink" href="#matrix-math" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>I feel like I need to refresh my basic matrix math and notation</p></li>
+<li><p>what it is?</p>
+<ul>
+<li><p>matrix is 2D tensor (3D and higher are hard to represent on paper)</p></li>
+<li><p>without further specifications they represent <a class="reference external" href="https://en.wikipedia.org/wiki/Linear_maps">linear maps</a></p></li>
+<li><p>allow explicit computations in <a class="reference external" href="https://en.wikipedia.org/wiki/Linear_algebra">linear algebra</a></p></li>
+</ul>
+</li>
+<li><p>absolute basics</p>
+<ul>
+<li><p><strong>matrix</strong>
+<span class="math notranslate nohighlight">\( G =
+ \begin{bmatrix}
+    4 &amp; 14 &amp; -7 \\
+    \textcolor{pink}{18} &amp; 5 &amp; 13 \\
+    -20 &amp; 4 &amp; 22 \\ 
+ \end{bmatrix}
+ \)</span></p></li>
+<li><p><strong>element</strong> <span class="math notranslate nohighlight">\(g_{\color{aqua}{2},\textcolor{orange}{1}} = \textcolor{pink}{18}\)</span> (row <span class="math notranslate nohighlight">\(\color{aqua}{i} = 2\)</span>, column <span class="math notranslate nohighlight">\(\textcolor{orange} j = 1\)</span>)</p></li>
+</ul>
+</li>
+<li><p>scalar multiplication</p>
+<ul>
+<li><p>you just multiply each element of the matrix by the scalar</p></li>
+<li><p>(element-by-element)</p></li>
+</ul>
+</li>
+<li><p>adding and subtracting matrices</p>
+<ul>
+<li><p>you just add the elements in the same locations together</p></li>
+<li><p>matrices must be exactly the same size</p></li>
+</ul>
+</li>
+</ul>
+<section id="matrix-vector-product">
+<h3>Matrix-Vector Product<a class="headerlink" href="#matrix-vector-product" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>column vector
+<span class="math notranslate nohighlight">\( \boldsymbol{v} =
+\begin{bmatrix}
+ \textcolor{red} x \\
+ \textcolor{blue} y \\
+\end{bmatrix} = \textcolor{red} x
+\begin{bmatrix}
+ 1 \\
+ 0 \\
+\end{bmatrix} + \textcolor{blue} y
+\begin{bmatrix}
+ 0 \\
+ 1 \\
+\end{bmatrix}
+\)</span></p></li>
+<li><p>linear transforming matrix
+<span class="math notranslate nohighlight">\( \boldsymbol{A} =
+\begin{bmatrix}
+ \textcolor{green} a &amp; \textcolor{purple} b \\
+ \textcolor{orange} c &amp; \color{yellow} d \\
+\end{bmatrix}
+\)</span></p></li>
+<li><p>multiply
+<span class="math notranslate nohighlight">\( \boldsymbol{A} \boldsymbol{v} =
+\begin{bmatrix}
+ \textcolor{green} a &amp; \textcolor{purple} b \\
+ \textcolor{orange} c &amp; \color{yellow} d \\
+\end{bmatrix}
+\begin{bmatrix}
+ \textcolor{red} x \\
+ \textcolor{blue} y \\
+\end{bmatrix} =
+\begin{bmatrix}
+ \textcolor{green} a \textcolor{red} x + \textcolor{purple} b \textcolor{blue} y \\
+ \textcolor{orange} c \textcolor{red} x + \color{yellow} d \textcolor{blue} y \\
+\end{bmatrix}
+\)</span></p>
+<ul>
+<li><p>inner dimensions match (<span class="math notranslate nohighlight">\(\textcolor{red}2\)</span> x <span class="math notranslate nohighlight">\(\cancel{\textcolor{purple}2}\)</span>)(<span class="math notranslate nohighlight">\(\cancel{\textcolor{purple}2}\)</span> x <span class="math notranslate nohighlight">\(\textcolor{blue}1\)</span>) -&gt; final dimensions (<span class="math notranslate nohighlight">\(\textcolor{red}2\)</span> x <span class="math notranslate nohighlight">\(\textcolor{blue}1\)</span>)</p></li>
+</ul>
+</li>
+<li><p>product of matrices with dimensions (<span class="math notranslate nohighlight">\(\textcolor{red} m\)</span> x <span class="math notranslate nohighlight">\(\textcolor{purple} n\)</span>) and (<span class="math notranslate nohighlight">\(\textcolor{purple} n\)</span> x <span class="math notranslate nohighlight">\(\textcolor{blue} k\)</span>) will be (<span class="math notranslate nohighlight">\(\textcolor{red} m\)</span> x <span class="math notranslate nohighlight">\(\textcolor{blue} k\)</span>)</p>
+<ul>
+<li><p>inner dimensions <span class="math notranslate nohighlight">\(\textcolor{purple} n\)</span> must match to multiply</p></li>
+<li><p>outer dimensions <span class="math notranslate nohighlight">\(\textcolor{red} m\)</span> and <span class="math notranslate nohighlight">\(\textcolor{blue} k\)</span> decide the resulting shape</p></li>
+<li><p>(<span class="math notranslate nohighlight">\(\textcolor{red} m\)</span> x <span class="math notranslate nohighlight">\(\textcolor{purple} n\)</span>) (<span class="math notranslate nohighlight">\(\textcolor{purple} n\)</span> x <span class="math notranslate nohighlight">\(\textcolor{blue} k\)</span>) <span class="math notranslate nohighlight">\(\to\)</span> (<span class="math notranslate nohighlight">\(\textcolor{red} m\)</span> x <span class="math notranslate nohighlight">\(\textcolor{blue} k\)</span>)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="matrix-multiplication">
+<h3>Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>look at dot product of an ordered <span class="math notranslate nohighlight">\(n\)</span>-tuples <span class="math notranslate nohighlight">\(\vec{a}\)</span> and <span class="math notranslate nohighlight">\(\vec{b}\)</span> first</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\vec{a}\cdot\vec{b} = (\textcolor{purple} 3,\textcolor{green} 1,\textcolor{pink} 8)\cdot(\textcolor{purple} 4,\textcolor{green} 2,\textcolor{pink} 3)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{a}\cdot\vec{b} = \textcolor{purple} 3 \cdot \textcolor{purple} 4+\textcolor{green} 1 \cdot \textcolor{green} 2 + \textcolor{pink} 8 \cdot \textcolor{pink} 3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{a}\cdot\vec{b} = \textcolor{purple}{12} + \textcolor{green}{2} + \textcolor{pink}{24} = 38 \)</span></p></li>
+</ul>
+</li>
+<li><p>matrix to tuples</p>
+<ul>
+<li><p>helpful to think of the matrix as a set of <span class="math notranslate nohighlight">\(n\)</span>-tuples (tuples of length <span class="math notranslate nohighlight">\(n\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(
+  \begin{matrix}
+      \vec{r_1} = (1,2) \to \\
+      \vec{r_2} = (3,4) \to \\
+  \end{matrix}           
+  \overbrace{
+  \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \\ \end{bmatrix}}^{
+  \begin{matrix}
+      \vec{c_1} = (1,3) \\
+      \vec{c_2} = (2,4) \\
+  \end{matrix}}
+  \)</span></p></li>
+</ul>
+</li>
+<li><p>actual dot product of matrix</p>
+<ul>
+<li><p>take these two matrices</p></li>
+<li><p><span class="math notranslate nohighlight">\( \boldsymbol{C} = \boldsymbol{A} \cdot \boldsymbol{B} =
+  \begin{bmatrix}
+      1 &amp; 7 \\
+      2 &amp; 4 \\
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+      3 &amp; 6 \\
+      5 &amp; 2 \\
+  \end{bmatrix}
+  \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( A = \left.
+  \begin{aligned}
+      \begin{bmatrix}
+          \color{deepskyblue}{1} &amp; \color{deepskyblue}{7} \\
+          \color{aqua}{2} &amp; \color{aqua}{4} \\
+      \end{bmatrix}
+  \end{aligned}
+  \right\}
+  \begin{matrix}
+      {\color{deepskyblue}\vec{a_1}} = {\color{deepskyblue}(1,7)} \\
+      {\color{aqua}\vec{a_2}} = {\color{aqua}(2,4)} \\
+  \end{matrix}
+  \)</span> (use rows of first matrix)</p></li>
+<li><p><span class="math notranslate nohighlight">\( B = \left.
+  \begin{aligned}
+      \begin{bmatrix}
+          \color{pink}{3} &amp; \color{orange}{6} \\
+          \color{pink}{5} &amp; \color{orange}{2} \\
+      \end{bmatrix}
+  \end{aligned}
+  \right\}
+  \begin{matrix}
+      {\color{pink}\vec{b_1}} =  {\color{pink}(3,5)} \\
+      {\color{orange}\vec{b_2}} = {\color{orange}(6,2)} \\
+  \end{matrix}
+  \)</span> (use columns of second matrix)</p></li>
+<li><p><span class="math notranslate nohighlight">\(
+  \begin{bmatrix}
+      \color{deepskyblue}{1} &amp; \color{deepskyblue}{7} \\
+      \color{aqua}{2} &amp; \color{aqua}{4} \\
+  \end{bmatrix}
+  \cdot
+  \begin{bmatrix}
+      \color{pink}{3} &amp; \color{orange}{6} \\
+      \color{pink}{5} &amp; \color{orange}{2} \\
+  \end{bmatrix} =
+  \begin{bmatrix}
+      {\color{deepskyblue}\vec{a_1}} \cdot \color{pink}{\vec{b_1}} &amp; {\color{deepskyblue}\vec{a_1}} \cdot \color{orange}{\vec{b_2}} \\
+      {\color{aqua}\vec{a_2}} \cdot \color{pink}{\vec{b_1}} &amp; {\color{aqua}\vec{a_2}} \cdot \color{orange}{\vec{b_2}} \\
+  \end{bmatrix} =
+  \begin{bmatrix}
+      {\color{deepskyblue}(1,7)} \cdot \color{pink}{(3,5)} &amp; {\color{deepskyblue}(1,7)} \cdot \color{orange}{(6,2)} \\
+      {\color{aqua}(2,4)} \cdot \color{pink}{(3,5)} &amp; {\color{aqua}(2,4)} \cdot \color{orange}{(6,2)} \\
+  \end{bmatrix}
+  \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(
+  \begin{bmatrix}
+      {\color{deepskyblue}(1,7)} \cdot \color{pink}{(3,5)} &amp; {\color{deepskyblue}(1,7)} \cdot \color{orange}{(6,2)} \\
+      {\color{aqua}(2,4)} \cdot \color{pink}{(3,5)} &amp; {\color{aqua}(2,4)} \cdot \color{orange}{(6,2)} \\
+  \end{bmatrix} =
+  \begin{bmatrix}
+      {\color{deepskyblue}1}*{\color{pink}3}+{\color{deepskyblue}7}*{\color{pink}5} &amp; {\color{deepskyblue}1}*{\color{orange}6}+{\color{deepskyblue}7}*{\color{aqua}2} \\
+      {\color{aqua}2}*{\color{pink}3}+{\color{aqua}4}*{\color{pink}5} &amp; {\color{aqua}2}*{\color{orange}6}+{\color{aqua}4}*{\color{orange}2}
+  \end{bmatrix} =
+  \begin{bmatrix}
+      38 &amp; 20 \\
+      26 &amp; 20 \\
+  \end{bmatrix}
+  \)</span></p></li>
+</ul>
+</li>
+</ul>
+<section id="matrix-multiplication-properties">
+<h4>Matrix Multiplication Properties<a class="headerlink" href="#matrix-multiplication-properties" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>resulting dimensions: 1x2 <span class="math notranslate nohighlight">\(\cdot\)</span> 2x3 = 1x3</p>
+<ul>
+<li><p>final size takes the rows from the first and the columns from the second</p></li>
+<li><p>this is also why the inner dimensions of the matrices need to be the same</p></li>
+<li><p>you need to multiply the rows of the first by the columns of the second</p></li>
+<li><p>the number of terms in the rows of the first (= the columns of the first)</p></li>
+<li><p>needs to match the number of terms in the columns of the second (the rows of the second)</p></li>
+</ul>
+</li>
+<li><p>some properties</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(AB \ne BA\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((AB)C = A(BC)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A(B+C)=AB+AC\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((B+C)A = BA+BC\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(IA=AI=A\)</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="the-identity-matrix-and-the-kronecker-delta">
+<h3>the Identity Matrix and the Kronecker Delta<a class="headerlink" href="#the-identity-matrix-and-the-kronecker-delta" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>I=identity matrix</p>
+<ul>
+<li><p>identity matrix is a square matrix with 1’s on the diagonal and 0’s everywhere else</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_n = diag(1,1,...,1) \to (I_n)_{ij} = \delta_{ij}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(I_n = I_{n\times n}\)</span> is a square matrix of n x n dimensions</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(A\)</span> is an m x n matrix</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(I_{m\times m} A_{m\times n} = A_{m\times n} I_{n\times n} = A_{m\times n}\)</span></p></li>
+<li><p>the inner dimensions still need to be the same to muliply</p></li>
+<li><p>so you just pick an identity matrix of a size that will allow the multiplication to happen</p></li>
+</ul>
+</li>
+<li><p>multiplying any matrix by the identity matrix will not change it</p>
+<ul>
+<li><p>the way that matrix math works</p></li>
+<li><p>multiplying the rows of the first matrix by the columns of the second</p></li>
+<li><p>summing up the results in each cell</p></li>
+<li><p>you just end up with the original matrix</p></li>
+<li><p>it’s a square matrix of whatever size is needed for the inside dimensions to match</p></li>
+<li><p>so the dimensions don’t change</p></li>
+<li><p>and you basically just end up multiplying the original contents of the element by 1 and all the rest by 0</p></li>
+<li><p>which results in you putting the original element in the new matrix of the same size, unchanged</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(\delta_{ij}\)</span> = <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_delta">Kronecker delta</a> =
+<span class="math notranslate nohighlight">\(\begin{cases}
+      0 \quad\text{if}\quad i \ne j \\
+      1 \quad\text{if}\quad i = j
+  \end{cases}\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(I_{ij}=\delta_{ij}\)</span></p>
+<ul>
+<li><p>you could use the kronecker delta function to create an identity matrix</p></li>
+<li><p>unlike the identity matrix, I suppose the kronecker delta could function on non-square (max <span class="math notranslate nohighlight">\(i\)</span> <span class="math notranslate nohighlight">\(\ne\)</span> max <span class="math notranslate nohighlight">\(j\)</span>)</p></li>
+</ul>
+</li>
+<li><p>actually the Kronecker Delta is a function of two variables <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span></p>
+<ul>
+<li><p>scalar multiplication has you just multiplying all entries of a given matrix by a scalar</p></li>
+<li><p>if this behaved more like a scalar, it would get multiplied by all elements of a matrix</p></li>
+<li><p>then it would zero out all of the non-diagonal components</p></li>
+<li><p>so which is it?</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>useful properties</p>
+<ul>
+<li><p>sifting property <span class="math notranslate nohighlight">\(\to\)</span> for <span class="math notranslate nohighlight">\(j \in \mathbb{Z}: \displaystyle\sum_{-\infty}^{\infty}{a_i\delta_{ij}} = a_j\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> is the set of all positive and negative integers including 0</p></li>
+<li><p>it removed the summation and swapped the index of <span class="math notranslate nohighlight">\(a\)</span> from <span class="math notranslate nohighlight">\(i\)</span> to <span class="math notranslate nohighlight">\(j\)</span></p></li>
+<li><p>my current understanding makes me think that this means they’re switching from rows to columns</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="the-dot-product-and-matrix-multiplication">
+<h3>the Dot Product and Matrix Multiplication<a class="headerlink" href="#the-dot-product-and-matrix-multiplication" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>dot product</p>
+<ul>
+<li><p>algebraic operation that takes two <strong>same sized vectors</strong> and returns a <strong>single scalar</strong></p></li>
+</ul>
+</li>
+<li><p>for vectors</p>
+<ul>
+<li><p>dot product is the magnitude scaled by how much they’re pointing along the same axis</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(a \cdot b = |a||b| cos(\theta)\)</span></p></li>
+</ul>
+</li>
+<li><p>cross product is the magnitude scaled by how much they’re perpendicular</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(a \times b = |a||b| sin(\theta)\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>vector dot product example</p>
+<ul>
+<li><p>take the two sequences a and b
+<span class="math notranslate nohighlight">\(
+  \begin{cases}
+      a = ( a_1 , a_2 , ... , a_n ) \\
+      b = ( b_1 , b_2 , ... , b_n ) \\
+  \end{cases}
+  \)</span></p></li>
+<li><p>dot products are <span class="math notranslate nohighlight">\(a \cdot b = \sum_{i=1}^{n} a_i b_i\)</span></p></li>
+<li><p>the dot product tells you to just multiply the elements in the same position and add up</p></li>
+</ul>
+</li>
+<li><p>if you treat the vectors as <strong>row matrices</strong></p>
+<ul>
+<li><p>the vectors become these matrices:
+<span class="math notranslate nohighlight">\(
+  \begin{cases}
+      a = \begin{bmatrix} a_1 &amp; a_2 &amp; a_3 \end{bmatrix} \\
+      b = \begin{bmatrix} b_1 &amp; b_2 &amp; b_3 \end{bmatrix} \\
+  \end{cases}
+  \)</span></p></li>
+<li><p>you have a slight problem</p>
+<ul>
+<li><p>you can’t multiply them together as-is (1x3)(1x3)</p></li>
+<li><p>the inner dimensions of matrices have to agree to multiply together</p></li>
+<li><p>you have to <span class="math notranslate nohighlight">\(transpose^T\)</span> the second one (1x3)(3x1)</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(
+  a\cdot b = ab^T = [a_1 \ a_2 \ a_3]
+  \begin{bmatrix} b_1 \\ b_2 \\ b_3 \end{bmatrix}
+  = a_1 b_1 + a_2 b_2 + a_3 b_3
+  \)</span></p>
+<ul>
+<li><p>this make it seem that the function of the dot is to inform the second one to transpose</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>therefore:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(a\cdot b = ab^T \ne ab\)</span></p></li>
+<li><p>but other notations seem inconsistent</p>
+<ul>
+<li><p>it looks like sometimes they use the dot and sometimes they don’t</p></li>
+<li><p>at least when matrices are involved</p></li>
+<li><p>for vectors, the dot may have meant transpose, assuming they were originally the same shape</p></li>
+<li><p>for matrices, it may just be assumed that you know the shape has to match already</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>what’s the difference between matrix multiplication and the dot product?</p>
+<ul>
+<li><p>matrix multiplication is basically a matrix version of the dot product</p></li>
+<li><p>the result of a dot product is a scalar</p></li>
+<li><p>the result matrix multiplication is a matrix</p>
+<ul>
+<li><p>the elements of that matrix are the dot products of pairs of vectors in each matrix</p></li>
+<li><p>the rows of the first matrix are vectors, the columns of the second matrix are vectors</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>matrix multiplication example - I’m going shopping for apples, oranges, and bananas for two people.</p>
+<ul>
+<li><p>Person 1 wants 1 of each fruit, person 2 wants 10 of each fruit</p>
+<ul>
+<li><p>fruit quantity matrix = <span class="math notranslate nohighlight">\(A=\begin{bmatrix}a_1\\ a_2\end{bmatrix}=\begin{bmatrix}1&amp;1&amp;1\\ 10&amp;10&amp; 10\\ \end{bmatrix}\)</span></p></li>
+</ul>
+</li>
+<li><p>apples cost <span class="math notranslate nohighlight">\(1, oranges cost \)</span>2, and bananas cost $0.50</p>
+<ul>
+<li><p>fruit cost matrix = <span class="math notranslate nohighlight">\(B = \begin{bmatrix} \$1\\ \$2\\ \$0.5 \end{bmatrix}\)</span></p></li>
+<li><p>I had to transpose it for the next part to work</p></li>
+</ul>
+</li>
+<li><p>how much does each person need to reimburse me?</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(A \cdot B =  \begin{bmatrix} 1 &amp; 1 &amp; 1\\ 10 &amp; 10 &amp; 10 \end{bmatrix}
+  \begin{bmatrix} \$1\\ \$2\\ \$0.5 \end{bmatrix} = \begin{bmatrix}
+  1 \times \$1 + 1 \times \$2 + 1 \times \$0.5 \\
+  10 \times \$1 + 10 \times \$2 + 10 \times \$0.5 \end{bmatrix} =
+  \begin{bmatrix} \$3.5 \\ \$35 \end{bmatrix}\)</span></p></li>
+<li><p>person 1 owes me <span class="math notranslate nohighlight">\(3.50 and person 2 owes me \)</span>35</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>question</p>
+<ul>
+<li><p>does the dot do anything there?</p></li>
+<li><p>it looks like for vectors the dot instructs you to transpose the second one so the dimensions match</p></li>
+<li><p>that last example, though, no transposing happened</p></li>
+<li><p>does the dot have additional meaning for fully formed matrices?</p></li>
+</ul>
+</li>
+</ul>
+<section id="einstein-summation-notation">
+<h4>Einstein Summation Notation<a class="headerlink" href="#einstein-summation-notation" title="Link to this heading">#</a></h4>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Einstein_notation">Einstein Summation Notation Wikipedia</a></p>
+<ul class="simple">
+<li><p>the Wikipedia articles use this pretty extensively</p></li>
+<li><p>implies summation over a set of indexed terms in a formula</p></li>
+<li><p>makes them more compact</p></li>
+<li><p>when an index variable appears twice in a single term and isn’t otherwise defined</p></li>
+<li><p>that term is considered to be summed over all values of the index</p></li>
+<li><p>so you can rewrite this:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(y = \displaystyle\sum_{i=1}^3 c_i x^i = c_1 x^1 + c_2 x^2 + c_3 x^3\)</span></p></li>
+</ul>
+</li>
+<li><p>as this:</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(y = c_i x^i\)</span></p></li>
+</ul>
+</li>
+<li><p>the upper indices aren’t exponents, they’re indices of coordinates, coefficients, or basis vectors</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x^2\)</span> = second component of x, not x-squared</p></li>
+<li><p>it puts the index up high because, in a single term, an index typically only occurs</p>
+<ul>
+<li><p>once in an upper (superscript) position</p></li>
+<li><p>once in an under (subscript) position</p></li>
+</ul>
+</li>
+<li><p>typically <span class="math notranslate nohighlight">\(x^1=x\)</span> and <span class="math notranslate nohighlight">\(x^2=y\)</span> and <span class="math notranslate nohighlight">\(x^3=z\)</span></p></li>
+</ul>
+</li>
+<li><p>in terms of <a class="reference external" href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors">covariant and contravariant</a> vectors</p>
+<ul>
+<li><p>upper indices for contravariant vectors (<a class="reference external" href="https://en.wikipedia.org/wiki/Coordinate_vector">vectors</a>) (coordinate vectors)</p>
+<ul>
+<li><p>components vary <em>opposite</em> to the basis vectors</p></li>
+<li><p>if your unit vectors are 1m long and you change them to 1cm long (<em>multiplying</em> by 100)</p></li>
+<li><p>an existing position vector with components in meters will need to be <em>divided</em> by 100</p></li>
+<li><p>you scale the position vector inversely to the referenced vectors - <em>contravariance</em></p></li>
+</ul>
+</li>
+<li><p>lower indices for covariant vectors (<a class="reference external" href="https://en.wikipedia.org/wiki/Linear_form">covectors</a>) (dual vector)</p>
+<ul>
+<li><p>components vary <em>with</em> the basis vectors</p></li>
+<li><p>represents a linear map from vectors to scalars</p></li>
+<li><p>not actually a vector, it’s an object that lies in a dual vector space</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>row and column vectors</p>
+<ul>
+<li><p><strong>row vector</strong>: the lower index (subscript) which <strong>column</strong> you’re in</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\([w_1 ... w_k]\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>column vector</strong>: the upper index (superscript) indicates which <strong>row</strong> you’re in</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\begin{bmatrix}
+  v^1 \\
+  \vdots \\
+  v^k
+\end{bmatrix}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="the-displacement-vector-boldsymbol-u">
+<h4>The Displacement Vector <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span><a class="headerlink" href="#the-displacement-vector-boldsymbol-u" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>the <strong>displacement vector</strong> <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span> points from the original (unloaded) location of particle <span class="math notranslate nohighlight">\(p\)</span> to its final position</p>
+<ul>
+<li><p>the <strong>displacement vectors</strong> for all particles <span class="math notranslate nohighlight">\(p\)</span> in the domain form a <strong>displacement field</strong></p></li>
+</ul>
+</li>
+<li><p>if we’re in cartesian (x,y,z) coordinate system, <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span> has three components <span class="math notranslate nohighlight">\(u_x, u_y, u_z\)</span></p>
+<ul>
+<li><p>in which case it can be written in engineering notation as</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{u} = u_x e_x + u_y e_y + u_z e_z\)</span></p></li>
+<li><p>where <span class="math notranslate nohighlight">\(e_x\)</span> , <span class="math notranslate nohighlight">\(e_y\)</span> , and <span class="math notranslate nohighlight">\(e_z\)</span> are unit vectors pointing in directions <span class="math notranslate nohighlight">\(x,y,z\)</span> respectively</p></li>
+<li><p>and  <span class="math notranslate nohighlight">\(u_x, u_y, u_z\)</span> are the magnitude of the displacement vector in each of those directions</p></li>
+</ul>
+</li>
+<li><p>Tuple</p>
+<ul>
+<li><p>the displacement vector is a vector - a combination of magnitude and direction in some space</p></li>
+<li><p>that’s all the information that’s contained. It doesn’t have established rows or columns</p></li>
+<li><p>it’s basically a Tuple - an ordered list (with the understanding of the direction of each list element)</p></li>
+</ul>
+</li>
+<li><p>you can also write it matrix</p>
+<ul>
+<li><p>matrices are really just useful ways to arrange data</p></li>
+<li><p>the basic form of this thing doesn’t have row/column arrangements built-in, so we can impose them</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="expanding-einstein-notation-to-get-the-displacement-vector-in-matrix-form">
+<h4>Expanding Einstein Notation to get the Displacement Vector in Matrix Form<a class="headerlink" href="#expanding-einstein-notation-to-get-the-displacement-vector-in-matrix-form" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Einstein Notation</p>
+<ul>
+<li><p>uses indices i and j to specify the location in a matrix</p>
+<ul>
+<li><p>i = row index (tells you which row to look in)</p></li>
+<li><p>j = column index (tells you which column to look in)</p></li>
+</ul>
+</li>
+<li><p>if cartesian space <span class="math notranslate nohighlight">\(\to \textcolor{orange} 1 = \textcolor{orange} x\)</span> , <span class="math notranslate nohighlight">\(\textcolor{blue} 2 = \textcolor{blue} y\)</span> , <span class="math notranslate nohighlight">\(\textcolor{pink} 3 = \textcolor{pink} z\)</span> (displacement in each direction)</p></li>
+<li><p>so we can make it a row or a column vector, and if we need to add it to a 3x3 matrix, we can just repeat it</p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(u_i: \)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\( \)</span>
+<span class="math notranslate nohighlight">\(u_{\textcolor{purple} i} =\overbrace{
+\begin{bmatrix}
+u_{\textcolor{purple} i} \\
+u_{\textcolor{purple} i} \\
+u_{\textcolor{purple} i} \\
+\end{bmatrix}}^{\textcolor{green} j=1}
+\begin{matrix}
+\gets \textcolor{purple} i = \textcolor{orange} 1 \\
+\gets \textcolor{purple} i = \textcolor{blue} 2   \\
+\gets \textcolor{purple} i = \textcolor{pink} 3   \\
+\end{matrix} =
+\begin{bmatrix} u_1 \\ u_2 \\ u_3 \end{bmatrix} = \)</span>
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+\textcolor{orange}{u_x} \\
+\textcolor{blue}  {u_y} \\
+\textcolor{pink}  {u_z} \\
+\end{bmatrix}\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(u_j\)</span> :</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\( \)</span>
+<span class="math notranslate nohighlight">\( u_{\textcolor{green} j} = [
+\overbrace{u_{\textcolor{green} j}}^{\textcolor{green} j = \textcolor{orange} 1}
+\overbrace{u_{\textcolor{green} j}}^{\textcolor{green} j = \textcolor{blue} 2}
+\overbrace{u_{\textcolor{green} j}}^{\textcolor{green} j = \textcolor{pink} 3}
+] \gets \textcolor{purple} i = 1 \)</span>
+<span class="math notranslate nohighlight">\( \\ \quad = \begin{bmatrix} u_1 &amp; u_2 &amp; u_3 \end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\( \\ \quad = \begin{bmatrix} \textcolor{orange}{u_x} &amp; \textcolor{blue}{u_y} &amp; \textcolor{pink}{u_z} \end{bmatrix}\)</span></p></li>
+</ul>
+</li>
+<li><p>if you need to be 3x3 to add it to a 3x3 tensor, just extend it out</p>
+<ul>
+<li><p>the 3x1 <span class="math notranslate nohighlight">\(u_i\)</span> gets repeated out to the right</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\( u_{\textcolor{purple} i} = \)</span>
+<span class="math notranslate nohighlight">\(\begin{bmatrix}
+\textcolor{orange}{u_x} \\
+\textcolor{blue}  {u_y} \\
+\textcolor{pink}  {u_z} \\
+\end{bmatrix}\)</span>
+<span class="math notranslate nohighlight">\( \to
+\begin{bmatrix}
+\textcolor{orange} {u_x} &amp; \textcolor{orange}{u_x} &amp; \textcolor{orange}{u_x} \\
+\textcolor{blue}{u_y} &amp; \textcolor{blue}{u_y} &amp; \textcolor{blue}{u_y} \\
+\textcolor{pink}{u_z} &amp; \textcolor{pink}{u_z} &amp; \textcolor{pink}{u_z} \\
+\end{bmatrix}\)</span></p></li>
+</ul>
+</li>
+<li><p>the 1x3 <span class="math notranslate nohighlight">\(u_j\)</span> gets repeated down below</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(u_{\textcolor{green} j} = \)</span>
+<span class="math notranslate nohighlight">\( \underbrace{
+\begin{bmatrix} \textcolor{orange}{u_x} &amp; \textcolor{blue}{u_y} &amp; \textcolor{pink}{u_z} \end{bmatrix}
+}_{
+\begin{bmatrix}
+\textcolor{orange}{u_x} &amp; \textcolor{blue}{u_y} &amp; \textcolor{pink}{u_z} \\
+\textcolor{orange}{u_x} &amp; \textcolor{blue}{u_y} &amp; \textcolor{pink}{u_z} \\
+\textcolor{orange}{u_x} &amp; \textcolor{blue}{u_y} &amp; \textcolor{pink}{u_z} \\
+\end{bmatrix}}\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Note - I’m not positive that this is what’s happening but it matches in practice</p>
+<ul>
+<li><p>it’s possible that <span class="math notranslate nohighlight">\(\nabla \cdot \boldsymbol{u}\)</span> changes it into 3x3 but that seems unlikely</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="the-the-3x3-displacement-vectors-and-their-derivatives">
+<h4>The the 3x3 Displacement Vectors and their Derivatives<a class="headerlink" href="#the-the-3x3-displacement-vectors-and-their-derivatives" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>the 3x3 Displacement Vectors</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(
+u_{\textcolor{purple} i} =
+\begin{bmatrix}
+   \textcolor{orange} {u_x} &amp; \textcolor{orange}{u_x} &amp; \textcolor{orange}{u_x}\\
+   \textcolor{blue}{u_y} &amp; \textcolor{blue}{u_y} &amp; \textcolor{blue}{u_y} \\
+   \textcolor{pink}{u_z} &amp; \textcolor{pink}{u_z} &amp; \textcolor{pink}{u_z} \\
+\end{bmatrix} =
+\begin{matrix}
+   \overbrace{\textcolor{orange}{u_x}}^{j=1} &amp; \overbrace{\textcolor{orange}{u_x}}^{j=2} &amp; \overbrace{\textcolor{orange}{u_x}}^{j=3}\\
+   \textcolor{blue}{u_y} &amp; \textcolor{blue}{u_y} &amp; \textcolor{blue}{u_y} \\
+   \textcolor{pink}{u_z} &amp; \textcolor{pink}{u_z} &amp; \textcolor{pink}{u_z} \\
+\end{matrix}
+\begin{matrix}
+\\ \gets \textcolor{purple} i=\textcolor{orange} 1
+\\ \gets \textcolor{purple} i=\textcolor{blue} 2
+\\ \gets \textcolor{purple} i=\textcolor{pink} 3
+\end{matrix}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+u_{\textcolor{green} j} =
+\begin{bmatrix}
+   \textcolor{orange}{u_x} &amp; \textcolor{blue}{u_y} &amp; \textcolor{pink}{u_z} \\
+   \textcolor{orange}{u_x} &amp; \textcolor{blue}{u_y} &amp; \textcolor{pink}{u_z} \\
+   \textcolor{orange}{u_x} &amp; \textcolor{blue}{u_y} &amp; \textcolor{pink}{u_z} \\
+\end{bmatrix} =
+\begin{matrix}
+   \overbrace{\textcolor{orange}{u_x}}^{\textcolor{green} j=\textcolor{orange}1} &amp; \overbrace{\textcolor{blue}{u_y}}^{\textcolor{green} j=\textcolor{blue}2} &amp; \overbrace{\textcolor{pink}{u_z}}^{\textcolor{green} j=\textcolor{pink}3} \\
+   \textcolor{orange}{u_x} &amp; \textcolor{blue}{u_y} &amp; \textcolor{pink}{u_z} \\
+   \textcolor{orange}{u_x} &amp; \textcolor{blue}{u_y} &amp; \textcolor{pink}{u_z} \\
+\end{matrix}
+\begin{matrix} \\ \gets i=1 \\ \gets i=2 \\ \gets i=3\end{matrix}
+\)</span></p>
+<ul class="simple">
+<li><p>the 3x3 1st partial derivatives</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(
+u_{\textcolor{purple} i, \textcolor{green} j} = {{\partial}\over{\partial \textcolor{green} j}}u_{\textcolor{purple} i} =
+\begin{bmatrix}
+   {{\partial}\over{\partial \textcolor{green} j}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{green} j}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{green} j}}\textcolor{orange}{u_x}\\
+   {{\partial}\over{\partial \textcolor{green} j}}\textcolor{blue}{u_y}   &amp; {{\partial}\over{\partial \textcolor{green} j}}\textcolor{blue}{u_y}   &amp; {{\partial}\over{\partial \textcolor{green} j}}\textcolor{blue}{u_y} \\
+   {{\partial}\over{\partial \textcolor{green} j}}\textcolor{pink}{u_z}   &amp; {{\partial}\over{\partial \textcolor{green} j}}\textcolor{pink}{u_z}   &amp; {{\partial}\over{\partial \textcolor{green} j}}\textcolor{pink}{u_z} \\
+\end{bmatrix} =
+\begin{bmatrix}
+   {{\partial}\over{\partial \textcolor{orange} 1}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{blue} 2}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{pink} 3}}\textcolor{orange}{u_x}\\
+   {{\partial}\over{\partial \textcolor{orange} 1}}\textcolor{blue}{u_y}   &amp; {{\partial}\over{\partial \textcolor{blue} 2}}\textcolor{blue}{u_y}   &amp; {{\partial}\over{\partial \textcolor{pink} 3}}\textcolor{blue}{u_y} \\
+   {{\partial}\over{\partial \textcolor{orange} 1}}\textcolor{pink}{u_z}   &amp; {{\partial}\over{\partial \textcolor{blue} 2}}\textcolor{pink}{u_z}   &amp; {{\partial}\over{\partial \textcolor{pink} 3}}\textcolor{pink}{u_z} \\
+\end{bmatrix} =
+\begin{bmatrix}
+   {{\partial}\over{\partial \textcolor{orange} x}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{blue} y}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{pink} z}}\textcolor{orange}{u_x}\\
+   {{\partial}\over{\partial \textcolor{orange} x}}\textcolor{blue}{u_y}   &amp; {{\partial}\over{\partial \textcolor{blue} y}}\textcolor{blue}{u_y}   &amp; {{\partial}\over{\partial \textcolor{pink} z}}\textcolor{blue}{u_y} \\
+   {{\partial}\over{\partial \textcolor{orange} x}}\textcolor{pink}{u_z}   &amp; {{\partial}\over{\partial \textcolor{blue} y}}\textcolor{pink}{u_z}   &amp; {{\partial}\over{\partial \textcolor{pink} z}}\textcolor{pink}{u_z} \\
+\end{bmatrix}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+u_{\textcolor{green} j,\textcolor{purple} i} = {{\partial}\over{\partial \textcolor{purple} i}}u_{\textcolor{green} j} =
+\begin{bmatrix}
+   {{\partial}\over{\partial \textcolor{purple} i}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{purple} i}}\textcolor{blue}{u_y} &amp; {{\partial}\over{\partial \textcolor{purple} i}}\textcolor{pink}{u_z} \\
+   {{\partial}\over{\partial \textcolor{purple} i}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{purple} i}}\textcolor{blue}{u_y} &amp; {{\partial}\over{\partial \textcolor{purple} i}}\textcolor{pink}{u_z} \\
+   {{\partial}\over{\partial \textcolor{purple} i}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{purple} i}}\textcolor{blue}{u_y} &amp; {{\partial}\over{\partial \textcolor{purple} i}}\textcolor{pink}{u_z} \\
+\end{bmatrix} =
+\begin{bmatrix}
+   {{\partial}\over{\partial \textcolor{orange} 1}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{orange} 1}}\textcolor{blue}{u_y} &amp; {{\partial}\over{\partial \textcolor{orange} 1}}\textcolor{pink}{u_z} \\
+   {{\partial}\over{\partial \textcolor{blue} 2}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{blue} 2}}\textcolor{blue}{u_y} &amp; {{\partial}\over{\partial \textcolor{blue} 2}}\textcolor{pink}{u_z} \\
+   {{\partial}\over{\partial \textcolor{pink} 3}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{pink} 3}}\textcolor{blue}{u_y} &amp; {{\partial}\over{\partial \textcolor{pink} 3}}\textcolor{pink}{u_z} \\
+\end{bmatrix} =
+\begin{bmatrix}
+   {{\partial}\over{\partial \textcolor{orange} x}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{orange} x}}\textcolor{blue}{u_y} &amp; {{\partial}\over{\partial \textcolor{orange} x}}\textcolor{pink}{u_z} \\
+   {{\partial}\over{\partial \textcolor{blue} y}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{blue} y}}\textcolor{blue}{u_y} &amp; {{\partial}\over{\partial \textcolor{blue} y}}\textcolor{pink}{u_z} \\
+   {{\partial}\over{\partial \textcolor{pink} z}}\textcolor{orange}{u_x} &amp; {{\partial}\over{\partial \textcolor{pink} z}}\textcolor{blue}{u_y} &amp; {{\partial}\over{\partial \textcolor{pink} z}}\textcolor{pink}{u_z} \\
+\end{bmatrix}
+\)</span></p>
+<ul class="simple">
+<li><p>Second Derivatives</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(
+u_{\textcolor{green} j, \textcolor{green} j \textcolor{purple} i} = {\partial^2\over\partial \textcolor{green} j \partial \textcolor{purple} i} u_{\textcolor{green} j} =
+\begin{bmatrix}
+   {{\partial^2}\over{\partial \textcolor{orange} x \textcolor{orange} x}}\textcolor{orange}{u_x} &amp; {{\partial^2}\over{\partial \textcolor{blue} y \textcolor{orange} x}}\textcolor{blue}{u_y} &amp; {{\partial^2}\over{\partial \textcolor{pink} z \textcolor{orange} x}}\textcolor{pink}{u_z} \\
+   {{\partial^2}\over{\partial \textcolor{orange} x \textcolor{blue} y  }}\textcolor{orange}{u_x} &amp; {{\partial^2}\over{\partial \textcolor{blue} y \textcolor{blue} y  }}\textcolor{blue}{u_y} &amp; {{\partial^2}\over{\partial \textcolor{pink} z \textcolor{blue} y  }}\textcolor{pink}{u_z} \\
+   {{\partial^2}\over{\partial \textcolor{orange} x \textcolor{pink} z  }}\textcolor{orange}{u_x} &amp; {{\partial^2}\over{\partial \textcolor{blue} y \textcolor{pink} z  }}\textcolor{blue}{u_y} &amp; {{\partial^2}\over{\partial \textcolor{pink} z \textcolor{pink} z  }}\textcolor{pink}{u_z} \\
+\end{bmatrix}
+\)</span></p>
+<p><span class="math notranslate nohighlight">\(
+u_{\textcolor{purple} i,\textcolor{green}{jj}} = {\partial^2\over\partial \textcolor{green} {j^2}} u_{\textcolor{purple} i} =
+\begin{bmatrix}
+   {{\partial^2}\over{\partial \textcolor{orange} {x^2}}}\textcolor{orange}{u_x} &amp; {{\partial^2}\over{\partial \textcolor{blue} {y^2}}}\textcolor{orange}{u_x} &amp; {{\partial^2}\over{\partial \textcolor{pink} {z^2}}}\textcolor{orange}{u_x}\\
+   {{\partial^2}\over{\partial \textcolor{orange} {x^2}}}\textcolor{blue}  {u_y} &amp; {{\partial^2}\over{\partial \textcolor{blue} {y^2}}}\textcolor{blue}  {u_y} &amp; {{\partial^2}\over{\partial \textcolor{pink} {z^2}}}\textcolor{blue}  {u_y} \\
+   {{\partial^2}\over{\partial \textcolor{orange} {x^2}}}\textcolor{pink}  {u_z} &amp; {{\partial^2}\over{\partial \textcolor{blue} {y^2}}}\textcolor{pink}  {u_z} &amp; {{\partial^2}\over{\partial \textcolor{pink} {z^2}}}\textcolor{pink}  {u_z} \\
+\end{bmatrix} 
+\)</span></p>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="correlation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Correlation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="metrics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Metrics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-mathematical-reference-material">General Mathematical Reference Material</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#symbol-glossary">Symbol Glossary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sets">Sets</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-sets">Visualizing Sets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#double-sum">Double Sum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradients">Gradients</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-nabla-operator-nabla">The Nabla Operator <span class="math notranslate nohighlight">\(\nabla\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-laplace-operator-nabla-cdot-nabla-nabla-2-delta">The Laplace Operator <span class="math notranslate nohighlight">\(\nabla\cdot\nabla = \nabla^2 = \Delta\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quasirandom-sampling">Quasirandom Sampling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-math">Matrix Math</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-vector-product">Matrix-Vector Product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication">Matrix Multiplication</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-multiplication-properties">Matrix Multiplication Properties</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-identity-matrix-and-the-kronecker-delta">the Identity Matrix and the Kronecker Delta</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dot-product-and-matrix-multiplication">the Dot Product and Matrix Multiplication</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#einstein-summation-notation">Einstein Summation Notation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-displacement-vector-boldsymbol-u">The Displacement Vector <span class="math notranslate nohighlight">\(\boldsymbol{u}\)</span></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#expanding-einstein-notation-to-get-the-displacement-vector-in-matrix-form">Expanding Einstein Notation to get the Displacement Vector in Matrix Form</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-the-3x3-displacement-vectors-and-their-derivatives">The the 3x3 Displacement Vectors and their Derivatives</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthew T Gill
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

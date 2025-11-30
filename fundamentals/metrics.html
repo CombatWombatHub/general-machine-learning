@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Metrics &#8212; aiml-notes 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a1a7cee5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=a681ed88"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fundamentals/metrics';</script>
+    <script src="../_static/custom.js?v=613d9f17"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DevOps and MLOps" href="ops.html" />
+    <link rel="prev" title="Math" href="math.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.jpg" class="logo__image only-light" alt="aiml-notes 1.0 documentation - Home"/>
+    <script>document.write(`<img src="../_static/logo.jpg" class="logo__image only-dark" alt="aiml-notes 1.0 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Goals and To-Dos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">AI/ML:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../categories/categories.html">Categories</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/ml/ml.html">Machine Learning (ML)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/ml/notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/dimensionality_reduction.html">Dimensionality Reduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/nns.html">Neural Networks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/pinns.html">Physics-Informed Neural Networks (PINNs)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/svm.html">Support Vector Machines (SVM)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/ml/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/examples/intro_to_classification_datacamp/intro_to_classification.html">Intro to Classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html">Python ML Mini Course</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/nlp/nlp.html">Natural Language Processing (NLP)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/nlp/notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/notes/tokenization.html">Tokenization</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/nlp/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster.html">Iterate Like a Grandmaster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html">Getting Started with NLP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/text-classification-scikit-learn.html">Text Classification using scikit-learn in NLP</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/xai/xai.html">Explainable AI (XAI)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../categories/xai/shapley_xai_intro.html">Intro to SHAP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/generative/generative.html">Generative AI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../categories/generative/llms.html">Large Language Models (LLM’s)</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="fundamentals.html">Fundamentals</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="correlation.html">Correlation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">Math</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ops.html">DevOps and MLOps</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../libraries/libraries.html">Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/pytorch.html">Learning Pytorch</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sphinx:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../sphinx/sphinx.html">Sphinx Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/markdown.html">Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/notebook.html">Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sphinx/restructuredtext.html">reStructuredText</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/CombatWombatHub/aiml-notes" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/fundamentals/metrics.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Metrics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error">Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-metrics">Regression Metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-metrics">Classification Metrics</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="metrics">
+<h1>Metrics<a class="headerlink" href="#metrics" title="Link to this heading">#</a></h1>
+<p>There are a lot of goodness of fit metrics and ways to characterize loss.</p>
+<section id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A model fits the data well when the differences between the <strong>observed values</strong> and <strong>predicted values</strong> are <strong>small</strong> and <strong>unbiased</strong></p></li>
+<li><p>the differences between the <code class="docutils literal notranslate"><span class="pre">observed</span> <span class="pre">values</span></code> and <code class="docutils literal notranslate"><span class="pre">predicted</span> <span class="pre">values</span></code> are called <code class="docutils literal notranslate"><span class="pre">residuals</span></code></p></li>
+<li><p>as the <code class="docutils literal notranslate"><span class="pre">goodness</span> <span class="pre">of</span> <span class="pre">fit</span></code> increases, the model is better fitted to the data</p></li>
+</ul>
+</section>
+<section id="error">
+<h2>Error<a class="headerlink" href="#error" title="Link to this heading">#</a></h2>
+<p>Before diving into ways to measure success, we should define the errors that we’re tryinng to minimize.</p>
+<ul class="simple">
+<li><p><strong>Total Prediction Error</strong>/<strong>Expected Generalization Error</strong> - error when applying a trained model to predict on unseen data. Can be broken down into 3 main components.</p>
+<ul>
+<li><p><strong>Bias Error</strong> - error from erroneous assumptions in the algorithm (leads to <a class="reference external" href="https://en.wikipedia.org/wiki/Overfitting#Underfitting">underfitting</a>).</p></li>
+<li><p><strong>Variance Error</strong> - error from sensitivity to small fluctuations in training set (leads to <a class="reference external" href="https://en.wikipedia.org/wiki/Overfitting">overfitting</a>). Fit the model too much and you’ll end up fitting to the noise too.</p></li>
+<li><p><strong>Irreducible Error</strong> - error inherent in any dataset or process that cannot be reduced regardless of model complexity or amount of data. This is the lower bound on total prediction error.</p></li>
+</ul>
+</li>
+<li><p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff">Bias-Variance Tradeoff</a> is an inescapable tradeoff for supervised learning.</p>
+<ul>
+<li><p>you want your model to capture regularities in the training data and also generalize well to unseen data.</p></li>
+<li><p><strong>High-Bias</strong> Models are simpler, can’t capture as much detail, so they won’t fit to noise, but they may miss patterns in the training data, resulting in underfitting.</p></li>
+<li><p><strong>High-Variance</strong> Models can represent the training data set well but risk overfitting to noise or training data that isn’t representative of the larger population.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="regression-metrics">
+<h2>Regression Metrics<a class="headerlink" href="#regression-metrics" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Common</span> <span class="pre">Terms</span></code></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y\)</span> = observed values</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_i\)</span> = observed value <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat y_i\)</span> = predicted value <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar y_i\)</span> = average of the observed values <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> = sample size</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">R-squared</span></code> (also known as <strong>Coefficient of Determination</strong>) is the ratio of the variance that’s explained by the model to the variance that’s explained by a simple mean. It’s usually <span class="math notranslate nohighlight">\(0-1\)</span>, though it <em>can</em> be negative if the model is <em>worse</em> at explaining variance than just guessing the mean regardless of inputs. <span class="math notranslate nohighlight">\(R^2\)</span> always increases as more independent variables are added, whether or not those variables are useful predictors <a class="reference internal" href="../_images/r_squared_visualization.png"><img alt="Pic" src="../_images/r_squared_visualization.png" style="width: 400px;" /></a>
+<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/python-coefficient-of-determination-r2-score/">R2 – Score</a>: Higher values indicate better fit ranging from 0 to 1.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R^2=1-\Large\frac{RSS}{TSS}=1-\Large\frac{\sum_{i=1}^n(y_i-\hat y_i)^2}{\sum_{i=1}^n(y_i-\bar y_i)^2}\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(RSS\)</span> = <strong>Residual Sum of Squares</strong> = <span class="math notranslate nohighlight">\(\sum_{i=1}^n(y_i-\hat y_i)^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(TSS\)</span> = <strong>Total Sum of Squares</strong> = <span class="math notranslate nohighlight">\(\sum_{i=1}^n(y_i-\bar y_i)^2\)</span></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Adjusted</span> <span class="pre">R-squared</span></code> is a modification of R-squared that penalizes the inclusion of variables that don’t actually contribute to prediction</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bar R^2=1-\Large\frac{RSS/DOF_{res}}{TSS/DOF_{tot}}\)</span> <span class="math notranslate nohighlight">\(= 1-(1-R^2)\Large\frac{n-1}{n-p-1}\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(DOF_{res}\)</span> = Degrees of Freedom of population variance around mean</p></li>
+<li><p><span class="math notranslate nohighlight">\(DOF_{tot}\)</span> = Degrees of Freedom of population variance around model</p></li>
+<li><p><span class="math notranslate nohighlight">\(p\)</span> = total number of explanatory variables (inputs)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAE</span></code> = <strong>Mean Absolute Error</strong> - same scale as target variable, robust to outliers, difficult to take derivatives of due to absolute value</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(MAE = \frac{1}{n} \sum_{i=1}^n|y_i-\hat{y}_i|\)</span></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NMAE</span></code> = <strong>Normalized Mean Absolute Error</strong> - normalizes the absolute error by the range of actual values, making it a relative relative metric</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(NMAE = \Large\frac{\frac{1}{n}\sum_{i=1}^n{|\hat{y}_i-y_i|}}{\frac{1}{n}\sum_{i=1}^n{|y_i|}} = \frac{MAE(y,\hat{y})}{mean(|y|)}\)</span></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MSE</span></code> = <strong>Mean Squared Error</strong> - vulnerable to outliers because the error is squared</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(MSE =\frac{1}{n}\sum_{i=1}^n (\hat{y}_i - y_i)^2\)</span></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/sklearn-different-loss-functions-in-sgd/">Huber Loss</a>: A hybrid loss function that transitions from <code class="docutils literal notranslate"><span class="pre">MAE</span></code> to <code class="docutils literal notranslate"><span class="pre">MSE</span></code> for larger errors, providing balance between <code class="docutils literal notranslate"><span class="pre">MAE</span></code>’s robustness and <code class="docutils literal notranslate"><span class="pre">MSE</span></code>’s sensitivity to outliers.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L_\delta = \begin{cases}\frac{1}{2}(y-\hat{y})^2 &amp;|y-\hat{y}|&lt;\delta \\ \delta((y-\hat{y})-\frac{1}{2}\delta) &amp; |y-\hat{y}|\ge\delta\end{cases}\)</span></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RMSE</span></code> = <strong>Root Mean Squared Error</strong> - same training results as using <code class="docutils literal notranslate"><span class="pre">MSE</span></code>, still vulnerable to outliers, compare with <code class="docutils literal notranslate"><span class="pre">MAE</span></code> to see prevalence of outliers</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^n (\hat{y}_i - y_i)^2}\)</span></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RMSLE</span></code> = <strong>Root Mean Squared Log Error</strong> - logs make it relative metric (ignore scale of data), less vulnerable to outliers than <span class="math notranslate nohighlight">\(RMSE\)</span>, asymmetric (larger penalty if <span class="math notranslate nohighlight">\(\hat{y}_i &lt; y_i\)</span> than if <span class="math notranslate nohighlight">\(\hat{y}_i &gt; y_i\)</span>)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(RMSLE = \sqrt{\frac{1}{n}\sum_{i=1}^n (\ln{(\hat{y}_i+1)} - \ln{(y_i+1)})^2} =\Large\sqrt{\frac{1}{n}\sum_{i=1}^n (\ln{\frac{\hat{y}_i+1}{y_i+1}})^2}\)</span></p></li>
+<li><a class="reference internal image-reference" href="../_images/rmse_vs_rmsle.png"><img alt="RMSE vs RMSLE" src="../_images/rmse_vs_rmsle.png" style="width: 350px;" />
+</a>
+</li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAPE</span></code> = <strong>Mean Absolute Percentage Error</strong> (AVOID LIKE THE PLAGUE) fails if any <span class="math notranslate nohighlight">\(y_i=0\)</span>, higher penalty for small <span class="math notranslate nohighlight">\(y_i\)</span>, higher penalty for <span class="math notranslate nohighlight">\(\hat{y}_i &gt; y_i\)</span> than <span class="math notranslate nohighlight">\(\hat{y}_i &lt; y_i\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(MAPE = \Large\frac{1}{n}\sum_{i=1}^{n}{|\frac{y_i-\hat{y}_i}{y_i}|}*100\)</span></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SMAPE</span></code> = <strong>Symmetric Mean Absolute Percentage Error</strong> (AVOID) improves <em>somewhat</em> on <code class="docutils literal notranslate"><span class="pre">MAPE</span></code> but still controversial, not symmetric, and the equation itself varies by source</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(SMAPE = \Large\frac{1}{n}\sum_{i=1}^{n}{\frac{|y_i-\hat{y}_i|}{y_i+\hat{y}_i}}\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(BIC\)</span> = <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/bayesian-information-criterion-bic/">Bayesian Information Criterion</a> evaluates goodness of fit <span class="math notranslate nohighlight">\(-2\ln(L)\)</span> while penalizing complexity to avoid overfitting <span class="math notranslate nohighlight">\(k\ln(n)\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(BIC = -2\ln(L) + k\ln(n)\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(L\)</span> = likelihood of the model given the data</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span> = number of parameters in the model</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(AIC\)</span> = <a class="reference external" href="https://en.wikipedia.org/wiki/Akaike_information_criterion">Akaike Information Criterion</a></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(AIC = 2k - 2 \ln(\hat L)\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(\hat L\)</span> = maximized value of the <a class="reference external" href="https://en.wikipedia.org/wiki/Likelihood_function">likelihood function</a> for the model</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Penalizes Large Errors</p></th>
+<th class="head"><p>Sensitive to Outliers</p></th>
+<th class="head"><p>Interpretability</p></th>
+<th class="head"><p>Recommended</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MAE</p></td>
+<td><p>✗</p></td>
+<td><p>-</p></td>
+<td><p>+++</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td><p>MSE</p></td>
+<td><p>✓</p></td>
+<td><p>+</p></td>
+<td><p>+</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><td><p>RMSE</p></td>
+<td><p>✓</p></td>
+<td><p>+</p></td>
+<td><p>++</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td><p>MAPE</p></td>
+<td><p>✗</p></td>
+<td><p>Varies</p></td>
+<td><p>++</p></td>
+<td><p>✗</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="classification-metrics">
+<span id="id1"></span><h2>Classification Metrics<a class="headerlink" href="#classification-metrics" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Accuracy for Classifiers is a little different, and sometimes your priority changes</p>
+<ul>
+<li><p>Sometimes it’s more important to catch <strong>everything</strong>, even if you catch some false positives</p></li>
+<li><p>Sometimes it’s more important that you <strong>only</strong> catch stuff you’re sure about, and <strong>no</strong> false positives</p></li>
+</ul>
+</li>
+<li><p>Results</p>
+<ul>
+<li><p><strong>TP (True Positive)</strong>:  The model <code class="docutils literal notranslate"><span class="pre">correctly</span></code>   predicted a <code class="docutils literal notranslate"><span class="pre">positive</span></code> outcome</p></li>
+<li><p><strong>TN (True Negative)</strong>:  The model <code class="docutils literal notranslate"><span class="pre">correctly</span></code>   predicted a <code class="docutils literal notranslate"><span class="pre">negative</span></code> outcome</p></li>
+<li><p><strong>FP (False Positive)</strong>: The model <code class="docutils literal notranslate"><span class="pre">incorrectly</span></code> predicted a <code class="docutils literal notranslate"><span class="pre">positive</span></code> outcome (Type I error)</p></li>
+<li><p><strong>FN (False Negative)</strong>: The model <code class="docutils literal notranslate"><span class="pre">incorrectly</span></code> predicted a <code class="docutils literal notranslate"><span class="pre">negative</span></code> outcome (Type II error)</p></li>
+</ul>
+</li>
+<li><p>Can display with a <a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/confusion-matrix-machine-learning/">Confusion Matrix</a></p>
+<ul>
+<li><p>the link also explains the rest of these details and has example <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> code to make <strong>Confusion Matrices</strong></p></li>
+<li><p>this one scores a model that was trying to label an image as containing a cat or an ant
+it did kind of OK (labeled one cat as an ant, but got the others correct)</p></li>
+<li><p><img alt="ant-cat-confusion-matrix" src="../_images/confusion_matrix.png" /></p></li>
+<li><p>here’s a mockup of one for a model trying to classify emails as real or spam (though without the counts)</p></li>
+</ul>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Predicted as Spam</p></th>
+<th class="head"><p>Predicted as Real</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Actually was Spam</p></td>
+<td><p><strong>TP</strong> (True Positive)</p></td>
+<td><p><strong>FN</strong> (False Negative)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Actually was Real</p></td>
+<td><p><strong>FP</strong> (False Positive)</p></td>
+<td><p><strong>TN</strong> (True Negative)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>Metrics</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Accuracy</span></code> = how many predictions were correct out of the total predictions (can be misleading if one result is more dominant than another)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Precision</span></code> =  how many <strong>Positive Instances</strong> you caught (important if you can’t afford <strong>False Positives</strong>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Recall</span></code> = proportion of <strong>True Positives</strong> detected out of all <strong>Positive Instances</strong> (important if you can’t afford <strong>False Negatives</strong>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">F1-Score</span></code> = combines <strong>Precision</strong> and <strong>Recall</strong>, assuming <strong>False Positives</strong> and <strong>False Negatives</strong> are equally important</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Specificity</span></code> = how good the model is at correctly identifying <strong>Negative Instances</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">1</span> <span class="pre">Error</span></code> = error from <strong>False Positives</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">2</span> <span class="pre">Error</span></code> = error from <strong>False Negatives</strong></p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\text{Accuracy} &amp;= \frac{TP + TN}{TP + TN + FP + FN} \\
+\text{Precision} &amp;= \frac{TP}{TP + FP} \\
+\text{Recall} &amp;= \frac{TP}{TP + FN} \\
+\text{F1 Score} &amp;= 2 \frac{\text{Precision} * \text{Recall}}{\text{Precision} + \text{Recall}} \\
+\text{Specificity} &amp;= \frac{TN}{TN + FP} \\
+\text{Type 1 Error} &amp;= \frac{FP}{FP + TN} \\
+\text{Type 2 Error} &amp;= \frac{FN}{TP + FN} \\
+\end{align}
+\end{split}\]</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="math.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Math</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ops.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">DevOps and MLOps</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error">Error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-metrics">Regression Metrics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-metrics">Classification Metrics</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthew T Gill
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
