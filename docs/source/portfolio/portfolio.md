@@ -1,3 +1,0 @@
-# Portfolio
-- Machine Learning Mastery mentions [Building an AI Portfolio](https://machinelearningmastery.com/build-a-machine-learning-portfolio/), and even suggests projects in articles like [7 LLM Projects to Boost Your Machine Learning Portfolio](https://machinelearningmastery.com/7-llm-projects-to-boost-your-machine-learning-portfolio/)
-- Kaggle's Competitions would be a great way to go for these as well.
