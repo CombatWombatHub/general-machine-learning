@@ -1,5 +1,5 @@
-# Machine Learning (ML)
-[Machine Learning](https://www.geeksforgeeks.org/machine-learning/machine-learning/) is a branch of Artificial Intelligence that focuses on *models* and [algorithms](https://www.geeksforgeeks.org/machine-learning/machine-learning-algorithms/) that let computers learn from data and improve from previous experience without being explicitly programmed. There are many [types](https://www.geeksforgeeks.org/machine-learning/types-of-machine-learning/) of machine learning.
+# Machine Learning
+[Machine Learning (ML)](https://www.geeksforgeeks.org/machine-learning/machine-learning/) is a branch of Artificial Intelligence that focuses on *models* and [algorithms](https://www.geeksforgeeks.org/machine-learning/machine-learning-algorithms/) that let computers learn from data and improve from previous experience without being explicitly programmed. There are many [types](https://www.geeksforgeeks.org/machine-learning/types-of-machine-learning/) of machine learning.
 
 :::{note}
 Some methods fit into multiple categories or can be adapted to be used for other categories. For the sake of brevity, these cases are not always mentioned here.
@@ -146,16 +146,11 @@ I'm not sure how Neural Network's, Deep Learning, AutoEncoders, DenseNets, etc. 
 ## [Self-Supervised Learning](https://www.geeksforgeeks.org/machine-learning/self-supervised-learning-ssl/) 
 - Haven't found specific examples for this yet, most links are to research papers.
 
-```{toctree}
-:glob:
-:caption: Notes:
-
-./notes/notes.md
-```
+## Links
 
 ```{toctree}
 :glob:
-:caption: Examples:
 
-./examples/examples.md
+./notes/**
+./classification/classification
 ```

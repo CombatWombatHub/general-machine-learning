@@ -1,4 +1,4 @@
-# Explainable AI (XAI)
+# Explainable AI
 
 Accurate predictions are all well and good, but it's hard to be confident about them if you can't figure out WHY the model came to that conclusion. Explainable AI (XAI) help reduce the "black box" factor of a model by helping to explain its decision-making process.
 

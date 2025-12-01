@@ -8,7 +8,7 @@ Some of the best resources for learning about neural networks are from 3blue1bro
 ## Tiny Neural Network
 Behold, I created a tiny neural network, showing nodes, activation functions, matrices, and equations.
 
-![tiny neural network](../../../images/tiny_neural_network.png)
+![tiny neural network](../../images/tiny_neural_network.png)
 
 - layer values
     - $X=$ vector of inputs
@@ -33,7 +33,7 @@ Behold, I created a tiny neural network, showing nodes, activation functions, ma
 - you take partial derivatives of each step in the network, then combine them with the chain rule to get the derivative of the loss with respect to each individual weight
 - then you multiply the weight by that gradient and the learning rate so that the next training batch will hopefully have reduced loss
 
-![backpropogation](../../../images/network_backpropagation_schematic.jpg)
+![backpropogation](../../images/network_backpropagation_schematic.jpg)
 
 ## [Activation Functions](https://en.wikipedia.org/wiki/Activation_function)
 Functions that determine the output of a node from the summed, weighted,biased inputs. Different layers can have different activation functions.
@@ -55,9 +55,9 @@ There are a **LOT** of different activation functions - here are a few (see this
 - `tanh` - `Hyperbolic Tangent` - nonlinear, zero-centered, squashes the real number into a `(-1,1)` range, faster convergence than `sinusoid`
 - `sinusoid` - a periodic activation function. `sin` is usually used as any periodic function is decomposable into sinusoids by [Fourier transform](https://en.wikipedia.org/wiki/Fourier_transform). increasing-order derivatives never go to zero. Periodicity may make convergence difficult.
 
-![activation functions](../../../images/activation_functions.png)
+![activation functions](../../images/activation_functions.png)
 
 ### Derivatives
 Note that if you're using PINN's or something with autodifferentiation, any non-periodic activation functions will decrease in magnitude with each derivative
 
-![activation function derivatives](../../../images/activation_functions_sigmoid_derivatives.png)
+![activation function derivatives](../../images/activation_functions_sigmoid_derivatives.png)

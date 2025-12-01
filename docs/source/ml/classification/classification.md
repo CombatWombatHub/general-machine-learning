@@ -1,4 +1,4 @@
-# Notes
+# Classification
 
 ```{toctree}
 :glob:

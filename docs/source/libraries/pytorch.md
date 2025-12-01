@@ -1,5 +1,8 @@
-# Learning Pytorch
- 
+# PyTorch
+- These notes are older than most of this repo, created during the height of my original PINN project
+- Pytorch is more Pythonic than TensorFlow, so the learning curve is less steep
+- Tensorflow has more deployment support (though PyTorch is getting better) and works with larger datasets 
+
 ## Pytorch.org tutorials - Learning Pytorch with Examples
 - Henry Diaz linked to this along with some other bits and discussions in #ai-factory on Slack
     - I really wish I'd gone through this earlier (also wish I'd known to go through it earlier)
