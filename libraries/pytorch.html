@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Learning Pytorch &#8212; aiml-notes 1.0 documentation</title>
+    <title>PyTorch &#8212; aiml-notes 1.0 documentation</title>
   
   
   
@@ -51,8 +51,8 @@
     <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Sphinx Examples" href="../sphinx/sphinx.html" />
-    <link rel="prev" title="Libraries" href="libraries.html" />
+    <link rel="next" title="Scikit-Learn" href="scikit-learn.html" />
+    <link rel="prev" title="ML Libraries" href="libraries.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -166,73 +166,64 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    Goals and To-Dos
+                    AI/ML Notes
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">AI/ML:</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/correlation.html">Correlation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/math.html">Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/ops.html">DevOps and MLOps</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Categories:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ml/ml.html">Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ml/notes/dimensionality_reduction.html">Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml/notes/nns.html">Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml/notes/pinns.html">Physics-Informed Neural Networks (PINNs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml/notes/svm.html">Support Vector Machines (SVM)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ml/classification/classification.html">Classification</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ml/classification/intro_to_classification_datacamp/intro_to_classification.html">Intro to Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ml/classification/python_ml_mini_course_ml_mastery/python_ml_mini_course.html">Python ML Mini Course</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../nlp/nlp.html">Natural Language Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nlp/notes/tokenization.html">Tokenization</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../nlp/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster.html">Iterate Like a Grandmaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html">Getting Started with NLP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nlp/examples/text-classification-scikit-learn.html">Text Classification using scikit-learn in NLP</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../generative/generative.html">Generative AI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../generative/llms.html">Large Language Models (LLM’s)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../xai/xai.html">Explainable AI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../xai/shapley_xai_intro.html">Intro to SHAP</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Libraries:</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../categories/categories.html">Categories</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/ml/ml.html">Machine Learning (ML)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/ml/notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/dimensionality_reduction.html">Dimensionality Reduction</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/nns.html">Neural Networks</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/pinns.html">Physics-Informed Neural Networks (PINNs)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../categories/ml/notes/svm.html">Support Vector Machines (SVM)</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/ml/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../categories/ml/examples/intro_to_classification_datacamp/intro_to_classification.html">Intro to Classification</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../categories/ml/examples/python_ml_mini_course_ml_mastery/python_ml_mini_course.html">Python ML Mini Course</a></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/nlp/nlp.html">Natural Language Processing (NLP)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/nlp/notes/notes.html">Notes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/notes/tokenization.html">Tokenization</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../categories/nlp/examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster.html">Iterate Like a Grandmaster</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/nlp_beginners_guide/nlp_beginners_guide_noex.html">Getting Started with NLP</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../categories/nlp/examples/text-classification-scikit-learn.html">Text Classification using scikit-learn in NLP</a></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/xai/xai.html">Explainable AI (XAI)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../categories/xai/shapley_xai_intro.html">Intro to SHAP</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../categories/generative/generative.html">Generative AI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../categories/generative/llms.html">Large Language Models (LLM’s)</a></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../fundamentals/fundamentals.html">Fundamentals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../fundamentals/correlation.html">Correlation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fundamentals/math.html">Math</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fundamentals/metrics.html">Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../fundamentals/ops.html">DevOps and MLOps</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="libraries.html">Libraries</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Learning Pytorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libraries.html">ML Libraries</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyTorch</a></li>
 
 
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="scikit-learn.html">Scikit-Learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensorflow.html">TensorFlow</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sphinx:</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../sphinx/sphinx.html">Sphinx Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../sphinx/markdown.html">Markdown</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sphinx/notebook.html">Jupyter Notebook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sphinx/restructuredtext.html">reStructuredText</a></li>
-</ul>
-</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/markdown.html">Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/notebook.html">Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/restructuredtext.html">reStructuredText</a></li>
 </ul>
 
     </div>
@@ -386,7 +377,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Learning Pytorch</h1>
+    <h1>PyTorch</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -396,7 +387,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Learning Pytorch</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">PyTorch</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-org-tutorials-learning-pytorch-with-examples">Pytorch.org tutorials - Learning Pytorch with Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#without-pytorch-numpy-network">Without Pytorch: Numpy Network</a><ul class="visible nav section-nav flex-column">
@@ -439,8 +430,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="learning-pytorch">
-<h1>Learning Pytorch<a class="headerlink" href="#learning-pytorch" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pytorch">
+<h1>PyTorch<a class="headerlink" href="#pytorch" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>These notes are older than most of this repo, created during the height of my original PINN project</p></li>
+<li><p>Pytorch is more Pythonic than TensorFlow, so the learning curve is less steep</p></li>
+<li><p>Tensorflow has more deployment support (though PyTorch is getting better) and works with larger datasets</p></li>
+</ul>
 <section id="pytorch-org-tutorials-learning-pytorch-with-examples">
 <h2>Pytorch.org tutorials - Learning Pytorch with Examples<a class="headerlink" href="#pytorch-org-tutorials-learning-pytorch-with-examples" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -1637,15 +1633,15 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Libraries</p>
+        <p class="prev-next-title">ML Libraries</p>
       </div>
     </a>
     <a class="right-next"
-       href="../sphinx/sphinx.html"
+       href="scikit-learn.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Sphinx Examples</p>
+        <p class="prev-next-title">Scikit-Learn</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1665,7 +1661,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Learning Pytorch</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">PyTorch</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-org-tutorials-learning-pytorch-with-examples">Pytorch.org tutorials - Learning Pytorch with Examples</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#without-pytorch-numpy-network">Without Pytorch: Numpy Network</a><ul class="visible nav section-nav flex-column">

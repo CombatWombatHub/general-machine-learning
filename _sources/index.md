@@ -1,8 +1,17 @@
-# Goals and To-Dos
+# AI/ML Notes
+
+## Overview
+
+[**Artificial Intelligence (AI)**](https://www.geeksforgeeks.org/artificial-intelligence/what-is-artificial-intelligence-ai/) is a technology that enables machines and computers to perform tasks that typically require human intelligence. It contains multiple subdivisions.
+
+- **Machine Learning (ML)** learns from and makes decisions based on data, using algorithms to identify patterns.
+- **Generative AI** creates *new* content (text, images, etc) based on what it's learned instead of just *recognizing* it.
+- **Natural Language Processing (NLP)** understands and interacts with human languages in a way that feels natural.
+- [**Expert Systems**](https://www.geeksforgeeks.org/artificial-intelligence/expert-systems/) use predefined "if-then" rules programmed by human experts to make informed decisions.
 
 ## Goals
 - Consolidate all of my AI/ML notes in one location where they will be searchable and accessible to me from anyhwere
-- Gain a working understanding of a wide variety of AI/ML techniques, architectures, and concepts
+- Gain a working understanding of a wider variety of AI/ML techniques, architectures, and concepts
 - Build my AI Portfolio by using many types of AI
 
 ## To-Dos
@@ -23,22 +32,28 @@
 Some of the resources available to me to learn about/practice AI.
 
 ### [Machine Learning Mastery](https://machinelearningmastery.com/)
-Spenser strongly suggested this site
-- mentions [Building an AI Portfolio](https://machinelearningmastery.com/build-a-machine-learning-portfolio/)
-- suggests [7 LLM Projects to Boost Your Machine Learning Portfolio](https://machinelearningmastery.com/7-llm-projects-to-boost-your-machine-learning-portfolio/)
+- has an article on [Building an AI Portfolio](https://machinelearningmastery.com/build-a-machine-learning-portfolio/) - it doesn't suggest topics and more has best practices in what to look for in a portfolio project, but the advice does seem good. Most of it is already in action - don't spend more than 10-20 hours on a project, complete your projects, host publicly on GitHub or similar to show off...
+- For LLM's specifically, the article [7 LLM Projects to Boost Your Machine Learning Portfolio](https://machinelearningmastery.com/7-llm-projects-to-boost-your-machine-learning-portfolio/) lists 7 project ideas such as "Text-to-SQL Query Generator". Some even have links to sample walkthroughs like [End-To-End Text-To-SQL LLM App](https://www.youtube.com/watch?v=wFdFLWc-W4k)
 - has guides like [4 Types of Classification Tasks in Machine Learning](https://machinelearningmastery.com/types-of-classification-in-machine-learning/). Usually the guides very briefly discuss the theory and some network options, then show a code block and a graphic. I don't learn as well if I'm just copying and pasting, so I'll need to figure out how to transform the information in order to learn the concepts well
 
 ### [Kaggle](https://www.kaggle.com/) 
 - Widely known for hosting public coding competitions and datasets, they have a lot of potential in guiding growth and getting real practice
-- [Learn](https://www.kaggle.com/learn) section with courses like these. The tutorials don't rely on videos, and the Exercises launch Jupyter notebook environments which you appear to be able to use without an account, and let you download the data sets. [Intro to Machine Learning](https://www.kaggle.com/learn/intro-to-machine-learning), [Intermediate Machine Learning](https://www.kaggle.com/learn/intermediate-machine-learning), [Feature Engineering](https://www.kaggle.com/learn/feature-engineering), [Intro to Deep Learning](https://www.kaggle.com/learn/intro-to-deep-learning), [Natural Language Processing Guide](https://www.kaggle.com/learn-guide/natural-language-processing). 
+- [Learn](https://www.kaggle.com/learn) section with courses like these. The tutorials don't rely on videos, and the Exercises launch Jupyter notebook environments which you appear to be able to use without an account, and let you download the data sets. For example: 
+    - [Intro to Machine Learning](https://www.kaggle.com/learn/intro-to-machine-learning)
+    - [Intermediate Machine Learning](https://www.kaggle.com/learn/intermediate-machine-learning)
+    - [Feature Engineering](https://www.kaggle.com/learn/feature-engineering)
+    - [Intro to Deep Learning](https://www.kaggle.com/learn/intro-to-deep-learning)
+    - [Natural Language Processing Guide](https://www.kaggle.com/learn-guide/natural-language-processing). 
 - [Competitions](https://www.kaggle.com/competitions) also exists, and may be the optimal way for me to learn - hand me dataset and a challenge and force the actual decision-making process. Might be best to start on the [Getting Started](https://www.kaggle.com/competitions?hostSegmentIdFilter=5) or [Playground](https://www.kaggle.com/competitions?hostSegmentIdFilter=8) **Competitions**. You need to accept the rules for a competition before downloading the dataset, though you don't have to join it. Their [Getting started with NLP for absolute beginners](https://www.kaggle.com/code/jhoward/getting-started-with-nlp-for-absolute-beginners) walks you through each step of that process.
 - [API](https://github.com/Kaggle/kaggle-api) can be pip-installed in order to programatically download/upload **Datasets**, interface with **Competitions**/**Kernels**/**Models**, etc. (see [Documentation](https://github.com/Kaggle/kaggle-api/blob/main/docs/README.md))
 
-### [3Blue1Brown](https://www.3blue1brown.com/)
+### [3Blue1Brown](https://www.3blue1brown.com/) 
+- it's both a Site and a YouTube Channel
 - Has a [YouTube Channel](https://www.youtube.com/c/3blue1brown) where he goes over a lot of complex topics, using advanced visuals to visualize advanced math.
 - Created the [manim](https://github.com/3b1b/manim) Python Library to programmatically animate math (documentation [here](https://3b1b.github.io/manim/)).
 
-### Emergent Garden
+### [Emergent Garden](https://www.youtube.com/@EmergentGarden)
+- YouTube Channel with some good illustrations of what's happening behind the scenes
 - [Watching Neural Networks Learn (Emergent Garden)](https://www.youtube.com/watch?v=TkwXa7Cvfr8&t=1105s)
 - [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/chap1.html) 
     - (“book” site recommended by Emergent Garden)
@@ -46,7 +61,8 @@ Spenser strongly suggested this site
     - can download the examples or use `git clone https://github.com/mnielsen/neural-networks-and-deep-learning.git`
 
 ### [GeeksForGeeks](https://www.geeksforgeeks.org/artificial-intelligence/what-is-artificial-intelligence-ai/) 
-Has a bunch of articles with and without code examples. I've linked a ton of them throughout my notes already.
+- Has a bunch of articles (with and without code examples)
+- Not linking any special ones here as there are already links to this site all throughout my notes.
 
 ### [Scikit-Learn Docs](https://scikit-learn.org/1.7/index.html)
 - scikit-learn.org seems more focused on teaching AI/ML concepts than being a framework for powerful custom deployed ML methods. 
@@ -64,16 +80,34 @@ These sites have some useful functionality not directly related to AI/ML
 - [learn git branching](https://learngitbranching.js.org) - git branching
 - [regexr.com](https://regexr.com) - Regex live checking
 
-```{toctree}
-:caption: AI/ML:
+## Site Contents:
 
-categories/categories
-fundamentals/fundamentals
-libraries/libraries
+```{toctree}
+:caption: Fundamentals:
+:glob:
+
+fundamentals/**
+```
+
+```{toctree}
+:caption: Categories:
+
+ml/ml.md
+nlp/nlp.md
+generative/generative.md
+xai/xai.md
+```
+
+```{toctree}
+:caption: Libraries:
+:glob:
+
+libraries/**
 ```
 
 ```{toctree}
 :caption: Sphinx:
+:glob:
 
-sphinx/sphinx
+sphinx/**
 ```

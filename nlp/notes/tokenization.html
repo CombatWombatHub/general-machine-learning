@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tokenization &#8212; aiml-notes 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a1a7cee5" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=a681ed88"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nlp/notes/tokenization';</script>
+    <script src="../../_static/custom.js?v=613d9f17"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Examples" href="../examples/examples.html" />
+    <link rel="prev" title="Natural Language Processing" href="../nlp.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.jpg" class="logo__image only-light" alt="aiml-notes 1.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/logo.jpg" class="logo__image only-dark" alt="aiml-notes 1.0 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    AI/ML Notes
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../fundamentals/correlation.html">Correlation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fundamentals/math.html">Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fundamentals/metrics.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fundamentals/ops.html">DevOps and MLOps</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Categories:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ml/ml.html">Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ml/notes/dimensionality_reduction.html">Dimensionality Reduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ml/notes/nns.html">Neural Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ml/notes/pinns.html">Physics-Informed Neural Networks (PINNs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ml/notes/svm.html">Support Vector Machines (SVM)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ml/classification/classification.html">Classification</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ml/classification/intro_to_classification_datacamp/intro_to_classification.html">Intro to Classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ml/classification/python_ml_mini_course_ml_mastery/python_ml_mini_course.html">Python ML Mini Course</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../nlp.html">Natural Language Processing</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tokenization</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../examples/examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster.html">Iterate Like a Grandmaster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/nlp_beginners_guide/nlp_beginners_guide_noex.html">Getting Started with NLP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/text-classification-scikit-learn.html">Text Classification using scikit-learn in NLP</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../generative/generative.html">Generative AI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../generative/llms.html">Large Language Models (LLM’s)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../xai/xai.html">Explainable AI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../xai/shapley_xai_intro.html">Intro to SHAP</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Libraries:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../libraries/libraries.html">ML Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libraries/pytorch.html">PyTorch</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../libraries/scikit-learn.html">Scikit-Learn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../libraries/tensorflow.html">TensorFlow</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sphinx:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx/markdown.html">Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx/notebook.html">Jupyter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sphinx/restructuredtext.html">reStructuredText</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/CombatWombatHub/aiml-notes" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/nlp/notes/tokenization.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tokenization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency-matrix">TF-IDF (Term Frequency - Inverse Document Frequency) Matrix</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equations">Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-tf-idf-of-cat">Example - TF-IDF of “cat”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-scikit-learn">Example - Scikit-Learn</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-matrix">TF-IDF Matrix</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tokenization">
+<h1>Tokenization<a class="headerlink" href="#tokenization" title="Link to this heading">#</a></h1>
+<p>Tokenization is breaking strings into chunks (tokens). They’re often words, but sometimes not - you  might include the period after a word to capture the fact that that word means something different because it comes at the end of a sentence, or you might grab the <code class="docutils literal notranslate"><span class="pre">ing</span></code> from the end of a word indicating it’s an ongoing action.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Tokenization is not limited to NLP (non-NLP classification of text documents also requires tokenization), but I’m putting it under the NLP heading because that’s where Im more likely to look for it.</p>
+</div>
+<section id="tf-idf-term-frequency-inverse-document-frequency-matrix">
+<span id="tf-idf"></span><h2>TF-IDF (Term Frequency - Inverse Document Frequency) Matrix<a class="headerlink" href="#tf-idf-term-frequency-inverse-document-frequency-matrix" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>TF-IDF</strong> is a weighted measure of how important a word is to a document in a collection. It can be used to make a matrix.</p></li>
+<li><p><strong>TF (Term Frequency)</strong> - how often a specific word appears in a single document, filtering out words that are probably just one-offs or from a bibliography or something</p></li>
+<li><p><strong>IDF (Inverse Document Frequency)</strong> - how exclusive a word is to a single document (words that appear a lot in all documents will have a low <strong>IDF</strong>, filtering out common words like <code class="docutils literal notranslate"><span class="pre">&quot;the&quot;</span></code>)</p></li>
+<li><p>so basically a word that appears many times in the current document (high <strong>TF</strong>) but doesn’t appear much in <em>most</em> of the <em>other</em> documents (high <strong>IDF</strong>) will have a really high <strong>TF-IDF</strong> score</p>
+<ul>
+<li><p>each unique word in the document could be assigned a <strong>TF-IDF</strong> value,</p></li>
+<li><p>you can a matrix out of all the <strong>TF-IDF</strong>’s for each document</p></li>
+<li><p>then you could cluster from the matrix with K-Means or something</p></li>
+<li><p>you’d assume that documents with similar high-<strong>TF-IDF</strong> words are on similar topics</p></li>
+</ul>
+</li>
+</ul>
+<section id="equations">
+<h3>Equations<a class="headerlink" href="#equations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(TF\text{-}IDF\)</span> (<a class="reference external" href="https://www.geeksforgeeks.org/machine-learning/understanding-tf-idf-term-frequency-inverse-document-frequency/">Term Frequency - Inverse Document Frequency</a>)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(TF\text{-}IDF(t,d,D) = TF \times IDF\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(TF\)</span> (Term Frequency)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(TF(t,d) = \Large\frac{\text{number of times term } t \text{ appears in document }d}{\text{total number of terms in document }d}\)</span></p></li>
+</ul>
+</li>
+<li><p><span class="math notranslate nohighlight">\(IDF\)</span> (Inverse Document Frequency)</p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(IDF(t,D) = \log\Large(\frac{\text{total number of documents in corpus } D}{\text{number of documents containing term }t})\)</span></p></li>
+</ul>
+</li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>factor</p></th>
+<th class="head"><p>interpretation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>high <span class="math notranslate nohighlight">\(TF\)</span></p></td>
+<td><p>term appears frequently in document <span class="math notranslate nohighlight">\(d\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>high <span class="math notranslate nohighlight">\(IDF\)</span></p></td>
+<td><p>term appears in fewer of documents <span class="math notranslate nohighlight">\(D\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>high <span class="math notranslate nohighlight">\(TF\text{-}IDF\)</span></p></td>
+<td><p>term <span class="math notranslate nohighlight">\(t\)</span> is frequently used in and unique to document <span class="math notranslate nohighlight">\(d\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="example-tf-idf-of-cat">
+<h3>Example - TF-IDF of “cat”<a class="headerlink" href="#example-tf-idf-of-cat" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>“documents” <span class="math notranslate nohighlight">\(D\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(TF(t,d)\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(IDF(t,D)\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(TF\text{-}IDF(t,d,D)\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>doc <span class="math notranslate nohighlight">\(a=\)</span> <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">cat</span> <span class="pre">sat</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">mat.</span>&#160;&#160;&#160;&#160;&#160;&#160; </code></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/6\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\log(3/2)\approx 0.176\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/6\times 0.176 \approx 0.029\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>doc <span class="math notranslate nohighlight">\(b=\)</span> <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">dog</span> <span class="pre">played</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">ok</span> <span class="pre">park.</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(0/7\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\log(3/2)\approx 0.176\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0/6\times 0.176 = 0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>doc <span class="math notranslate nohighlight">\(c=\)</span> <code class="docutils literal notranslate"><span class="pre">Cats</span> <span class="pre">and</span> <span class="pre">dogs</span> <span class="pre">are</span> <span class="pre">great</span> <span class="pre">pets.</span> </code></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/6\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\log(3/2)\approx 0.176\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/6\times 0.176 \approx 0.029\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="example-scikit-learn">
+<h3>Example - Scikit-Learn<a class="headerlink" href="#example-scikit-learn" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">TfidfVectorizer.fit_transform()</span></code> to calculate the TF-IDF’s</p></li>
+<li><p>use very short “documents” to keep the table small since there’s one TF-IDF per <span class="math notranslate nohighlight">\(\text{number of terms}\times\text{number of documents}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_extraction.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="c1"># create three super-short &quot;documents&quot;</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;d0&quot;</span><span class="p">:</span> <span class="s2">&quot;Geeks for geeks&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;d1&quot;</span><span class="p">:</span> <span class="s2">&quot;Geeks&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;d2&quot;</span><span class="p">:</span> <span class="s2">&quot;Sweet peas&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="c1"># apply the TF-IDF vectorizer to the &quot;documents&quot;</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">sparse_tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">docs</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a table with term indices and IDF&#39;s</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tabulate</span><span class="w"> </span><span class="kn">import</span> <span class="n">tabulate</span>
+<span class="c1"># extract data</span>
+<span class="n">terms</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span> <span class="c1"># each term is a feature name</span>
+<span class="n">idfs</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">idf_</span> <span class="c1"># IDF values are in a list (each term has one IDF value)</span>
+<span class="n">vocab</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">vocabulary_</span> <span class="c1"># each term gets an index, those are recorded in the vocab dictionary</span>
+<span class="n">dense_matrix</span> <span class="o">=</span> <span class="n">sparse_tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span> <span class="c1"># can convert to a dense matrix (takes up much more space)</span>
+<span class="c1"># combine the term indexes and IDF&#39;s into a printable table</span>
+<span class="n">indx_idfs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;term&quot;</span><span class="p">:</span> <span class="n">term</span><span class="p">,</span> <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">vocab</span><span class="p">[</span><span class="n">term</span><span class="p">],</span> <span class="s2">&quot;idf&quot;</span><span class="p">:</span> <span class="n">idf</span><span class="p">}</span> <span class="k">for</span> <span class="n">term</span><span class="p">,</span> <span class="n">idf</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">terms</span><span class="p">,</span> <span class="n">idfs</span><span class="p">)]</span>
+<span class="n">idf_table</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">indx_idfs</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;keys&quot;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;simple&quot;</span><span class="p">)</span>
+<span class="c1"># convert the default sparse matrix to a dense matrix and label the rows/columns</span>
+<span class="n">dense_table</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">dense_matrix</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">terms</span><span class="p">,</span> <span class="n">showindex</span><span class="o">=</span><span class="n">docs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># Print out the IDF&#39;s and TF-IDF&#39;s</span>
+<span class="n">spcr</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">------------------------------------------------------</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">documents:</span><span class="se">\n</span><span class="si">{</span><span class="n">docs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">term indexes and IDF&#39;s:</span><span class="se">\n</span><span class="si">{</span><span class="n">idf_table</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TF-IDF dense  matrix:</span><span class="se">\n</span><span class="si">{</span><span class="n">dense_table</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">TF-IDF sparse matrix:</span><span class="se">\n</span><span class="si">{</span><span class="n">sparse_tfidf_matrix</span><span class="si">}</span><span class="se">\n</span><span class="s2">Coords = (doc index, term index),  Values = TF-IDFs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>documents:
+{&#39;d0&#39;: &#39;Geeks for geeks&#39;, &#39;d1&#39;: &#39;Geeks&#39;, &#39;d2&#39;: &#39;Sweet peas&#39;}
+
+term indexes and IDF&#39;s:
+term      index      idf
+------  -------  -------
+for           0  1.69315
+geeks         1  1.28768
+peas          2  1.69315
+sweet         3  1.69315
+
+TF-IDF dense  matrix:
+         for     geeks      peas     sweet
+--  --------  --------  --------  --------
+d0  0.549351  0.835592  0         0
+d1  0         1         0         0
+d2  0         0         0.707107  0.707107
+
+TF-IDF sparse matrix:
+&lt;Compressed Sparse Row sparse matrix of dtype &#39;float64&#39;
+	with 5 stored elements and shape (3, 4)&gt;
+  Coords	Values
+  (0, 1)	0.8355915419449176
+  (0, 0)	0.5493512310263033
+  (1, 1)	1.0
+  (2, 3)	0.7071067811865476
+  (2, 2)	0.7071067811865476
+Coords = (doc index, term index),  Values = TF-IDFs
+</pre></div>
+</div>
+</div>
+</div>
+<section id="tf-idf-matrix">
+<h4>TF-IDF Matrix<a class="headerlink" href="#tf-idf-matrix" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dense</span> <span class="pre">matrix</span></code> lists TF-IDF for every combination of term and document</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sparse</span> <span class="pre">matrix</span></code> only lists cells with nonzero TF-IDF’s by coordinate (saves a lot of space/memory)</p></li>
+<li><p>most cells of <code class="docutils literal notranslate"><span class="pre">dense</span> <span class="pre">matrix</span></code> have <code class="docutils literal notranslate"><span class="pre">0</span></code>’s, i.e. where <code class="docutils literal notranslate"><span class="pre">TF-IDF</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code> because that term isn’t in that document</p></li>
+<li><p>can turn the above matrix into this table:</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Doc</p></th>
+<th class="head"><p>Term</p></th>
+<th class="head"><p>Coords</p></th>
+<th class="head"><p>tf-idf value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>d0</p></td>
+<td><p>for</p></td>
+<td><p>(0 , 0)</p></td>
+<td><p>0.549</p></td>
+</tr>
+<tr class="row-odd"><td><p>d0</p></td>
+<td><p>geeks</p></td>
+<td><p>(0 , 1)</p></td>
+<td><p>0.835</p></td>
+</tr>
+<tr class="row-even"><td><p>d1</p></td>
+<td><p>geeks</p></td>
+<td><p>(1 , 1)</p></td>
+<td><p>1.000</p></td>
+</tr>
+<tr class="row-odd"><td><p>d2</p></td>
+<td><p>peas</p></td>
+<td><p>(2 , 2)</p></td>
+<td><p>0.707</p></td>
+</tr>
+<tr class="row-even"><td><p>d2</p></td>
+<td><p>sweet</p></td>
+<td><p>(2 , 3)</p></td>
+<td><p>0.707</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>So now the documents are vectorized. We’ve turned documents (lists of strings) into vectors of numbers.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../nlp.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Natural Language Processing</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../examples/examples.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Examples</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency-matrix">TF-IDF (Term Frequency - Inverse Document Frequency) Matrix</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equations">Equations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-tf-idf-of-cat">Example - TF-IDF of “cat”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-scikit-learn">Example - Scikit-Learn</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-matrix">TF-IDF Matrix</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthew T Gill
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

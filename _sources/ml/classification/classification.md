@@ -1,0 +1,7 @@
+# Classification
+
+```{toctree}
+:glob:
+
+./**
+```
