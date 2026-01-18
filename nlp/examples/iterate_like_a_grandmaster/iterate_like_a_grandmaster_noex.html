@@ -44,7 +44,7 @@
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster_noex';</script>
     <script src="../../../_static/custom.js?v=613d9f17"></script>
     <link rel="icon" href="../../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -291,7 +291,7 @@
       
       
       
-      <li><a href="../../../_sources/nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster.ipynb" target="_blank"
+      <li><a href="../../../_sources/nlp/examples/iterate_like_a_grandmaster/iterate_like_a_grandmaster_noex.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -391,9 +391,56 @@ document.write(`
 <span id="kaggle-iterate-like-a-grandmaster"></span><h1>Iterate Like a Grandmaster<a class="headerlink" href="#iterate-like-a-grandmaster" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>based on the Kaggle notebook <a class="reference external" href="https://www.kaggle.com/code/jhoward/iterate-like-a-grandmaster/">Iterate like a grandmaster!</a></p></li>
-<li><p>should show how to tackle a Kaggle competition like the <a class="reference external" href="https://www.kaggle.com/competitions/us-patent-phrase-to-phrase-matching/">U.S. Patent Phrase to Phrase Matching competition</a></p></li>
-<li><p>I explored that in competition in the notebook: <a class="reference internal" href="../nlp_beginners_guide/nlp_beginners_guide_noex.html#kaggle-getting-started-with-nlp"><span class="std std-ref">Getting Started with NLP</span></a></p></li>
+<li><p>the goal is to give a taste of <em>how</em> a competitor might tackle tackle the <a class="reference external" href="https://www.kaggle.com/competitions/us-patent-phrase-to-phrase-matching/">U.S. Patent Phrase to Phrase Matching competition</a>, which I explored in the notebook <a class="reference internal" href="../nlp_beginners_guide/nlp_beginners_guide_noex.html#kaggle-getting-started-with-nlp"><span class="std std-ref">Getting Started with NLP</span></a></p></li>
+<li><p>the focus of this notebook is twofold:</p>
+<ol class="arabic simple">
+<li><p>how to create an effective validation set</p></li>
+<li><p>how to iterate rapidly to find changes which will improve results on the validation set</p></li>
+</ol>
+</li>
+<li><p>we’ll be using plain HuggingFace Transformers and using as little code as possible (more code = more maintenance &amp; more chance for mistakes)</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic imports</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastai.imports</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># download and unzip the dataset to this folder if not already downloaded</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;us-patent-phrase-to-phrase-matching&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">data_dir</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+    <span class="c1"># import kaggle api to allow downloading dataset, zipfile to unzip</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">kaggle</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+    <span class="c1"># download the dataset from Kaggle as zip file</span>
+    <span class="n">kaggle</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">competition_download_cli</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data_dir</span><span class="p">))</span>
+    <span class="n">zip_path</span> <span class="o">=</span> <span class="n">data_dir</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s2">&quot;.zip&quot;</span><span class="p">)</span>  <span class="c1"># path to the downloaded zip file</span>
+    <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_path</span><span class="p">)</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>  <span class="c1"># unzip the file</span>
+    <span class="n">zip_path</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>  <span class="c1"># delete the zip file after unzipping</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading us-patent-phrase-to-phrase-matching.zip to c:\Users\gillm\VisualStudioCode\aiml-notes\docs\source\nlp\examples\iterate_like_a_grandmaster
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 682k/682k [00:00&lt;00:00, 228MB/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
 
@@ -451,7 +498,7 @@ By Matthew T Gill
 
   <p class="copyright">
     
-      © Copyright 2025.
+      © Copyright 2026.
       <br/>
     
   </p>
