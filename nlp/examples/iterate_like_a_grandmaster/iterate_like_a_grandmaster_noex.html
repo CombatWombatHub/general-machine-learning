@@ -362,7 +362,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -378,6 +380,47 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-and-review-data">Download and Review Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-targets">Look at Targets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-anchors">Look at Anchors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-contexts">Look at Contexts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-scores">Look at Scores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-model">Choose Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-tokenizer">Get Tokenizer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-dataframe-to-dataset">Convert DataFrame to Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-tokenizer-function">Create Tokenizer Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenize-inputs-column">Tokenize inputs column</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-validation-set">Creating a Validation Set</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shuffle-the-unique-anchors">Shuffle the Unique Anchors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hold-back-1-4-unique-anchors-1-3-rows">Hold back 1/4 unique anchors ~1/3 rows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-train-test-datasetdict">Create train/test DatasetDict</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-model-training">Initial Model Training</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-trainingarguments">Create TrainingArguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train">Train!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-the-model">Improving the Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-functions-for-rapid-iteration">Create Functions for Rapid Iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-a-different-separator">Try a different Separator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patent-section-tokens">Patent Section Tokens</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-other-ideas">Some Other Ideas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross Validation</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -400,12 +443,17 @@ document.write(`
 </li>
 <li><p>we’ll be using plain HuggingFace Transformers and using as little code as possible (more code = more maintenance &amp; more chance for mistakes)</p></li>
 </ul>
+<section id="download-and-review-data">
+<h2>Download and Review Data<a class="headerlink" href="#download-and-review-data" title="Link to this heading">#</a></h2>
+<p>Download the training and evaluation datasets if not already done.<br />
+Start by importing stuff required for data download and review.<br />
+We will use <code class="docutils literal notranslate"><span class="pre">fastai</span></code> which includes many required libraries for AI/ML (<code class="docutils literal notranslate"><span class="pre">pd</span></code>, <code class="docutils literal notranslate"><span class="pre">np</span></code>, …).<br />
+The example notebook just used from fastai.imports import *, but that feels icky.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># basic imports</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports required for download/review data</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">fastai.imports</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastai.imports</span><span class="w"> </span><span class="kn">import</span> <span class="n">np</span><span class="p">,</span> <span class="n">pd</span>
 </pre></div>
 </div>
 </div>
@@ -426,21 +474,1449 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># look at training dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">/</span> <span class="s1">&#39;train.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading us-patent-phrase-to-phrase-matching.zip to c:\Users\gillm\VisualStudioCode\aiml-notes\docs\source\nlp\examples\iterate_like_a_grandmaster
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>anchor</th>
+      <th>target</th>
+      <th>context</th>
+      <th>score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>37d61fd2272659b1</td>
+      <td>abatement</td>
+      <td>abatement of pollution</td>
+      <td>A47</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>7b9652b17b68b7a4</td>
+      <td>abatement</td>
+      <td>act of abating</td>
+      <td>A47</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>36d72442aefd8232</td>
+      <td>abatement</td>
+      <td>active catalyst</td>
+      <td>A47</td>
+      <td>0.25</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5296b0c19e1ce60e</td>
+      <td>abatement</td>
+      <td>eliminating process</td>
+      <td>A47</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>54c1e3b9184cb5b6</td>
+      <td>abatement</td>
+      <td>forest region</td>
+      <td>A47</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>36468</th>
+      <td>8e1386cbefd7f245</td>
+      <td>wood article</td>
+      <td>wooden article</td>
+      <td>B44</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>36469</th>
+      <td>42d9e032d1cd3242</td>
+      <td>wood article</td>
+      <td>wooden box</td>
+      <td>B44</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>36470</th>
+      <td>208654ccb9e14fa3</td>
+      <td>wood article</td>
+      <td>wooden handle</td>
+      <td>B44</td>
+      <td>0.50</td>
+    </tr>
+    <tr>
+      <th>36471</th>
+      <td>756ec035e694722b</td>
+      <td>wood article</td>
+      <td>wooden material</td>
+      <td>B44</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>36472</th>
+      <td>8d135da0b55b8c88</td>
+      <td>wood article</td>
+      <td>wooden substrate</td>
+      <td>B44</td>
+      <td>0.50</td>
+    </tr>
+  </tbody>
+</table>
+<p>36473 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># look at test set - 35 entries (why is there not a score column?)</span>
+<span class="n">eval_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">/</span> <span class="s1">&#39;test.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;entries in the test set: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">eval_df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">eval_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 682k/682k [00:00&lt;00:00, 228MB/s]
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>entries in the test set: 36
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>anchor</th>
+      <th>target</th>
+      <th>context</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4112d61851461f60</td>
+      <td>opc drum</td>
+      <td>inorganic photoconductor drum</td>
+      <td>G02</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>09e418c93a776564</td>
+      <td>adjust gas flow</td>
+      <td>altering gas flow</td>
+      <td>F23</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>36baf228038e314b</td>
+      <td>lower trunnion</td>
+      <td>lower locating</td>
+      <td>B60</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1f37ead645e7f0c8</td>
+      <td>cap component</td>
+      <td>upper portion</td>
+      <td>D06</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>71a5b6ad068d531f</td>
+      <td>neural stimulation</td>
+      <td>artificial neural network</td>
+      <td>H04</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="look-at-targets">
+<h3>Look at Targets<a class="headerlink" href="#look-at-targets" title="Link to this heading">#</a></h3>
+<p>Looking at the distribution of values in the <code class="docutils literal notranslate"><span class="pre">target</span></code> column, there are <code class="docutils literal notranslate"><span class="pre">29,340</span></code> unique targets.
+With <code class="docutils literal notranslate"><span class="pre">36,473</span></code> entries, they’re <em>mostly</em> unique.
+General phrases like <code class="docutils literal notranslate"><span class="pre">composition</span></code> are more common than stuff like <code class="docutils literal notranslate"><span class="pre">embossing</span> <span class="pre">device</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>target
+composition                    24
+metal                          22
+motor                          22
+data                           22
+assembly                       21
+                               ..
+cylindrical carving machine     1
+embossing device                1
+lumber article                  1
+plywood article                 1
+timber article                  1
+Name: count, Length: 29340, dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="look-at-anchors">
+<h3>Look at Anchors<a class="headerlink" href="#look-at-anchors" title="Link to this heading">#</a></h3>
+<p>There are far fewer <code class="docutils literal notranslate"><span class="pre">anchors</span></code> than <code class="docutils literal notranslate"><span class="pre">targets</span></code> (<code class="docutils literal notranslate"><span class="pre">733</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">anchor</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>anchor
+component composite coating              152
+sheet supply roller                      150
+source voltage                           140
+perfluoroalkyl group                     136
+el display                               135
+                                        ... 
+shannon                                    2
+plug nozzle                                2
+dry coating composition1                   2
+conduct conducting material                1
+peripheral nervous system stimulation      1
+Name: count, Length: 733, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="look-at-contexts">
+<h3>Look at Contexts<a class="headerlink" href="#look-at-contexts" title="Link to this heading">#</a></h3>
+<p>Even fewer unique <code class="docutils literal notranslate"><span class="pre">context</span></code> entries - <code class="docutils literal notranslate"><span class="pre">106</span></code>.<br />
+They’re short codes indicating stuff about the patent.<br />
+<a class="reference external" href="https://www.uspto.gov/web/patents/classification/cpc/html/cpc-A47C.html">A47C</a> = <code class="docutils literal notranslate"><span class="pre">A</span></code>(<code class="docutils literal notranslate"><span class="pre">Human</span> <span class="pre">Necessities</span></code>), <code class="docutils literal notranslate"><span class="pre">47</span></code>(<code class="docutils literal notranslate"><span class="pre">Furniture</span></code>), <code class="docutils literal notranslate"><span class="pre">C</span></code>(<code class="docutils literal notranslate"><span class="pre">chairs;sofas;beds</span></code>)<br />
+Looks like these just use the first letter and number.<br />
+<code class="docutils literal notranslate"><span class="pre">H01</span></code> = <code class="docutils literal notranslate"><span class="pre">H</span></code> (<code class="docutils literal notranslate"><span class="pre">Electricity</span></code>), <code class="docutils literal notranslate"><span class="pre">01</span></code> (<code class="docutils literal notranslate"><span class="pre">Electric</span> <span class="pre">Elements</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>context
+H01    2186
+H04    2177
+G01    1812
+A61    1477
+F16    1091
+       ... 
+B03      47
+F17      33
+B31      24
+A62      23
+F26      18
+Name: count, Length: 106, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">context</span></code> is a series of short codes, the first character indicating the section the patent was filed under.<br />
+Make a column of just that part of the context and check the distribution.<br />
+Most common section is <a class="reference external" href="https://www.uspto.gov/web/patents/classification/cpc/html/cpc-B.html#B">B</a> (<code class="docutils literal notranslate"><span class="pre">Performing</span> <span class="pre">Operations;</span> <span class="pre">Transporting</span></code>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;section&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">section</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>section
+B    8019
+H    6195
+G    6013
+C    5288
+A    4094
+F    4054
+E    1531
+D    1279
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="look-at-scores">
+<h3>Look at Scores<a class="headerlink" href="#look-at-scores" title="Link to this heading">#</a></h3>
+<p>Look at the distribution of <code class="docutils literal notranslate"><span class="pre">scores</span></code> next.<br />
+These range from <code class="docutils literal notranslate"><span class="pre">0</span></code> (no similarity) to <code class="docutils literal notranslate"><span class="pre">1</span></code> (identical meaning).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span> <span class="c1"># the ; makes the Jupyter output shorter</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/697a13f19a53195aeecd8e8de575e933482144442a4cb843c9821905df4e85e8.png" src="../../../_images/697a13f19a53195aeecd8e8de575e933482144442a4cb843c9821905df4e85e8.png" />
+</div>
+</div>
+<p>A small number are scored <code class="docutils literal notranslate"><span class="pre">1.0</span></code> (identical meanings) - look at those.
+They’re just minor rewordings of each other - <code class="docutils literal notranslate"><span class="pre">wood</span></code>=<code class="docutils literal notranslate"><span class="pre">wooden</span></code> and the like.<br />
+Pretrained models should find that kind of stuff already.<br />
+We’re more interested in getting them to find similarities that a normal model would miss.<br />
+Similarities that are due to other patent details like the <code class="docutils literal notranslate"><span class="pre">context</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">score</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>anchor</th>
+      <th>target</th>
+      <th>context</th>
+      <th>score</th>
+      <th>section</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>28</th>
+      <td>473137168ebf7484</td>
+      <td>abatement</td>
+      <td>abating</td>
+      <td>F24</td>
+      <td>1.0</td>
+      <td>F</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>621b048d70aa8867</td>
+      <td>absorbent properties</td>
+      <td>absorbent characteristics</td>
+      <td>D01</td>
+      <td>1.0</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>bc20a1c961cb073a</td>
+      <td>absorbent properties</td>
+      <td>absorption properties</td>
+      <td>D01</td>
+      <td>1.0</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <th>311</th>
+      <td>e955700dffd68624</td>
+      <td>acid absorption</td>
+      <td>absorption of acid</td>
+      <td>B08</td>
+      <td>1.0</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>315</th>
+      <td>3a09aba546aac675</td>
+      <td>acid absorption</td>
+      <td>acid absorption</td>
+      <td>B08</td>
+      <td>1.0</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>36398</th>
+      <td>913141526432f1d6</td>
+      <td>wiring trough</td>
+      <td>wiring troughs</td>
+      <td>F16</td>
+      <td>1.0</td>
+      <td>F</td>
+    </tr>
+    <tr>
+      <th>36435</th>
+      <td>ee0746f2a8ecef97</td>
+      <td>wood article</td>
+      <td>wood articles</td>
+      <td>B05</td>
+      <td>1.0</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>36440</th>
+      <td>ecaf479135cf0dfd</td>
+      <td>wood article</td>
+      <td>wooden article</td>
+      <td>B05</td>
+      <td>1.0</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>36464</th>
+      <td>8ceaa2b5c2d56250</td>
+      <td>wood article</td>
+      <td>wood article</td>
+      <td>B44</td>
+      <td>1.0</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <th>36468</th>
+      <td>8e1386cbefd7f245</td>
+      <td>wood article</td>
+      <td>wooden article</td>
+      <td>B44</td>
+      <td>1.0</td>
+      <td>B</td>
+    </tr>
+  </tbody>
+</table>
+<p>1154 rows × 6 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="training">
+<h2>Training<a class="headerlink" href="#training" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check if PyTorch can use GPU</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PyTorch version: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="se">\n</span><span class="s2">CUDA available: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using device: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_name</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PyTorch version: 2.9.1+cu130
+CUDA available: True
+Using device: NVIDIA GeForce RTX 4070 Laptop GPU
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reduce excessive warnings from Huggingface&#39;s Transformers before importing them</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import packages required for training</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">TrainingArguments</span><span class="p">,</span> <span class="n">Trainer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForSequenceClassification</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DatasetDict</span> <span class="c1">#, load_dataset</span>
+<span class="c1">#import transformers, logging, torch, datasets</span>
+<span class="c1">#from torch.utils.data import DataLoader</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="choose-model">
+<h3>Choose Model<a class="headerlink" href="#choose-model" title="Link to this heading">#</a></h3>
+<p>He tried to find a model that could be trained reasonably on personal hardware in a few minutes, but with reasonable accuracy, and found that <code class="docutils literal notranslate"><span class="pre">deberta-v3-small</span></code> worked.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the name of the chosen model</span>
+<span class="n">model_nm</span> <span class="o">=</span> <span class="s1">&#39;microsoft/deberta-v3-small&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="get-tokenizer">
+<h3>Get Tokenizer<a class="headerlink" href="#get-tokenizer" title="Link to this heading">#</a></h3>
+<p>Pretrained models assume a particular tokenization, so get the tokenizer particular to the pretrained model.<br />
+The Hugging Face Transformer library includes AutoTokenizer, which can load in model-specific tokenizers if you know the model’s name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokz</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_nm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll need a single column to use as an input, and we need the individual tokens to be saparated.
+Use the separator token specific to the model’s tokenizer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># grab the separator and combine the context, anchor, and target columns into a input column</span>
+<span class="n">sep</span> <span class="o">=</span> <span class="n">tokz</span><span class="o">.</span><span class="n">sep_token</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;separator token:&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;inputs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">context</span> <span class="o">+</span> <span class="n">sep</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">anchor</span> <span class="o">+</span> <span class="n">sep</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">target</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;example input entry:&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>separator token: [SEP]
+example input entry: A47[SEP]abatement[SEP]abatement of pollution
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="convert-dataframe-to-dataset">
+<h3>Convert DataFrame to Dataset<a class="headerlink" href="#convert-dataframe-to-dataset" title="Link to this heading">#</a></h3>
+<p>HuggingFace will perform better with one of its own DataSets instead of a Pandas DataFrame, so convert it.
+Also, HuggingFace Transformers expect the output variable to be named <code class="docutils literal notranslate"><span class="pre">label</span></code>, so rename it to that from <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert from DataFrames to </span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="n">eval_ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">eval_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-tokenizer-function">
+<h3>Create Tokenizer Function<a class="headerlink" href="#create-tokenizer-function" title="Link to this heading">#</a></h3>
+<p>We’ll need a function to return a tokenized version of the input.<br />
+Testing it shows that it’s added a token type ID and attention mask entry.<br />
+Inspecting, you can see some special tokens (some of which are added on by the tokenizer):<br />
+<code class="docutils literal notranslate"><span class="pre">1</span></code> (start of text), <code class="docutils literal notranslate"><span class="pre">2</span></code> (separator <code class="docutils literal notranslate"><span class="pre">[SEP]</span></code>), <code class="docutils literal notranslate"><span class="pre">336</span></code>=<code class="docutils literal notranslate"><span class="pre">_A</span></code>, <code class="docutils literal notranslate"><span class="pre">5753</span></code>=<code class="docutils literal notranslate"><span class="pre">47</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define one-line function that tokenizes the inputs column of the given dataframe</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">tok_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">tokz</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;inputs&quot;</span><span class="p">])</span>
+<span class="c1"># test it on the input column of the first row</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;input:</span><span class="se">\n</span><span class="s1">  &quot;</span><span class="si">{</span><span class="n">ds</span><span class="p">[</span><span class="s1">&#39;inputs&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&quot;</span><span class="se">\n</span><span class="s1">output:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">tok_func</span><span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>input:
+  &quot;A47[SEP]abatement[SEP]abatement of pollution&quot;
+output:
+  input_ids:[1, 336, 5753, 2, 47284, 2, 47284, 265, 6435, 2]
+  token_type_ids:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  attention_mask:[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Can check out the special characters and their indices for the specific tokenizer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tokz</span><span class="o">.</span><span class="n">all_special_tokens</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tokz</span><span class="o">.</span><span class="n">all_special_ids</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;[CLS]&#39;, &#39;[SEP]&#39;, &#39;[UNK]&#39;, &#39;[PAD]&#39;, &#39;[MASK]&#39;]
+[1, 2, 3, 0, 128000]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tokenize-inputs-column">
+<h3>Tokenize inputs column<a class="headerlink" href="#tokenize-inputs-column" title="Link to this heading">#</a></h3>
+<p>Tokenize the <code class="docutils literal notranslate"><span class="pre">inputs</span></code> column via <code class="docutils literal notranslate"><span class="pre">map</span></code> and the earlier <code class="docutils literal notranslate"><span class="pre">tok_func</span></code>.<br />
+Recall that <code class="docutils literal notranslate"><span class="pre">tok_func</span></code> takes a string and runs <code class="docutils literal notranslate"><span class="pre">AutoTokenizer</span></code> on it,<br />
+returning a dictionary with <code class="docutils literal notranslate"><span class="pre">input_ids</span></code>, <code class="docutils literal notranslate"><span class="pre">token_type_ids</span></code>, and <code class="docutils literal notranslate"><span class="pre">input_masks</span></code>.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">dataset.map</span></code> to apply that function to each entry in the <code class="docutils literal notranslate"><span class="pre">inputs</span></code> column,<br />
+adding <code class="docutils literal notranslate"><span class="pre">input_ids</span></code>, <code class="docutils literal notranslate"><span class="pre">token_type_ids</span></code>, and <code class="docutils literal notranslate"><span class="pre">input_masks</span></code> columns.</p>
+<p>use batching to speed it up, and drop the columns we don’t need -<br />
+<code class="docutils literal notranslate"><span class="pre">anchor</span></code> and <code class="docutils literal notranslate"><span class="pre">target</span></code> are now include in <code class="docutils literal notranslate"><span class="pre">inputs</span></code>, which is itself encoded in the new tokenized columns.</p>
+<p>All that remains are the <code class="docutils literal notranslate"><span class="pre">label</span></code> (formerly <code class="docutils literal notranslate"><span class="pre">score</span></code>, the predicted feature),<br />
+the <code class="docutils literal notranslate"><span class="pre">input_ids</span></code> - tokenized version of inputs,<br />
+the <code class="docutils literal notranslate"><span class="pre">token_type_ids</span></code>- which indicates whether a token is a part of the <code class="docutils literal notranslate"><span class="pre">context</span></code> or the <code class="docutils literal notranslate"><span class="pre">question</span></code>,<br />
+and the <code class="docutils literal notranslate"><span class="pre">attention_mask</span></code>- which indicates which tokens have actual data and which are padding.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tokenize the inputs column, remove now-redundant columns</span>
+<span class="n">inps</span> <span class="o">=</span> <span class="s2">&quot;anchor&quot;</span><span class="p">,</span><span class="s2">&quot;target&quot;</span><span class="p">,</span><span class="s2">&quot;context&quot;</span>
+<span class="n">remove_cols</span> <span class="o">=</span> <span class="n">inps</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;inputs&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;section&#39;</span><span class="p">)</span>
+<span class="n">tok_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tok_func</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_columns</span><span class="o">=</span><span class="n">remove_cols</span><span class="p">)</span>
+<span class="n">tok_ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7b126c60de5f445a840ee9a61574287c", "version_major": 2, "version_minor": 0}</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;label&#39;: 0.5,
+ &#39;input_ids&#39;: [1, 336, 5753, 2, 47284, 2, 47284, 265, 6435, 2],
+ &#39;token_type_ids&#39;: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ &#39;attention_mask&#39;: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="creating-a-validation-set">
+<h2>Creating a Validation Set<a class="headerlink" href="#creating-a-validation-set" title="Link to this heading">#</a></h2>
+<p>The author was watching discussion about the dataset and found a <a class="reference external" href="https://www.kaggle.com/competitions/us-patent-phrase-to-phrase-matching/discussion/315220">post</a> which indicated that the <code class="docutils literal notranslate"><span class="pre">test</span></code> <code class="docutils literal notranslate"><span class="pre">anchors</span></code> (by which the competition will be judged) are <strong>not</strong> present in the <code class="docutils literal notranslate"><span class="pre">training</span></code> <code class="docutils literal notranslate"><span class="pre">anchor</span></code> set.</p>
+<p>To perform well in the competition, then, we should train and validate the model as close to how it will be tested - we need to pull some anchors out of the training dataset to use in the validation set. Our validation set will include unseen anchors just like the final test set.</p>
+<section id="shuffle-the-unique-anchors">
+<h3>Shuffle the Unique Anchors<a class="headerlink" href="#shuffle-the-unique-anchors" title="Link to this heading">#</a></h3>
+<p>First, get a randomly shuffled list of anchors (we don’t want to split off an alphabet-order-specific selection)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get a randomly ordered list of unique anchors and show the first 5</span>
+<span class="n">anchors</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">anchor</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">anchors</span><span class="p">)</span>
+<span class="n">anchors</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;time digital signal&#39;, &#39;antiatherosclerotic&#39;, &#39;filled interior&#39;,
+       &#39;dispersed powder&#39;, &#39;locking formation&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hold-back-1-4-unique-anchors-1-3-rows">
+<h3>Hold back 1/4 unique anchors ~1/3 rows<a class="headerlink" href="#hold-back-1-4-unique-anchors-1-3-rows" title="Link to this heading">#</a></h3>
+<p>Grab a list of 25% of the unique anchors for the validation dataset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val_sz</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">anchors</span><span class="p">)</span><span class="o">*</span><span class="mf">0.25</span><span class="p">)</span> <span class="c1"># determine how many ID&#39;s make up 25% of unique anchors</span>
+<span class="n">val_anchors</span> <span class="o">=</span> <span class="n">anchors</span><span class="p">[:</span><span class="n">val_sz</span><span class="p">]</span> <span class="c1"># grab the first however-many-id&#39;s-that-is</span>
+<span class="n">val_anchors</span><span class="p">[:</span><span class="mi">9</span><span class="p">]</span> <span class="c1"># print out 10 of them. </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;time digital signal&#39;, &#39;antiatherosclerotic&#39;, &#39;filled interior&#39;,
+       &#39;dispersed powder&#39;, &#39;locking formation&#39;, &#39;container opener&#39;,
+       &#39;apply to anode electrode&#39;, &#39;pen based computer&#39;, &#39;running tally&#39;],
+      dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Get a list of the rows from the DataFrame with anchors set aside for validation.<br />
+Note that we set aside <code class="docutils literal notranslate"><span class="pre">25%</span></code> of the unique anchors, but some anchors are in more rows than others,<br />
+so we’ve actually set aside <code class="docutils literal notranslate"><span class="pre">33%</span></code> of the overall data for validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">is_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">anchor</span><span class="p">,</span> <span class="n">val_anchors</span><span class="p">)</span> <span class="c1"># get a True/False array of whether each row is in the validation anchor set</span>
+<span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="c1"># make an array of indices [0,1,2, ... 36472]</span>
+<span class="n">val_idxs</span> <span class="o">=</span> <span class="n">idxs</span><span class="p">[</span> <span class="n">is_val</span><span class="p">]</span> <span class="c1"># subset that list with the entries that are True (i.e. have validation anchors)</span>
+<span class="n">trn_idxs</span> <span class="o">=</span> <span class="n">idxs</span><span class="p">[</span><span class="o">~</span><span class="n">is_val</span><span class="p">]</span> <span class="c1"># subset that list with the entries that are False (i.e. NOT validation anchors)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;indices in validation array&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">val_idxs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;indices of non-validation array&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">trn_idxs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">val_idxs</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">trn_idxs</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">% of rows reserved for validation&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>indices in validation array 9116
+indices of non-validation array 27357
+33.32% of rows reserved for validation
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-train-test-datasetdict">
+<h3>Create train/test DatasetDict<a class="headerlink" href="#create-train-test-datasetdict" title="Link to this heading">#</a></h3>
+<p>Now use those lists of validation (<code class="docutils literal notranslate"><span class="pre">test</span></code>) and non-validation (<code class="docutils literal notranslate"><span class="pre">train</span></code>) indices to make Transformers Datasets for each and put them into a DatasetDict.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dds</span> <span class="o">=</span> <span class="n">DatasetDict</span><span class="p">({</span>
+    <span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">tok_ds</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">trn_idxs</span><span class="p">),</span>
+    <span class="s2">&quot;test&quot;</span><span class="p">:</span>  <span class="n">tok_ds</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">val_idxs</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A lot of people do much more complex stuff when creating their validation sets, but this works fine for such a large dataset -
+as you can see, the two groups have similar average scores when you take the means of all the rows in each set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean score of training   set:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">trn_idxs</span><span class="p">]</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mean score of validation set:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">val_idxs</span><span class="p">]</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mean score of training   set: 0.362
+mean score of validation set: 0.361
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="initial-model-training">
+<h2>Initial Model Training<a class="headerlink" href="#initial-model-training" title="Link to this heading">#</a></h2>
+<p>Set the original parameters for the first attempts at training</p>
+<p>Define a function to return success metric</p>
+<ul class="simple">
+<li><p>must return a dictionary so Transformers knows what label to use</p></li>
+<li><p>use numpy Pearson correlation coefficient</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*eval_pred</span></code> unpacks the tuple so each element is passed as separate arg</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[0][1]</span></code> returns the coefficient from the top right of the 2D array</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function to return success metric</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">corr</span><span class="p">(</span><span class="n">eval_pred</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;pearson&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="o">*</span><span class="n">eval_pred</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Set initial hyperparameters</p>
+<ul class="simple">
+<li><p>learning rate and  batch size that will fit the GPU</p></li>
+<li><p>reasonable weight decay</p></li>
+<li><p>small number of epochs (4 isn’t much, but most of the progress can be made in that time, so it’s good for experimentation)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define hyperparameters for initial training attempt</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">8e-5</span>  <span class="c1"># learning rate</span>
+<span class="n">bs</span> <span class="o">=</span> <span class="mi">128</span>   <span class="c1"># batch size</span>
+<span class="n">wd</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># weight decay</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># number of epochs</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="create-trainingarguments">
+<h3>Create TrainingArguments<a class="headerlink" href="#create-trainingarguments" title="Link to this heading">#</a></h3>
+<p>Transformers use the <code class="docutils literal notranslate"><span class="pre">TrainingArguments</span></code> class to set up arguments,<br />
+and <code class="docutils literal notranslate"><span class="pre">Trainer</span></code> class to combine the model, data, and training args together.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create TrainingArguments to pass to Trainer</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="s1">&#39;outputs&#39;</span><span class="p">,</span> 
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">8e-5</span><span class="p">,</span> <span class="c1"># decent learning rate for the GPU</span>
+    <span class="n">warmup_ratio</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> 
+    <span class="n">lr_scheduler_type</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="c1"># fast.ai has found this warmup scheduler to be reliable</span>
+    <span class="n">fp16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># fp16 is faster for modern GPU&#39;s and saves memory</span>
+    <span class="n">eval_strategy</span><span class="o">=</span><span class="s2">&quot;epoch&quot;</span><span class="p">,</span> 
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="n">bs</span><span class="p">,</span> 
+    <span class="n">per_device_eval_batch_size</span><span class="o">=</span><span class="n">bs</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="c1"># eval stage doesn&#39;t store gradients, can do 2x the rows at once</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> 
+    <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="c1"># set reasonable weight decay</span>
+    <span class="n">report_to</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="c1"># Create Model to add to Trainer (use the name from earlier)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_nm</span><span class="p">,</span> <span class="n">num_labels</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Create the Trainer with the model, training args, datasets, tokenizer, metrics function</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="c1"># pass it the args and model we just put together</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">dds</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="c1"># get train dataset from DatasetDict</span>
+    <span class="n">eval_dataset</span><span class="o">=</span><span class="n">dds</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">],</span>   <span class="c1"># get eval  dataset from DatasetDict</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokz</span><span class="p">,</span> <span class="c1"># it needs the tokenizer </span>
+    <span class="n">compute_metrics</span><span class="o">=</span><span class="n">corr</span><span class="p">)</span> <span class="c1"># here&#39;s the Pearson correlation function we made</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="train">
+<h3>Train!<a class="headerlink" href="#train" title="Link to this heading">#</a></h3>
+<p>Well it looks like enabling the GPU helped … a similar training operation in <a class="reference internal" href="../nlp_beginners_guide/nlp_beginners_guide_noex.html#kaggle-getting-started-with-nlp"><span class="std std-ref">Getting Started with NLP</span></a> took 55 minutes. This took less than 2. The version up on Kaggle took a little more than 4. Got it enabled by using UV to install the correct version of PyTorch for my version of CUDA (see <a class="reference external" href="https://pytorch.org/get-started/locally">Local Pytorch</a> and <a class="reference external" href="https://docs.astral.sh/uv/guides/integration/pytorch/">Using UV with PyTorch</a>) and restarting the kernel</p>
+<p>So the final Pearson Coefficient gets up to <code class="docutils literal notranslate"><span class="pre">0.813</span></code>,<code class="docutils literal notranslate"><span class="pre">0.812</span></code>, … Decent starting point!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">();</span> <span class="c1"># the ; makes the output a bit shorter since it makes Jupyter think there&#39;s another line</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <div>
+      
+      <progress value='856' max='856' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      [856/856 01:37, Epoch 4/4]
+    </div>
+    <table border="1" class="dataframe">
+  <thead>
+ <tr style="text-align: left;">
+      <th>Epoch</th>
+      <th>Training Loss</th>
+      <th>Validation Loss</th>
+      <th>Pearson</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>No log</td>
+      <td>0.026294</td>
+      <td>0.795718</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>No log</td>
+      <td>0.024560</td>
+      <td>0.806296</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.036800</td>
+      <td>0.026141</td>
+      <td>0.811804</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.036800</td>
+      <td>0.025526</td>
+      <td>0.811735</td>
+    </tr>
+  </tbody>
+</table><p></div></div>
+</div>
+</section>
+</section>
+<section id="improving-the-model">
+<h2>Improving the Model<a class="headerlink" href="#improving-the-model" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>First step before improving: determine whether model results are stable. The original writer did the training 3 times and got a pretty stable Pearson coefficient (<code class="docutils literal notranslate"><span class="pre">0.808</span></code>-<code class="docutils literal notranslate"><span class="pre">0.810</span></code>), which is stable enough to use as a base, and also tells us that improvements need to be better than that range to be worth it.</p></li>
+<li><p>Make some rapid iterations, trying out different data processing and trainer parameters</p></li>
+<li><p>Once we’re confident we’ve got the basics right, train with more epochs and do some cross validation</p></li>
+</ol>
+<section id="create-functions-for-rapid-iteration">
+<h3>Create Functions for Rapid Iteration<a class="headerlink" href="#create-functions-for-rapid-iteration" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a function to rapidly apply tokenization and set the DatasetDict</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_dds</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="c1"># convert to Dataset, rename &#39;score&#39; column to &#39;label&#39; like HuggingFace Transformers expects</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">)</span>
+    <span class="c1"># tokenize the &#39;inputs&#39; column, remove unnneeded columns</span>
+    <span class="n">tok_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tok_func</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_columns</span><span class="o">=</span><span class="n">inps</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;inputs&#39;</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;section&#39;</span><span class="p">))</span>
+    <span class="c1"># split into test and train datasets, return in a DatasetDict</span>
+    <span class="k">return</span> <span class="n">DatasetDict</span><span class="p">({</span><span class="s2">&quot;train&quot;</span><span class="p">:</span><span class="n">tok_ds</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">trn_idxs</span><span class="p">),</span> <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">tok_ds</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">val_idxs</span><span class="p">)})</span>
+
+<span class="c1"># create a function to create the Model</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_model</span><span class="p">():</span> 
+    <span class="k">return</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_nm</span><span class="p">,</span> <span class="n">num_labels</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># create a function to create the Trainer</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_trainer</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Set the model, use the pretrained one if nothing else specified</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> 
+        <span class="n">model</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">()</span>
+    <span class="c1"># Create the TrainingArguments</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+        <span class="s1">&#39;outputs&#39;</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span> <span class="n">warmup_ratio</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">lr_scheduler_type</span><span class="o">=</span><span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="n">fp16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eval_strategy</span><span class="o">=</span><span class="s2">&quot;epoch&quot;</span><span class="p">,</span> 
+        <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="n">bs</span><span class="p">,</span> <span class="n">per_device_eval_batch_size</span><span class="o">=</span><span class="n">bs</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">num_train_epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="n">wd</span><span class="p">,</span> <span class="n">report_to</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="c1"># Make the Trainer from the </span>
+    <span class="k">return</span> <span class="n">Trainer</span><span class="p">(</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> 
+        <span class="n">train_dataset</span><span class="o">=</span><span class="n">dds</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> 
+        <span class="n">eval_dataset</span><span class="o">=</span><span class="n">dds</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">],</span> 
+        <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokz</span><span class="p">,</span> <span class="n">compute_metrics</span><span class="o">=</span><span class="n">corr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="try-a-different-separator">
+<h3>Try a different Separator<a class="headerlink" href="#try-a-different-separator" title="Link to this heading">#</a></h3>
+<p>Maybe we should use a custom separator character instead of the one that the model uses.<br />
+Change the <code class="docutils literal notranslate"><span class="pre">inputs</span></code> column to use that instead, then make and train a new model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a Datasetdict with a new separator, then create and train a new model with it</span>
+<span class="n">sep</span> <span class="o">=</span> <span class="s2">&quot; [s] &quot;</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;inputs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">context</span> <span class="o">+</span> <span class="n">sep</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">anchor</span> <span class="o">+</span> <span class="n">sep</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">target</span>
+<span class="n">dds</span> <span class="o">=</span> <span class="n">get_dds</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">get_trainer</span><span class="p">(</span><span class="n">dds</span><span class="p">)</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7c0496f7b1f1475ca296a4260078be64", "version_major": 2, "version_minor": 0}</script><div class="output text_html">
+    <div>
+      
+      <progress value='856' max='856' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      [856/856 01:45, Epoch 4/4]
+    </div>
+    <table border="1" class="dataframe">
+  <thead>
+ <tr style="text-align: left;">
+      <th>Epoch</th>
+      <th>Training Loss</th>
+      <th>Validation Loss</th>
+      <th>Pearson</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>No log</td>
+      <td>0.026878</td>
+      <td>0.799777</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>No log</td>
+      <td>0.023914</td>
+      <td>0.813574</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.029500</td>
+      <td>0.024880</td>
+      <td>0.816018</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.029500</td>
+      <td>0.024308</td>
+      <td>0.818810</td>
+    </tr>
+  </tbody>
+</table><p></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TrainOutput(global_step=856, training_loss=0.02263424329668562, metrics={&#39;train_runtime&#39;: 105.1651, &#39;train_samples_per_second&#39;: 1040.536, &#39;train_steps_per_second&#39;: 8.14, &#39;total_flos&#39;: 581591382621300.0, &#39;train_loss&#39;: 0.02263424329668562, &#39;epoch&#39;: 4.0})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hey, <code class="docutils literal notranslate"><span class="pre">0.818</span></code> is better than <code class="docutils literal notranslate"><span class="pre">0.813</span></code>, let’s keep that change<br />
+(normally you’d run it a few times to see if it was consistent)</p>
+</section>
+<section id="patent-section-tokens">
+<h3>Patent Section Tokens<a class="headerlink" href="#patent-section-tokens" title="Link to this heading">#</a></h3>
+<p>maybe add the patent section as a new special token so the model will learn to handle different sections different ways<br />
+i.e. create a token <code class="docutils literal notranslate"><span class="pre">[A]</span></code> for section <code class="docutils literal notranslate"><span class="pre">A</span></code>, add all sections as their own special characters</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sectok&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;[&#39;</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">section</span> <span class="o">+</span> <span class="s1">&#39;]&#39;</span> <span class="c1"># make a column with &#39;[A]&#39; etc</span>
+<span class="n">sectoks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sectok</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="c1"># get a list of all unique entries in that column</span>
+<span class="n">tokz</span><span class="o">.</span><span class="n">add_special_tokens</span><span class="p">({</span><span class="s1">&#39;additional_special_tokens&#39;</span><span class="p">:</span> <span class="n">sectoks</span><span class="p">})</span> <span class="c1"># add to tokenizer</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add that section token to the beginning of the inputs column</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;inputs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sectok</span> <span class="o">+</span> <span class="n">sep</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">anchor</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="n">sep</span> <span class="o">+</span> <span class="n">df</span><span class="o">.</span><span class="n">target</span>
+<span class="n">dds</span> <span class="o">=</span> <span class="n">get_dds</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="c1"># create a new DatasetDictionary from the &#39;inputs&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "267de37824f449f4ab43734179029a77", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># resize the model embedding matrix in the model since we&#39;ve added more tokens</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">resize_token_embeddings</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokz</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Embedding(128009, 768, padding_idx=0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>New embedding has a vocab size of 128009 and 768 embedding dimensions.<br />
+So each token is represented by a vector of 768 numbers.<br />
+And there are 128009 tokens that it knows how to handle.<br />
+They’re stored in a 2D matrix.</p>
+<p>Note that we haven’t actually told it what those tokens <em>are</em> yet.<br />
+We’ve just told it how big it needs to be.<br />
+It’s copied the initial embeddings over, the new ones are randomized.<br />
+We’ll train the vectors of the new tokens now.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># must pass the new model with the expanded vocab to train</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">get_trainer</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <div>
+      
+      <progress value='856' max='856' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      [856/856 01:42, Epoch 4/4]
+    </div>
+    <table border="1" class="dataframe">
+  <thead>
+ <tr style="text-align: left;">
+      <th>Epoch</th>
+      <th>Training Loss</th>
+      <th>Validation Loss</th>
+      <th>Pearson</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>No log</td>
+      <td>0.027168</td>
+      <td>0.801552</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>No log</td>
+      <td>0.023376</td>
+      <td>0.817448</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.029500</td>
+      <td>0.024142</td>
+      <td>0.819981</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.029500</td>
+      <td>0.023861</td>
+      <td>0.820306</td>
+    </tr>
+  </tbody>
+</table><p></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TrainOutput(global_step=856, training_loss=0.02270349888043983, metrics={&#39;train_runtime&#39;: 103.1412, &#39;train_samples_per_second&#39;: 1060.953, &#39;train_steps_per_second&#39;: 8.299, &#39;total_flos&#39;: 553279077275580.0, &#39;train_loss&#39;: 0.02270349888043983, &#39;epoch&#39;: 4.0})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Well that slightly improved Pearson (<code class="docutils literal notranslate"><span class="pre">0.8186</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">0.8203</span></code>) and Validation Loss again (<code class="docutils literal notranslate"><span class="pre">0.0246</span></code>-&gt;<code class="docutils literal notranslate"><span class="pre">0.0238</span></code>).  Keep that one!</p>
+</section>
+<section id="some-other-ideas">
+<h3>Some Other Ideas<a class="headerlink" href="#some-other-ideas" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Try a model pretrained on legal vocabulary, like <a class="reference external" href="https://huggingface.co/anferico/bert-for-patents">BERT for patents</a></p></li>
+<li><p>Try a sentence similarity model, like this <a class="reference external" href="https://huggingface.co/AI-Growth-Lab/PatentSBERTa">patent similarity model</a></p></li>
+<li><p>fine-tune any HuggingFace model with the full patent database (provided in BigQuery) before applying it to this dataset</p></li>
+<li><p>Replace the patent context field with the <em>description</em> of that context provided by the patent office</p></li>
+</ul>
+</section>
+</section>
+<section id="cross-validation">
+<h2>Cross Validation<a class="headerlink" href="#cross-validation" title="Link to this heading">#</a></h2>
+<p>Now that we’ve got some obvious improvements out of the way, we’ll need a way to evaluate smaller changes.<br />
+Try <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedGroupKFold.html#sklearn.model_selection.StratifiedGroupKFold">StratifiedGroupKFold</a><br />
+It will try non-overlapping anchors (I guess that means that each type of anchor will be put into a group together instead of being divided through the other groups?)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a cross validator that can be used to split up the data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StratifiedGroupKFold</span>
+<span class="n">n_folds</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedGroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_folds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split the DataFrame into folds</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span> <span class="c1"># shuffle the rows (frac=1-&gt;all)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">score</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="c1"># get scores as integers 0-100</span>
+<span class="c1"># use the cross validator to split the dataframe up</span>
+<span class="c1"># idxs = the row indices (not shuffled, just an array with same rows as data)</span>
+<span class="c1"># scores = will make the folds have similar (average?) scores</span>
+<span class="c1"># using anchor will tell it to give the folds non-overlapping anchors</span>
+<span class="n">folds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">idxs</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">anchor</span><span class="p">))</span>
+<span class="n">folds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(array([    0,     1,     2, ..., 36469, 36471, 36472], shape=(27346,)),
+  array([    8,    13,    14, ..., 36453, 36464, 36470], shape=(9127,))),
+ (array([    0,     1,     5, ..., 36470, 36471, 36472], shape=(27368,)),
+  array([    2,     3,     4, ..., 36459, 36461, 36462], shape=(9105,))),
+ (array([    1,     2,     3, ..., 36467, 36470, 36472], shape=(27351,)),
+  array([    0,     7,    11, ..., 36468, 36469, 36471], shape=(9122,))),
+ (array([    0,     2,     3, ..., 36469, 36470, 36471], shape=(27354,)),
+  array([    1,     5,     9, ..., 36465, 36467, 36472], shape=(9119,)))]
+</pre></div>
+</div>
+</div>
+</div>
+<p>so <code class="docutils literal notranslate"><span class="pre">folds</span></code> is now a list of pairs of arrays.<br />
+the first array in each pair are indices of training rows for the fold<br />
+and the second array in each pair has indices of the validation rows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a function to turn those folds into DatasetDicts</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_fold</span><span class="p">(</span><span class="n">folds</span><span class="p">,</span> <span class="n">fold_num</span><span class="p">):</span>
+    <span class="n">trn</span><span class="p">,</span><span class="n">val</span> <span class="o">=</span> <span class="n">folds</span><span class="p">[</span><span class="n">fold_num</span><span class="p">]</span> <span class="c1"># get the arrays of train and test indices for this fold</span>
+    <span class="k">return</span> <span class="n">DatasetDict</span><span class="p">({</span> <span class="c1"># create a DatasetDict for this fold by selecting the right indices</span>
+        <span class="s2">&quot;train&quot;</span><span class="p">:</span><span class="n">tok_ds</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">trn</span><span class="p">),</span> <span class="c1"># first array has train indices</span>
+        <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="n">tok_ds</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">val</span><span class="p">)})</span> <span class="c1"># second array has validation indices</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># try it out - get a DatsetDict for the 1st fold</span>
+<span class="n">dds</span> <span class="o">=</span> <span class="n">get_fold</span><span class="p">(</span><span class="n">folds</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">dds</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatasetDict({
+    train: Dataset({
+        features: [&#39;label&#39;, &#39;input_ids&#39;, &#39;token_type_ids&#39;, &#39;attention_mask&#39;],
+        num_rows: 27346
+    })
+    test: Dataset({
+        features: [&#39;label&#39;, &#39;input_ids&#39;, &#39;token_type_ids&#39;, &#39;attention_mask&#39;],
+        num_rows: 9127
+    })
+})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looks good, can pass those Datasetdicts to the trainer to train models.<br />
+4 folds would allow you to get four models / predictions/ metrics.<br />
+Could ensemble the 4 models into one stronger model.<br />
+Could average the 4 metrics to get a more accurate assessment of of your model’s scores.</p>
+<p>Here’s how you’d extract the final epoch matrices from a trainer:<br />
+<code class="docutils literal notranslate"><span class="pre">trainer.state.log_history</span></code> will have a dictionary of metrics like <code class="docutils literal notranslate"><span class="pre">eval_pearson</span></code> and <code class="docutils literal notranslate"><span class="pre">train_loss</span></code> for various points during training<br />
+(like each epoch and specific step counts).<br />
+This routine grabs the dictionary entries for <code class="docutils literal notranslate"><span class="pre">eval_pearson</span></code> and just takes the last one (which is the final one)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">o</span><span class="p">[</span><span class="s1">&#39;eval_pearson&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">trainer</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">log_history</span> <span class="k">if</span> <span class="s1">&#39;eval_pearson&#39;</span> <span class="ow">in</span> <span class="n">o</span><span class="p">]</span>
+<span class="n">metrics</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8203060258366008
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># try it - train one model per fold and get the pearson coefficient from each</span>
+<span class="n">pearsons</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">folds</span><span class="p">)):</span>
+    <span class="c1"># extract the DatasetDictionary for the current fold</span>
+    <span class="n">dds</span> <span class="o">=</span> <span class="n">get_fold</span><span class="p">(</span><span class="n">folds</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="c1"># reset model to remove training from prior folds, prep it for added section tokens</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">resize_token_embeddings</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tokz</span><span class="p">))</span>
+    <span class="c1"># create the trainer and train the model for this fold</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">get_trainer</span><span class="p">(</span><span class="n">dds</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+    <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+    <span class="c1"># grab the pearson correlation coefficient metric from the last epoch for this fold</span>
+    <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">o</span><span class="p">[</span><span class="s1">&#39;eval_pearson&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">trainer</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">log_history</span> <span class="k">if</span> <span class="s1">&#39;eval_pearson&#39;</span> <span class="ow">in</span> <span class="n">o</span><span class="p">]</span>
+    <span class="n">pearsons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">metrics</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <div>
+      
+      <progress value='856' max='856' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      [856/856 01:37, Epoch 4/4]
+    </div>
+    <table border="1" class="dataframe">
+  <thead>
+ <tr style="text-align: left;">
+      <th>Epoch</th>
+      <th>Training Loss</th>
+      <th>Validation Loss</th>
+      <th>Pearson</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>No log</td>
+      <td>0.028959</td>
+      <td>0.796531</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>No log</td>
+      <td>0.021608</td>
+      <td>0.826423</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.029500</td>
+      <td>0.022120</td>
+      <td>0.835105</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.029500</td>
+      <td>0.022173</td>
+      <td>0.837116</td>
+    </tr>
+  </tbody>
+</table><p></div><div class="output text_html">
+    <div>
+      
+      <progress value='856' max='856' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      [856/856 01:37, Epoch 4/4]
+    </div>
+    <table border="1" class="dataframe">
+  <thead>
+ <tr style="text-align: left;">
+      <th>Epoch</th>
+      <th>Training Loss</th>
+      <th>Validation Loss</th>
+      <th>Pearson</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>No log</td>
+      <td>0.028108</td>
+      <td>0.797522</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>No log</td>
+      <td>0.023575</td>
+      <td>0.825913</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.030100</td>
+      <td>0.020953</td>
+      <td>0.835904</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.030100</td>
+      <td>0.022182</td>
+      <td>0.834707</td>
+    </tr>
+  </tbody>
+</table><p></div><div class="output text_html">
+    <div>
+      
+      <progress value='856' max='856' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      [856/856 01:37, Epoch 4/4]
+    </div>
+    <table border="1" class="dataframe">
+  <thead>
+ <tr style="text-align: left;">
+      <th>Epoch</th>
+      <th>Training Loss</th>
+      <th>Validation Loss</th>
+      <th>Pearson</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>No log</td>
+      <td>0.031778</td>
+      <td>0.804915</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>No log</td>
+      <td>0.022355</td>
+      <td>0.828921</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.030400</td>
+      <td>0.020830</td>
+      <td>0.838763</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.030400</td>
+      <td>0.021541</td>
+      <td>0.840206</td>
+    </tr>
+  </tbody>
+</table><p></div><div class="output text_html">
+    <div>
+      
+      <progress value='856' max='856' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      [856/856 01:37, Epoch 4/4]
+    </div>
+    <table border="1" class="dataframe">
+  <thead>
+ <tr style="text-align: left;">
+      <th>Epoch</th>
+      <th>Training Loss</th>
+      <th>Validation Loss</th>
+      <th>Pearson</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>No log</td>
+      <td>0.030300</td>
+      <td>0.789697</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>No log</td>
+      <td>0.022839</td>
+      <td>0.827026</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.030100</td>
+      <td>0.021869</td>
+      <td>0.840002</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.030100</td>
+      <td>0.022103</td>
+      <td>0.840160</td>
+    </tr>
+  </tbody>
+</table><p></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pearson correlation coefficients:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">pearson</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pearsons</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; fold </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">,</span> <span class="n">pearson</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;average:&quot;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pearsons</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">pearsons</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pearson correlation coefficients:
+ fold 1: 0.8371156314367642
+ fold 2: 0.8347067460331601
+ fold 3: 0.8402059401372125
+ fold 4: 0.8401595556913395
+average: 0.838046968324619
+</pre></div>
+</div>
+</div>
+</div>
+<p>Interesting, each individual cross-validation fold was better than the full set.<br />
+Perhaps each dataset was more uniform as anchors were concentrated in each one.<br />
+Testing the model trained on the final fold on the full eval dataset,<br />
+the pearson coefficient is higher than before, though so is the loss.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test using the model trained on the last fold on the full evaluation dataset</span>
+<span class="n">eval_ds</span> <span class="o">=</span> <span class="n">get_dds</span><span class="p">(</span><span class="n">df</span><span class="p">)[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">eval_ds</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pearson:&quot;</span><span class="p">,</span> <span class="n">preds</span><span class="o">.</span><span class="n">metrics</span><span class="p">[</span><span class="s2">&quot;test_pearson&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a82ea065cb8b435f8c3705f3742effd0", "version_major": 2, "version_minor": 0}</script><div class="output text_html"></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PredictionOutput(predictions=array([0.57373047, 0.47436523, 0.37548828, ..., 0.49169922, 0.5595703 ,
+       0.5161133 ], shape=(9116,), dtype=float32), label_ids=array([0.75, 0.5 , 0.25, ..., 0.5 , 0.75, 0.5 ],
+      shape=(9116,), dtype=float32), metrics={&#39;test_loss&#39;: 0.027417922392487526, &#39;test_pearson&#39;: 0.8258443410264497, &#39;test_runtime&#39;: 2.3694, &#39;test_samples_per_second&#39;: 3847.385, &#39;test_steps_per_second&#39;: 15.194})
+pearson: 0.8258443410264497
+</pre></div>
+</div>
+</div>
+</div>
+<p>Later on I <em>should</em> try ensembling the fold models together.</p>
+</section>
 </section>
 
 
@@ -478,6 +1954,54 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-and-review-data">Download and Review Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-targets">Look at Targets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-anchors">Look at Anchors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-contexts">Look at Contexts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#look-at-scores">Look at Scores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-model">Choose Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-tokenizer">Get Tokenizer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-dataframe-to-dataset">Convert DataFrame to Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-tokenizer-function">Create Tokenizer Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenize-inputs-column">Tokenize inputs column</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-validation-set">Creating a Validation Set</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shuffle-the-unique-anchors">Shuffle the Unique Anchors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hold-back-1-4-unique-anchors-1-3-rows">Hold back 1/4 unique anchors ~1/3 rows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-train-test-datasetdict">Create train/test DatasetDict</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-model-training">Initial Model Training</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-trainingarguments">Create TrainingArguments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train">Train!</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-the-model">Improving the Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-functions-for-rapid-iteration">Create Functions for Rapid Iteration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#try-a-different-separator">Try a different Separator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patent-section-tokens">Patent Section Tokens</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-other-ideas">Some Other Ideas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross Validation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
