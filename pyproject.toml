@@ -44,3 +44,19 @@ docs = [
 graphics = [
     "manim>=0.19.0",
 ]
+
+# install a version of PyTorch that will use my local CUDA 13 GPU
+# https://docs.astral.sh/uv/guides/integration/pytorch/
+# there are ways to control the version with command line arguments
+# may need to employ those eventually if I want to run non-locally
+
+# set specific packages to come from specific sources
+[tool.uv.sources]
+torch       = [{ index = "pytorch-cu130", marker = "sys_platform == 'linux' or sys_platform == 'win32'" }]
+torchvision = [{ index = "pytorch-cu130", marker = "sys_platform == 'linux' or sys_platform == 'win32'" }]
+
+# add PyTorch index to pull specific builds of PyTorch
+[[tool.uv.index]]
+name = "pytorch-cu130" # CUDA 13
+url = "https://download.pytorch.org/whl/cu130" # pytorch location for CUDA 13
+explicit = true # only pull specific packages from this index
