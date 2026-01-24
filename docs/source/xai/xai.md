@@ -9,8 +9,8 @@ LIME and SHAP were mentioned as Desired Proficiencies in one of the postings I l
 - follow along with the example for more details (will need to make a notebook)
 - see the [SHAP Notebook](./shapley_xai_intro.ipynb)
 
-## [Local Interpretable Model-agnostic Explanations (LIME)](https://www.geeksforgeeks.org/artificial-intelligence/introduction-to-explainable-aixai-using-lime/)
-- treats a supervised ML model as a black box (hence model-agnostic)
+## Local Interpretable Model-agnostic Explanations (LIME)
+- **LIME** ([g4g](https://www.geeksforgeeks.org/artificial-intelligence/introduction-to-explainable-aixai-using-lime/)) treats a supervised ML model as a black box (hence model-agnostic)
 - creates 5000 samples (by default). This means it makes 5000 feature vectors following a normal distribution
 - it inferences the model to make predictions on each of the samples and obtains the target variable (predictions)
 - it weighs each feature to determine how close each feature is to the original sample/observation (need to drill down into this more)
